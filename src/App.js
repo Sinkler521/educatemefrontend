@@ -17,12 +17,11 @@ export default function App(){
     }, [translationsConfig.CURRENTLANGUAGE]);
 
     const changeLanguage = (e) => {
-        const newLanguage = translationsConfig.CURRENTLANGUAGE === 'en' ? 'ru' : 'en';
+        const newLanguage = e.target.value;
         translationsConfig.CURRENTLANGUAGE = newLanguage;
         setCurrentMessages(messages[newLanguage]);
 
         e.target.innerText = translationsConfig.CURRENTLANGUAGE
-
         localStorage.setItem('CURRENTLANGUAGE', newLanguage);
     }
 
