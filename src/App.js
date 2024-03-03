@@ -7,6 +7,9 @@ import {messages} from "./translations/languages/messages";
 import {IntlProvider} from "react-intl";
 import {Routes, Route} from "react-router";
 
+// Components
+import {Mainpage} from "./components/mainpage/Mainpage";
+
 export default function App(){
     const [host, setHost] = useState(process.env.host)
     const [currentMessages, setCurrentMessages] = useState('')
@@ -30,7 +33,7 @@ export default function App(){
             <div className="App">
                 <IntlProvider locale={translationsConfig.CURRENTLANGUAGE} defaultLocale={translationsConfig.CURRENTLANGUAGE} messages={currentMessages}>
                     <Routes>
-                        {/*<Route path="/" element={<Mainpage changeLanguage={changeLanguage} host={host}/>} />*/}
+                        <Route path="/" element={<Mainpage changeLanguage={changeLanguage} host={host}/>} />
                         {/*<Route path="/login" element={<Login host={host}/>}/>*/}
                     </Routes>
                 </IntlProvider>
