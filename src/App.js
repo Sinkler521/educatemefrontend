@@ -6,12 +6,15 @@ import translationsConfig from "./translations/translationsConfig";
 import {messages} from "./translations/languages/messages";
 import {IntlProvider} from "react-intl";
 import {Routes, Route} from "react-router";
-
 // Components
 import {Mainpage} from "./components/mainpage/Mainpage";
 
+
 export default function App(){
-    const [host, setHost] = useState(process.env.host)
+    const [host, setHost] = useState({
+        api: process.env.REACT_APP_BACKEND_API,
+        auth: process.env.REACT_APP_BACKEND_AUTH,
+    })
     const [currentMessages, setCurrentMessages] = useState('')
 
     useEffect(() => {

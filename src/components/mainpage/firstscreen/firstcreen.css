@@ -6,7 +6,7 @@
     background-image: url("home.jpg");
     background-size: cover;
     background-position: center center;
-    min-height: 300vh;
+    min-height: 100vh;
 }
 
 #firstscreen-content{
@@ -57,4 +57,16 @@
 #firstscreen-button:hover{
     background-color: #f3f3f3;
     color: #8c8c8c;
+}
+
+@media screen and (max-width: 900px){
+    #firstscreen-content{
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 700px){
+    #firstscreen-content{
+        width: 80%;
+    }
 }

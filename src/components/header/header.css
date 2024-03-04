@@ -1,0 +1,18 @@
+header{
+    width: 100%;
+    background-color: transparent;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 2fr 1fr 1fr 6fr 1fr 1fr;
+    grid-gap: 0.2rem;
+}
+header div{
+    transition: all 0.2s ease-in;
+}
+header div:hover{
+    background-color: #f3f3f3;
+}
+
+.header-logo-container img{
+    width: 128px;
+}
