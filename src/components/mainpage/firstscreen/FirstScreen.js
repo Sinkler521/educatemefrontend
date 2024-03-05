@@ -5,44 +5,6 @@ import './firstcreen.css'
 
 export const FirstScreen = (props) => {
 
-    // useEffect(() => {
-    //     const newHeader = document.createElement('h1');
-    //     const container = document.getElementById('header-container')
-    //     newHeader.id = 'firstscreen-header';
-    //     container.appendChild(newHeader);
-    //
-    //     animateHeader(['Курсы различной сложности', 'Отслеживание прогресса', 'Контроль качества обучения'])
-    // }, []);
-    //
-    // const animateHeader = (stringsArray) => {
-    //     let currentStringIndex = 0;
-    //     let currentLetterIndex = 0;
-    //     let header = document.getElementById('firstscreen-header')
-    //
-    //     const type = () => {
-    //         if (currentLetterIndex <= stringsArray[currentStringIndex].length) {
-    //             header.innerText = `${stringsArray[currentStringIndex].slice(0, currentLetterIndex)}|`;
-    //             currentLetterIndex++;
-    //             setTimeout(type, 120);
-    //         } else {
-    //             setTimeout(erase, 2300);
-    //         }
-    //     };
-    //
-    //     const erase = () => {
-    //         if (currentLetterIndex >= 1) {
-    //             header.innerText = `${stringsArray[currentStringIndex].slice(0, currentLetterIndex)}|`;
-    //             currentLetterIndex--;
-    //             setTimeout(erase, 60);
-    //         } else {
-    //             currentStringIndex = (currentStringIndex + 1) % stringsArray.length;
-    //             setTimeout(type, 200);
-    //         }
-    //     };
-    //
-    //     type();
-    // };
-
     const handleScroll = () => {
         window.scrollTo({
             top: window.innerHeight,
