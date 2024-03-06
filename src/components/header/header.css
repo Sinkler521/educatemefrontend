@@ -1,5 +1,3 @@
-
-
 header{
     width: 100%;
     background-color: transparent;
@@ -84,4 +82,110 @@ header:before{
 }
 .header-navbar-item a i{
     font-size: 22px;
+}
+
+.burger-menu {
+    display: none;
+}
+
+@media screen and (max-width: 800px) {
+    header {
+        display: none;
+    }
+
+    .burger-menu {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 60px; /* Начальная высота меню */
+        background-color: transparent;
+        transition: height 0.6s ease; /* Анимация высоты */
+        z-index: 1000;
+    }
+
+    .burger-menu.open {
+        height: 100vh;
+    }
+    .burger-menu:before{
+        width: 100%;
+        height: 100%;
+        content: "";
+        position: absolute;
+        opacity: 30%;
+        background-color: #232222;
+        top: 0;
+        left: 0;
+        transition: all 0.3s ease-in-out;
+    }
+    .burger-menu.open::before{
+        opacity: 98%;
+    }
+
+    .burger-menu.open {
+        transform: translateX(0%);
+    }
+
+    .menu-toggle {
+        cursor: pointer;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 300;
+        color: var(--text-white);
+        font-size: 30px;
+    }
+
+    .burger-menu-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 0; /* Начальная высота 0, чтобы список был скрыт */
+        overflow: hidden; /* Скрываем содержимое, которое не помещается в контейнер */
+        transition: height 0.6s ease; /* Анимация высоты */
+        width: 100%;
+    }
+
+    /* При открытии меню меняем высоту на нужное значение, чтобы плавно показать список ссылок */
+    .burger-menu.open .burger-menu-links {
+        height: auto; /* Автоматический расчет высоты контента */
+    }
+
+    .burger-menu-links .header-navbar-item {
+        margin: 20px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        padding-top: 0.6rem;
+        padding-bottom: 0.8rem;
+    }
+    .burger-menu-links .header-navbar-item:hover:before {
+        background-color: transparent;
+    }
+
+    .burger-menu-links .header-navbar-item:hover a{
+        text-shadow: 1px 1px 1px var(--text-white);
+        transition: all 0.2s ease-in;
+        transform: scale(1.05)
+    }
+    .header-logo-container{
+        z-index: 200;
+        padding-bottom: 2rem;
+    }
+    #burger-menu-logo{
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        opacity: 50%;
+    }
+
+    .burger-menu-links .header-navbar-item a {
+        color: var(--text-white);
+        font-size: 18px;
+    }
 }

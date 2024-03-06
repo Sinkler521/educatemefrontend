@@ -6,6 +6,7 @@ import './header.css'
 export const Header = (props) => {
     const [lastScroll, setLastScroll] = useState(0)
     const [isScrolled, setIsScrolled] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -24,6 +25,10 @@ export const Header = (props) => {
 
         return () => window.removeEventListener('scroll', handleScroll);
     }, [window.pageYOffset]);
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    }
 
 
     return (
@@ -46,8 +51,23 @@ export const Header = (props) => {
                     <a href=""><i className="fa-solid fa-magnifying-glass"></i></a>
                 </div>
             </header>
+            <div className={`burger-menu ${isMenuOpen ? 'open' : ''}`}>
+                <div className="menu-toggle" onClick={toggleMenu}>
+                    <i className={`fa ${isMenuOpen ? 'fa-times' : 'fa-bars'}`}></i>
+                </div>
+                <div className="burger-menu-links">
+                    <div className="header-logo-container"><img id="burger-menu-logo" src="logo.jpg" alt="No image"/></div>
+                    <div className="header-navbar-item">
+                        <NavLink to="mycourses">Мои курсы</NavLink>
+                    </div>
+                    <div className="header-navbar-item">
+                        <NavLink to="allcourses">Все курсы</NavLink>
+                    </div>
+                    <div className="header-navbar-item">
+                        <NavLink to="login"><i className="fa-regular fa-user"></i></NavLink>
+                    </div>
+                </div>
+            </div>
         </>
     )
 }
-
-// TODO: add header for mobile devices
