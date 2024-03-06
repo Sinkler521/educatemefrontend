@@ -29,7 +29,7 @@ export const FirstScreen = (props) => {
                     <span className="firstscreen-span">и</span>
                     <span className="firstscreen-span">обучения</span>
                 </p>
-                <button id="firstscreen-button" onClick={handleScroll}>Ознакомиться</button>
+                <button id="firstscreen-button" onClick={handleScroll}>Почему мы?</button>
             </div>
 
         </div>

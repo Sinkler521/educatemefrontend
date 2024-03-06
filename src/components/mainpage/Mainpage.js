@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import {FirstScreen} from "./firstscreen/FirstScreen";
-import {StatisticsLine} from "./statisticsLine/StatisticsLine";
+import {Statistics} from "./statistics/Statistics";
 
 export const Mainpage = (props) => {
     const [statisticsInfo, setStatisticsInfo] = useState({})
@@ -23,7 +23,7 @@ export const Mainpage = (props) => {
     return (
         <>
             <FirstScreen/>
-            <StatisticsLine statisticsInfo={statisticsInfo}/>
+            <Statistics statisticsInfo={statisticsInfo}/>
         </>
     )
 }

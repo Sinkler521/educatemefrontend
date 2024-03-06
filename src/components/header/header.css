@@ -19,6 +19,10 @@ header:before{
     z-index: 100;
     box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.5), 0 -5px 5px -3px rgba(0, 0, 0, 0.5);
 }
+header.header-scrolled-far:before {
+    opacity: 100%;
+    box-shadow: 0 5px 5px -3px rgba(68, 68, 68, 0.5), 0 -5px 5px -3px rgba(70, 69, 69, 0.5);
+}
 
 .header-scrolled {
     transform: translateY(-100%);
@@ -42,6 +46,7 @@ header:before{
     width: 75px;
     box-shadow: 2px 2px 3px 3px #232222;
     opacity: 90%;
+    z-index: 300;
 }
 .header-navbar-item{
     cursor: pointer;
@@ -73,6 +78,12 @@ header:before{
 }
 .header-logo-container img{
     width: 128px;
+}
+.header-logo-container{
+    z-index: 300;
+}
+header.header-scrolled-far #logo{
+    box-shadow: 1px 0 0 0 #444444;
 }
 .header-navbar-item a{
     color: var(--text-white);

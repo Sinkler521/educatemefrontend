@@ -1,0 +1,120 @@
+.statistics-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 1.4rem;
+    padding-bottom: 1.4rem;
+    background-color: #1e1e1e;
+}
+.statistics-content{
+    width: 80%;
+    display: grid;
+    grid-template-rows: 1fr 1fr 2fr;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 1.2rem;
+    min-height: 100vh;
+}
+.statistics-content div{
+    /*border: 1px solid black;*/
+    padding: 0.8rem;
+    border-radius: 1.4rem;
+}
+.statistics-info-block{
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+.statistics-info-block h2,
+.statistics-info-block p{
+    text-align: center;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--text-white);
+}
+
+.statistics-info-block h2{
+    font-size: 40px;
+    font-family: Input Sans, sans-serif;
+}
+.statistics-info-block p{
+    font-size: 18px;
+    font-family: IBM Plex Sans, sans-serif;
+}
+
+.statistics-data-block{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1.6rem;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    background-color: #1c202c;
+}
+.statistics-data-block div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.statistics-data-block div h3:first-child{
+    font-size: 5rem;
+    color: var(--text-white);
+    font-family: Input Sans, sans-serif;
+    font-weight: 300;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+.statistics-data-block div h3:nth-child(2){
+    font-size: 20px;
+    color: var(--text-white);
+    font-family: "IBM Plex Sans", sans-serif;
+    margin-top: 15px;
+}
+
+.statistics-students-block{
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+.statistics-teachers-block{
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+.statistics-students-block,
+.statistics-teachers-block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #232427;
+    position: relative;
+}
+.statistics-students-block p,
+.statistics-teachers-block p{
+    text-align: left;
+    color: var(--text-white);
+    font-family: Input Sans, sans-serif;
+    font-size: 20px;
+    width: 90%;
+}
+.statistics-students-block h3,
+.statistics-teachers-block h3{
+    text-align: center;
+    color: var(--text-white);
+    font-size: 2rem;
+    font-family: "IBM Plex Sans", sans-serif;
+}
+
+#statistics-student{
+    width: 30%;
+    position: absolute;
+    bottom: 0;
+    transition: all 0.2s ease-in-out;
+}
+#statistics-teacher{
+    width: 60%;
+    position: absolute;
+    bottom: 0;
+    transition: all 0.2s ease-in-out;
+}
+#statistics-student:hover,
+#statistics-teacher:hover{
+    transform: scale(1.05);
+}

@@ -7,6 +7,7 @@ export const Header = (props) => {
     const [lastScroll, setLastScroll] = useState(0)
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isScrolledFar, setIsScrolledFar] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -17,8 +18,13 @@ export const Header = (props) => {
             } else if(actualScroll < lastScroll){
                 setIsScrolled(false)
             }
-
             setLastScroll(actualScroll)
+
+            if(actualScroll >= window.innerHeight){
+                setIsScrolledFar(true);
+            }else if(actualScroll < window.innerHeight){
+                setIsScrolledFar(false);
+            }
         }
 
         window.addEventListener('scroll', handleScroll);
@@ -33,7 +39,10 @@ export const Header = (props) => {
 
     return (
         <>
-            <header className={classNames("", {'header-scrolled': isScrolled})}>
+            <header className={classNames("", {
+                'header-scrolled': isScrolled,
+                'header-scrolled-far': isScrolledFar
+            })}>
                 <div className="header-logo-container">
                     <img src="logo.jpg" id="logo" alt="No logo"/>
                 </div>
