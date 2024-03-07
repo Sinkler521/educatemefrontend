@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from "react";
-import ReactDOM from 'react-dom';
-import {Header} from '../../header/Header'
+// import ReactDOM from 'react-dom';
+// import {Header} from '../../header/Header'
 import './firstcreen.css'
 
 export const FirstScreen = (props) => {
@@ -14,7 +14,6 @@ export const FirstScreen = (props) => {
 
     return (
         <div className="firstscreen-container">
-            <Header/>
             <div id="firstscreen-content">
                 <div id="firstscreen-header-container">
                     <h1 id="firstscreen-header">Some text</h1>

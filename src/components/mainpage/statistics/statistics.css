@@ -3,7 +3,6 @@
     display: flex;
     justify-content: center;
     padding-top: 1.4rem;
-    padding-bottom: 1.4rem;
     background-color: #1e1e1e;
 }
 .statistics-content{
@@ -15,7 +14,6 @@
     min-height: 100vh;
 }
 .statistics-content div{
-    /*border: 1px solid black;*/
     padding: 0.8rem;
     border-radius: 1.4rem;
 }
@@ -30,6 +28,9 @@
     margin-left: auto;
     margin-right: auto;
     color: var(--text-white);
+}
+.statistics-info-block p{
+    color: var(--text-gray)
 }
 
 .statistics-info-block h2{
@@ -65,7 +66,7 @@
 }
 .statistics-data-block div h3:nth-child(2){
     font-size: 20px;
-    color: var(--text-white);
+    color: var(--text-gray);
     font-family: "IBM Plex Sans", sans-serif;
     margin-top: 15px;
 }
@@ -89,7 +90,7 @@
 .statistics-students-block p,
 .statistics-teachers-block p{
     text-align: left;
-    color: var(--text-white);
+    color: var(--text-gray);
     font-family: Input Sans, sans-serif;
     font-size: 20px;
     width: 90%;
@@ -117,4 +118,68 @@
 #statistics-student:hover,
 #statistics-teacher:hover{
     transform: scale(1.05);
+}
+
+@media screen and (max-width: 1100px) {
+    .statistics-content{
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 3fr 3fr 4fr;
+    }
+    #statistics-student,
+    #statistics-teacher{
+        width: 30%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .statistics-content{
+        grid-template-rows: 1fr 2fr 1fr 1fr;
+        grid-template-columns: 1fr;
+        width: var(--content-width-1000);
+    }
+    .statistics-content div{
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
+    .statistics-students-block{
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
+    .statistics-teachers-block{
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
+    #statistics-student,
+    #statistics-teacher{
+        width: 64px;
+        opacity: 50%;
+    }
+    #statistics-student:hover,
+    #statistics-teacher:hover{
+        transform: none;
+    }
+    .statistics-info-block h2,
+    .statistics-info-block p{
+        width: 90%;
+    }
+    .statistics-data-block{
+        grid-gap: 0;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        margin: 0;
+        padding: 0;
+    }
+    .statistics-data-block div{
+        padding: 0;
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .statistics-content{
+        width: var(--content-width-700);
+    }
 }

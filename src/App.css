@@ -5,7 +5,11 @@
 }
 :root {
     --primary-color: #007bff;
-    --text-white: #eceaea;
+    --text-white: #f6f4f4;
+    --text-gray: #dcdbdb;
+
+    --content-width-1000: 70%;
+    --content-width-700: 80%;
 }
 .App {
   text-align: center;

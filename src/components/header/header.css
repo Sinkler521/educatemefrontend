@@ -8,6 +8,7 @@ header{
     padding-bottom: 0.3rem;
     position: fixed;
     transition: all 0.3s ease-in;
+    z-index: 1000;
 }
 header:before{
     content: "";
@@ -99,7 +100,7 @@ header.header-scrolled-far #logo{
     display: none;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1000px) {
     header {
         display: none;
     }
@@ -112,9 +113,9 @@ header.header-scrolled-far #logo{
         top: 0;
         left: 0;
         width: 100%;
-        height: 60px; /* Начальная высота меню */
+        height: 60px;
         background-color: transparent;
-        transition: height 0.6s ease; /* Анимация высоты */
+        transition: height 0.6s ease;
         z-index: 1000;
     }
 
@@ -155,17 +156,14 @@ header.header-scrolled-far #logo{
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 0; /* Начальная высота 0, чтобы список был скрыт */
-        overflow: hidden; /* Скрываем содержимое, которое не помещается в контейнер */
-        transition: height 0.6s ease; /* Анимация высоты */
+        height: 0;
+        overflow: hidden;
+        transition: height 0.6s ease;
         width: 100%;
     }
-
-    /* При открытии меню меняем высоту на нужное значение, чтобы плавно показать список ссылок */
     .burger-menu.open .burger-menu-links {
-        height: auto; /* Автоматический расчет высоты контента */
+        height: auto;
     }
-
     .burger-menu-links .header-navbar-item {
         margin: 20px 0;
         display: flex;
@@ -178,7 +176,6 @@ header.header-scrolled-far #logo{
     .burger-menu-links .header-navbar-item:hover:before {
         background-color: transparent;
     }
-
     .burger-menu-links .header-navbar-item:hover a{
         text-shadow: 1px 1px 1px var(--text-white);
         transition: all 0.2s ease-in;
@@ -194,7 +191,6 @@ header.header-scrolled-far #logo{
         height: 60px;
         opacity: 50%;
     }
-
     .burger-menu-links .header-navbar-item a {
         color: var(--text-white);
         font-size: 18px;
