@@ -45,7 +45,7 @@ header.header-scrolled-far:before {
 #logo{
     border-radius: 50%;
     width: 75px;
-    box-shadow: 2px 2px 3px 3px #232222;
+    /*box-shadow: 2px 2px 3px 3px #232222;*/
     opacity: 90%;
     z-index: 300;
 }
@@ -84,7 +84,7 @@ header.header-scrolled-far:before {
     z-index: 300;
 }
 header.header-scrolled-far #logo{
-    box-shadow: 1px 0 0 0 #444444;
+    /*box-shadow: 1px 0 0 0 #444444;*/
 }
 .header-navbar-item a{
     color: var(--text-white);

@@ -6,7 +6,7 @@
 :root {
     --primary-color: #007bff;
     --text-white: #f6f4f4;
-    --text-gray: #dcdbdb;
+    --text-gray: #b7b6b6;
 
     --content-width-1000: 70%;
     --content-width-700: 80%;
@@ -14,7 +14,6 @@
 .App {
   text-align: center;
 }
-
 .loader {
   border: 7px solid #f3f3f3;
   border-top: 7px solid #9b9b9b;

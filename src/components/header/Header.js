@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {NavLink} from "react-router-dom";
 import classNames from 'classnames'
+import logo from './logo.png'
 import './header.css'
 
 export const Header = (props) => {
@@ -44,7 +45,7 @@ export const Header = (props) => {
                 'header-scrolled-far': isScrolledFar
             })}>
                 <div className="header-logo-container">
-                    <img src="logo.jpg" id="logo" alt="No logo"/>
+                    <img src={logo} id="logo" alt="No logo"/>
                 </div>
                 <div className="header-navbar-item">
                     <NavLink to="mycourses">Мои курсы</NavLink>

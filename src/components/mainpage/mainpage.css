@@ -1,0 +1,17 @@
+/*.mainpage-container{*/
+/*    width: 100%;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+/*    position: relative;*/
+/*}*/
+/*.mainpage-container:before{*/
+/*    content: "";*/
+/*    z-index: 1;*/
+/*    position: absolute;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    background-color: transparent;*/
+/*    opacity: 30%;*/
+/*    transition: all 0.3s ease-in-out;*/
+/*}*/
