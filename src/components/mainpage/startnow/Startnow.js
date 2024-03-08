@@ -10,7 +10,7 @@ export const Startnow = () => {
             <div className="startnow-container">
                 <div className="startnow-content">
                     <h2>Дорога к знаниям лежит тут</h2>
-                    <button><NavLink to='login'>Присоединиться</NavLink></button>
+                    <NavLink to='login'>Присоединиться</NavLink>
                 </div>
             </div>
         </>
