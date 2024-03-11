@@ -2,12 +2,10 @@ import React, {useState, useEffect, useRef} from "react";
 import './Advantages.css'
 import reviewImg1 from '../../../assets/images/advantages/review-1.jpg';
 import reviewImg2 from '../../../assets/images/advantages/review-2.jpg';
-import {easeOut, motion, useAnimation} from 'framer-motion';
+import { motion } from 'framer-motion';
 
 export const Advantages = (props) => {
     const [isFirstReviewVisible, setIsFirstReviewVisible] = useState(true);
-    const animatedElements = useRef([])
-    const controls = useAnimation();
     const reviews = useRef([]);
 
     useEffect(() => {
@@ -19,43 +17,22 @@ export const Advantages = (props) => {
         )
     }, [])
 
-    useEffect(() => {
-        const handleScroll = () => {
-            animatedElements.current.forEach((element, index) => {
-                const elementTop = element.getBoundingClientRect().top;
-                const viewportHeight = window.innerHeight;
-
-                if (elementTop < viewportHeight) {
-                    controls.start({ x: 0, opacity: 1, transition: { duration: 0.45, type: "Tween"} });
-                }
-            });
-        };
-
-        window.addEventListener('scroll', handleScroll);
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, [controls]);
-
     return (
         <div className="advantages-container">
             <div className="advantages-content">
-                <motion.div className="advantages-info-block" ref={(element) => animatedElements.current[0] = element} initial={{ x: '-100%', opacity: 0 }} animate={controls}>
+                <motion.div className="advantages-info-block" initial={{ x: '-100%', opacity: 0 }} whileInView={{x: 0, opacity: 1}} transition={{duration: 0.8}}>
                     <h2>Что можно делать с нами?</h2>
                     <p>Мы хотим предложить Вам самые лучшие условия</p>
                 </motion.div>
                 <div className="advantages-advantages-block">
-                    <motion.div ref={(element) => animatedElements.current[1] = element}
-                                initial={{x: '100%', opacity: 0}} animate={controls}>
+                    <motion.div initial={{x: 100, opacity: 1}} whileInView={{x: 0, opacity: 1}} transition={{duration: 0.4, delay: 0.1}}>
                         <div className="advantages-advantages-content">
                             <span className="advantages-icon"><i className="fa-solid fa-book"></i></span>
                             <h2>Новые знания</h2>
                             <p>Расширяйте границы познания используя возможности EducateMe.</p>
                         </div>
                     </motion.div>
-                    <motion.div ref={(element) => animatedElements.current[2] = element}
-                                initial={{x: '100%', opacity: 0}} animate={controls}>
+                    <motion.div initial={{x: 100, opacity: 0}} whileInView={{x: 0, opacity: 1}} transition={{duration: 0.4, delay: 0.5}}>
                         <div className="advantages-advantages-content">
                             <span className="advantages-icon"><i className="fa-regular fa-clock"></i></span>
                             <h2>Идеальный график</h2>
@@ -63,8 +40,7 @@ export const Advantages = (props) => {
                                 удобным.</p>
                         </div>
                     </motion.div>
-                    <motion.div ref={(element) => animatedElements.current[3] = element}
-                                initial={{x: '100%', opacity: 0}} animate={controls}>
+                    <motion.div initial={{x: 100, opacity: 0}} whileInView={{x: 0, opacity: 1}} transition={{duration: 0.4, delay: 0.7}}>
                         <div className="advantages-advantages-content">
                             <span className="advantages-icon"><i className="fa-solid fa-atom"></i></span>
                             <h2>Большой выбор</h2>

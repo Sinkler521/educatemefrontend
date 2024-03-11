@@ -2,40 +2,19 @@ import React, {useState, useEffect, useRef} from "react";
 import './Statistics.css';
 import student from '../../../assets/images/statistics/student.png';
 import teacher from '../../../assets/images/statistics/teacher.png';
-import { motion, useAnimation } from 'framer-motion';
+import { motion } from 'framer-motion';
 
-export const Statistics = (props) => {
-    const animatedElements = useRef([]);
-    const controls = useAnimation();
-
-    useEffect(() => {
-        const handleScroll = () => {
-            animatedElements.current.forEach((element, index) => {
-                const elementTop = element.getBoundingClientRect().top;
-                const viewportHeight = window.innerHeight;
-
-                if (elementTop < viewportHeight) {
-                    controls.start({ x: 0, opacity: 1, transition: { duration: 0.5, type: "Tween" } });
-                }
-            });
-        };
-
-        window.addEventListener('scroll', handleScroll);
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, [controls]);
+export const Statistics = (props) => { // SHOULD BE DATA HERE FROM BACKEND
 
     return (
         <div className="statistics-container">
             <div className="statistics-content">
-                <motion.div className="statistics-info-block" ref={(element) => animatedElements.current[0] = element} initial={{ x: '100%', opacity: 0 }} animate={controls}>
+                <motion.div className="statistics-info-block" initial={{ x: '100%', opacity: 0 }} whileInView={{ x: 0, opacity: 1}} transition={{duration: 0.4}}>
                     <h2>Откройте Двери Знаний. Никогда не поздно начать учиться!</h2>
                     <p>Возможности обучения не имеют пределов, и с каждым новым шагом вы приближаетесь к своим целям
                         и мечтам. Начните сегодня - ведь обучение никогда не заканчивается.</p>
                 </motion.div>
-                <motion.div className="statistics-data-block" ref={(element) => animatedElements.current[1] = element} initial={{ x: '-100%', opacity: 0 }} animate={controls}>
+                <motion.div className="statistics-data-block" initial={{ x: '-100%', opacity: 0 }} whileInView={{ x: 0, opacity: 1}} transition={{duration: 0.4, delay: 0.2}}>
                     <div><h3>153</h3><h3>Пользователей</h3></div>
                     <div><h3>456</h3><h3>Курсов на сайте</h3></div>
                     <div><h3>288</h3><h3>Успешно пройдено</h3></div>
