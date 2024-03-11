@@ -45,7 +45,7 @@ export const Header = (props) => {
                 'header-scrolled-far': isScrolledFar
             })}>
                 <div className="header-logo-container">
-                    <img src={logo} id="logo" alt="No logo"/>
+                    <a href="/" id="logo"></a>
                 </div>
                 <div className="header-navbar-item">
                     <NavLink to="mycourses">Мои курсы</NavLink>

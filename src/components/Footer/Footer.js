@@ -14,7 +14,7 @@ export const Footer = (props) => {
                         <span>©2024</span><span><strong>EDUCATEME</strong></span>
                     </div>
                     <div className="footer-logo-container">
-                        <img id="footer-logo" src={footerLogo} alt="no image"/>
+                        <a href="/" id="footer-logo"></a>
                     </div>
                     <div>
                         <NavLink to={TELEGRAMCONTACT}><i className="fa-brands fa-telegram"></i></NavLink>
