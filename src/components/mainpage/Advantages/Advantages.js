@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from "react";
-import './advantages.css'
-import reviewImg1 from './review-1.jpg';
-import reviewImg2 from './review-2.jpg'
+import './Advantages.css'
+import reviewImg1 from '../../../assets/images/advantages/review-1.jpg';
+import reviewImg2 from '../../../assets/images/advantages/review-2.jpg';
 
 export const Advantages = (props) => {
     const [isFirstReviewVisible, setIsFirstReviewVisible] = useState(true);

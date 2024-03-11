@@ -3,11 +3,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: url("home.jpg");
+    background-image: url("../../../assets/images/firstscreen/home.jpg");
     background-size: cover;
     background-position: center center;
     min-height: 100vh;
 }
+
 
 #firstscreen-content{
     width: 40%;

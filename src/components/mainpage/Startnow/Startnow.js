@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import './startnow.css';
+import './Startnow.css';
 import {NavLink} from "react-router-dom";
 
 export const Startnow = () => {
@@ -11,6 +11,9 @@ export const Startnow = () => {
                 <div className="startnow-content">
                     <h2>Дорога к знаниям лежит тут</h2>
                     <NavLink to='login'>Присоединиться</NavLink>
+                </div>
+                <div className="startnow-floating-squares-grid">
+
                 </div>
             </div>
         </>

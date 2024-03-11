@@ -1,5 +1,4 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {DEFAULTLANGUAGE} from "../translations/translationsConfig";
 
 const userSlice = createSlice({
     name: 'user',

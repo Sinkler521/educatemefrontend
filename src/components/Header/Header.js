@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
 import {NavLink} from "react-router-dom";
 import classNames from 'classnames'
-import logo from './logo.png'
-import './header.css'
+import logo from '../../assets/images/header/logo.png'
+import './Header.css'
 
 export const Header = (props) => {
     const [lastScroll, setLastScroll] = useState(0)
@@ -40,7 +40,7 @@ export const Header = (props) => {
 
     return (
         <>
-            <header className={classNames("", {
+            <header className={classNames({
                 'header-scrolled': isScrolled,
                 'header-scrolled-far': isScrolledFar
             })}>

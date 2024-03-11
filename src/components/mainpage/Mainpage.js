@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
-import './mainpage.css'
+import './Mainpage.css'
 
-import {Header} from "../header/Header";
-import {FirstScreen} from "./firstscreen/FirstScreen";
-import {Statistics} from "./statistics/Statistics";
-import {Advantages} from "./advantages/Advantages";
-import {Footer} from "../footer/Footer";
-import {Startnow} from "./startnow/Startnow";
+import {Header} from "../Header/Header";
+import {FirstScreen} from "./Firstscreen/FirstScreen";
+import {Statistics} from "./Statistics/Statistics";
+import {Advantages} from "./Advantages/Advantages";
+import {Footer} from "../Footer/Footer";
+import {Startnow} from "./Startnow/Startnow";
 
 export const Mainpage = (props) => {
     const [statisticsInfo, setStatisticsInfo] = useState({})
@@ -22,13 +22,13 @@ export const Mainpage = (props) => {
                 console.log('Request error', error)
             })
         } catch (e) {
-            console.log('Error receiving statistics info', e)
+            console.log('Error receiving Statistics info', e)
         }
     }
 
     return (
         <>
-            <div className="mainpage-container">
+            <div className="container">
                 <Header/>
                 <FirstScreen/>
                 <Statistics statisticsInfo={statisticsInfo}/>

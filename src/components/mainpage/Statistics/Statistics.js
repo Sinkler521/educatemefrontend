@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from "react";
-import './statistics.css';
-import student from './student.png';
-import teacher from './teacher.png';
+import './Statistics.css';
+import student from '../../../assets/images/statistics/student.png';
+import teacher from '../../../assets/images/statistics/teacher.png';
 
 export const Statistics = (props) => {
     const animatedElements = useRef([])

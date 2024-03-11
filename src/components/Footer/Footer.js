@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
-import footerLogo from './footerlogo.png'
-import './footer.css'
+import footerLogo from '../../assets/images/footer/footerlogo.png'
+import './Footer.css'
 import {NavLink} from "react-router-dom";
 import {TELEGRAMCONTACT, EMAILCONTACT} from '../../config'
 

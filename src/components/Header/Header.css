@@ -1,5 +1,6 @@
 header{
     width: 100%;
+    max-width: var(--content-max-width);
     background-color: transparent;
     display: grid;
     grid-template-rows: 1fr;

@@ -13,6 +13,7 @@
     grid-template-columns: 1fr;
     grid-gap: 1.2rem;
     min-height: 100vh;
+    max-width: var(--content-max-width);
 }
 .advantages-content div{
     border-radius: 1.4rem;
@@ -20,6 +21,7 @@
 .advantages-info-block{
     padding-top: 4rem;
     padding-bottom: 4rem;
+    overflow: hidden;
 }
 .advantages-info-block h2,
 .advantages-info-block p{
@@ -82,6 +84,7 @@
 }
 .advantages-advantages-block div{
     background-color: #1c202c;
+    overflow: hidden;
 }
 .advantages-reviews {
     position: relative;

@@ -1,7 +1,5 @@
 import React, {useState, useEffect, useRef} from "react";
-// import ReactDOM from 'react-dom';
-// import {Header} from '../../header/Header'
-import './firstcreen.css'
+import './Firstscreen.css'
 
 export const FirstScreen = (props) => {
 

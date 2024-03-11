@@ -13,6 +13,7 @@
     grid-template-columns: 2fr 1fr;
     grid-gap: 1.2rem;
     min-height: 100vh;
+    max-width: var(--content-max-width);
 }
 .statistics-content div{
     padding: 0.8rem;
@@ -21,6 +22,7 @@
 .statistics-info-block{
     grid-column-start: 1;
     grid-column-end: 3;
+    overflow: hidden;
 }
 .statistics-info-block h2,
 .statistics-info-block p{
@@ -50,6 +52,7 @@
     grid-column-start: 1;
     grid-column-end: 3;
     background-color: #1c202c;
+    overflow: hidden;
 }
 .statistics-data-block div{
     display: flex;
