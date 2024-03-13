@@ -24,14 +24,10 @@
 }
 
 .back:before,
-.front:before,
-.left:before,
-.right:before,
-.top:before,
 .bottom:before{
     content: "";
-    width: 300vh;
-    height: 300vh;
+    width: 400vh;
+    height: 400vh;
     border-left: 1px solid #877dc9;
 }
 .back {
