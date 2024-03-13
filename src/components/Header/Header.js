@@ -9,6 +9,25 @@ export const Header = (props) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolledFar, setIsScrolledFar] = useState(false);
+    const [useMobile, setUseMobile] = useState(false);
+
+    useEffect(() => {
+        const handleMobile = () => {
+            if(window.innerWidth <= 1000){
+                setUseMobile(true)
+            } else{
+                setUseMobile(false);
+            }
+        }
+        handleMobile()
+        window.addEventListener('DOMContentLoaded', handleMobile)
+        window.addEventListener('resize', handleMobile);
+
+        return () => {
+            window.removeEventListener('DOMContentLoaded', handleMobile);
+            window.removeEventListener('resize', handleMobile);
+        };
+    }, [])
 
     useEffect(() => {
         const handleScroll = () => {
@@ -26,6 +45,7 @@ export const Header = (props) => {
             }else if(actualScroll < window.innerHeight){
                 setIsScrolledFar(false);
             }
+            setIsMenuOpen(false);
         }
 
         window.addEventListener('scroll', handleScroll);
@@ -40,43 +60,30 @@ export const Header = (props) => {
 
     return (
         <>
-            <header className={classNames({
-                'header-scrolled': isScrolled,
-                'header-scrolled-far': isScrolledFar
-            })}>
-                <div className="header-logo-container">
+            <div className="header-container">
+                <header className={classNames({
+                    'header-scrolled': isScrolled,
+                    'header-scrolled-far': isScrolledFar,
+                    'mobile-background': useMobile,
+                })}>
                     <a href="/" id="logo"></a>
-                </div>
-                <div className="header-navbar-item">
-                    <NavLink to="mycourses">Мои курсы</NavLink>
-                </div>
-                <div className="header-navbar-item">
-                    <NavLink to="allcourses">Все курсы</NavLink>
-                </div>
-                <div></div>
-                <div className="header-navbar-item">
-                    <NavLink to="login"><i className="fa-regular fa-user"></i></NavLink>
-                </div>
-                <div className="header-navbar-item">
-                    <a href=""><i className="fa-solid fa-magnifying-glass"></i></a>
-                </div>
-            </header>
-            <div className={`burger-menu ${isMenuOpen ? 'open' : ''}`}>
-                <div className="menu-toggle" onClick={toggleMenu}>
-                    <i className={`fa ${isMenuOpen ? 'fa-times' : 'fa-bars'}`}></i>
-                </div>
-                <div className="burger-menu-links">
-                    <div className="header-logo-container"><img id="burger-menu-logo" src="logo.jpg" alt="No image"/></div>
-                    <div className="header-navbar-item">
-                        <NavLink to="mycourses">Мои курсы</NavLink>
-                    </div>
-                    <div className="header-navbar-item">
-                        <NavLink to="allcourses">Все курсы</NavLink>
-                    </div>
-                    <div className="header-navbar-item">
+                    <input type="checkbox" id="menu-toggle"/>
+                    {useMobile ? <nav className="mobile-icons">
                         <NavLink to="login"><i className="fa-regular fa-user"></i></NavLink>
-                    </div>
-                </div>
+                    </nav> : null}
+                    <label htmlFor="menu-toggle"><i className={`fa ${isMenuOpen ? 'fa-times' : 'fa-bars'}`} onClick={toggleMenu}></i></label>
+                    <nav className={classNames("navbar", {'navbar-scrolled-far': isScrolledFar, 'mobile-background': useMobile, 'is-open': isMenuOpen})}>
+                        <NavLink to="mycourses">Мои курсы</NavLink>
+                        <NavLink to="allcourses">Все курсы</NavLink>
+                        {!useMobile ?
+                            <>
+                                <NavLink to="login"><i className="fa-regular fa-user"></i></NavLink>
+                                <a href=""><i className="fa-solid fa-magnifying-glass"></i></a>
+                            </>
+                            :
+                            null}
+                    </nav>
+                </header>
             </div>
         </>
     )
