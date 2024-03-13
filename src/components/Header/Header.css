@@ -91,6 +91,9 @@ header.header-scrolled-far:before{
     height: 100%;
     box-shadow: 0 5px 5px -3px rgba(68, 68, 68, 0.5), 0 -5px 5px -3px rgba(70, 69, 69, 0.5);
 }
+header.mobile-background:before{
+    opacity: 100%;
+}
 .navbar.mobile-background:before{
     opacity: 100%;
     background-color: #232222;
