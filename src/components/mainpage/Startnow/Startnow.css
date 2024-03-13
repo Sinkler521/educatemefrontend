@@ -83,6 +83,9 @@
     .startnow-content h2{
         width: 100%;
     }
+    .startnow-floating-squares-grid{
+        visibility: hidden;
+    }
 }
 
 @media screen and (max-width: 700px){

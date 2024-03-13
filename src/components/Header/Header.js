@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {NavLink} from "react-router-dom";
 import classNames from 'classnames'
-import logo from '../../assets/images/header/logo.png'
 import './Header.css'
 
 export const Header = (props) => {

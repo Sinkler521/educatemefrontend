@@ -23,6 +23,17 @@
 	border: 1px solid #d5d6d7;
 }
 
+.back:before,
+.front:before,
+.left:before,
+.right:before,
+.top:before,
+.bottom:before{
+    content: "";
+    width: 300vh;
+    height: 300vh;
+    border-left: 1px solid #877dc9;
+}
 .back {
     transform: translateZ(-30px) rotateY(180deg);
 }
@@ -50,49 +61,3 @@
 .front {
     transform: translateZ(30px);
 }
-
-/*.cube {*/
-/*    width: 80px;*/
-/*    height: 80px;*/
-/*    position: relative;*/
-/*    transform-style: preserve-3d;*/
-/*    transform: rotateX(45deg) rotateY(45deg);*/
-/*    perspective: 1000px;*/
-/*    perspective-origin: center -5rem;*/
-/*}*/
-
-/*.cube > div {*/
-/*    position: absolute;*/
-/*    width: 20px; !* Размеры сторон куба *!*/
-/*    height: 20px; !* Размеры сторон куба *!*/
-/*    background: rgba(255, 255, 255, 0.8);*/
-/*    border: 1px solid #a4a2a2;*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    opacity: 20%;*/
-/*}*/
-
-/*.front {*/
-/*    transform: translateZ(10px); !* Половина размера куба *!*/
-/*}*/
-
-/*.back {*/
-/*    transform: rotateY(180deg) translateZ(10px); !* Половина размера куба *!*/
-/*}*/
-
-/*.top {*/
-/*    transform: rotateX(90deg) translateZ(-10px) translateY(-10px); !* Половина размера куба *!*/
-/*}*/
-
-/*.bottom {*/
-/*    transform: rotateX(90deg) translateZ(10px) translateY(10px); !* Половина размера куба *!*/
-/*}*/
-
-/*.left {*/
-/*    transform: rotateY(-90deg) translateZ(10px) translateX(-10px); !* Половина размера куба *!*/
-/*}*/
-
-/*.right {*/
-/*    transform: rotateY(90deg) translateZ(10px) translateX(10px); !* Половина размера куба *!*/
-/*}*/
