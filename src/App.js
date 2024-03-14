@@ -8,6 +8,7 @@ import {IntlProvider} from "react-intl";
 import {Routes, Route} from "react-router";
 // Components
 import {Mainpage} from "./components/mainpage/Mainpage";
+import {About} from "./components/About/About";
 
 
 export default function App(){
@@ -37,6 +38,7 @@ export default function App(){
                 <IntlProvider locale={translationsConfig.CURRENTLANGUAGE} defaultLocale={translationsConfig.CURRENTLANGUAGE} messages={currentMessages}>
                     <Routes>
                         <Route path="/" element={<Mainpage changeLanguage={changeLanguage} host={host}/>} />
+                        <Route path="about/" element={<About/>}/>
                         {/*<Route path="/login" element={<Login host={host}/>}/>*/}
                     </Routes>
                 </IntlProvider>
