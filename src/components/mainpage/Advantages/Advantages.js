@@ -10,12 +10,12 @@ export const Advantages = (props) => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setIsFirstReviewVisible(prevState => !prevState);
+            reviews.current[0].classList.toggle('review-hide');
+            reviews.current[1].classList.toggle('review-hide');
         }, 10000);
-        return(
-            clearInterval(interval)
-        )
-    }, [])
+
+        return () => clearInterval(interval);
+    }, []);
 
     return (
         <div className="advantages-container">
@@ -50,15 +50,14 @@ export const Advantages = (props) => {
                     </motion.div>
                 </div>
                 <div className="advantages-reviews">
-                    <div className={`advantages-review ${isFirstReviewVisible ? '' : 'review-hide'}`}
+                    <div className={`advantages-review`}
                          ref={el => reviews.current[0] = el}>
-                        <h2>"Давно решил для себя что саморазвитие важнее всего. EducateMe мне в этом хороший
-                            помощник."</h2>
+                        <h2>"Здесь большой выбор материала, и сами уроки очень полезные."</h2>
                         <img src={reviewImg1} alt="no image" className="advantages-review-img" loading="lazy"/>
                         <span className="advantages-review-name"><strong>Ronald McGivern</strong></span>
                         <span className="advantages-review-position">developer</span>
                     </div>
-                    <div className={`advantages-review ${isFirstReviewVisible ? 'review-hide' : ''}`}
+                    <div className={`advantages-review review-hide`}
                          ref={el => reviews.current[1] = el}>
                         <h2>"Отлично составленные, понятные уроки. Теперь я знаю и умею намного больше."</h2>
                         <img src={reviewImg2} alt="no image" className="advantages-review-img" loading="lazy"/>

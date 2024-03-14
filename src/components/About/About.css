@@ -1,7 +1,7 @@
 .about-content{
     width: 100%;
     max-width: var(--content-max-width);
-    background-color: #232427;
+    background-color: #1c1c1c;
 }
 .image-block{
     height: 60vh;
