@@ -1,5 +1,6 @@
 .container{
     overflow: hidden;
+    background-color: #232222;
 }
 .scroll-right{
     opacity: 0;
