@@ -5,7 +5,6 @@ import reviewImg2 from '../../../assets/images/advantages/review-2.jpg';
 import { motion } from 'framer-motion';
 
 export const Advantages = (props) => {
-    const [isFirstReviewVisible, setIsFirstReviewVisible] = useState(true);
     const reviews = useRef([]);
 
     useEffect(() => {
