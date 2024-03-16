@@ -1,7 +1,19 @@
 import React, {useState, useEffect, useRef} from "react";
+import Typed from "typed.js";
 import './Firstscreen.css'
 
 export const FirstScreen = (props) => {
+    const [typed, setTyped] = useState(null)
+
+    useEffect(() => {
+        setTyped(new Typed('#typed', { // Тут id того блока, в которм будет анимация
+            stringsElement: '#typed-strings', // Тут id блока из которого берем строки для анимации
+            typeSpeed: 100, // Скорость печати
+            startDelay: 500, // Задержка перед стартом анимации
+            backSpeed: 50, // Скорость удаления
+            loop: true // Указываем, повторять ли анимацию
+        }));
+    }, [])
 
     const handleScroll = () => {
         window.scrollTo({
@@ -10,11 +22,18 @@ export const FirstScreen = (props) => {
         });
     };
 
+
     return (
         <div className="firstscreen-container">
             <div id="firstscreen-content">
-                <div id="firstscreen-header-container">
-                    <h1 id="firstscreen-header">Some text</h1>
+                <div id="text-typing">
+                    <div id="typed"></div>
+                </div>
+
+                <div id="typed-strings">
+                    <span>Курсы, уроки</span>
+                    <span>Повышение квалификации</span>
+                    <span>Новые знания</span>
                 </div>
                 <p>
                     <span className="firstscreen-span">Бесплатный</span>

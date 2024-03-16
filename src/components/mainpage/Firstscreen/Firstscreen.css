@@ -11,8 +11,13 @@
 
 #firstscreen-content{
     width: 40%;
+    height: 100vh;
     padding-top: 4rem;
     padding-bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 #firstscreen-header{
@@ -58,7 +63,22 @@
     background-color: #f3f3f3;
     color: #8c8c8c;
 }
-
+#text-typing{
+    display: flex;
+    flex-wrap: nowrap;
+    text-align: center;
+}
+#typed, .typed-cursor{
+    font-size: 40px!important;
+    color: var(--text-white)!important;
+    font-family: "IBM Plex Sans", sans-serif;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+    height: 10rem;
+}
+#typed{
+    align-self: center;
+}
 @media screen and (max-width: 900px){
     #firstscreen-content{
         width: 60%;
