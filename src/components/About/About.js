@@ -4,7 +4,7 @@ import {Footer} from "../Footer/Footer";
 import education from "../../assets/images/about/education.jpg"
 import quality from "../../assets/images/about/quality.jpg"
 import {motion} from "framer-motion";
-import './About.css'
+import styles from './About.css'
 
 export const About = (props) => {
     const [initialLeft, setInitialLeft] = useState({x: -200, opacity: 0});

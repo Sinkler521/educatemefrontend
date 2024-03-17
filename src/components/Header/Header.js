@@ -72,9 +72,9 @@ export const Header = (props) => {
                     </nav> : null}
                     <label htmlFor="menu-toggle"><i className={`fa ${isMenuOpen ? 'fa-times' : 'fa-bars'}`} onClick={toggleMenu}></i></label>
                     <nav className={classNames("navbar", {'navbar-scrolled-far': isScrolledFar, 'mobile-background': useMobile, 'is-open': isMenuOpen})}>
-                        <NavLink to="/mycourses">Мои курсы</NavLink>
-                        <NavLink to="/allcourses">Все курсы</NavLink>
+                        <NavLink to="/courses">Начать</NavLink>
                         <NavLink to="/about">О нас</NavLink>
+                        <NavLink to="/contact">Связаться</NavLink>
                         {!useMobile ?
                             <>
                                 <NavLink to="login"><i className="fa-regular fa-user"></i></NavLink>

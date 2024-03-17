@@ -3,7 +3,7 @@
     max-width: var(--content-max-width);
     background-color: #1c1c1c;
 }
-.image-block{
+.about-content .image-block{
     height: 60vh;
     width: 100%;
     background-image: url("../../assets/images/about/aboutusbigimage.jpg");
