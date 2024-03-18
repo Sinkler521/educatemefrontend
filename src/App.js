@@ -6,9 +6,11 @@ import translationsConfig from "./translations/translationsConfig";
 import {messages} from "./translations/languages/messages";
 import {IntlProvider} from "react-intl";
 import {Routes, Route} from "react-router";
+
 // Components
 import {Mainpage} from "./components/mainpage/Mainpage";
 import {About} from "./components/About/About";
+import {Contact} from "./components/contact/Contact";
 
 
 export default function App(){
@@ -17,6 +19,7 @@ export default function App(){
         auth: process.env.REACT_APP_BACKEND_AUTH,
     })
     const [currentMessages, setCurrentMessages] = useState('')
+
 
     useEffect(() => {
         const languageKey = Object.keys(LOCALES).find(key => LOCALES[key] === translationsConfig.CURRENTLANGUAGE);
@@ -39,6 +42,7 @@ export default function App(){
                     <Routes>
                         <Route path="/" element={<Mainpage changeLanguage={changeLanguage} host={host}/>} />
                         <Route path="about/" element={<About/>}/>
+                        <Route path="contact/" element={<Contact host={host}/>}/>
                         {/*<Route path="/login" element={<Login host={host}/>}/>*/}
                     </Routes>
                 </IntlProvider>

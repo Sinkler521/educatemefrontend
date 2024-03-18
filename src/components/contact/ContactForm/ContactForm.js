@@ -1,11 +1,10 @@
-import React, {useState, useEffect, useRef} from "react";
+import React, {useState, useRef} from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import {regexPatterns} from "../../../helpers/regex";
 import {NotificationComponent} from "../../NotificationComponent/NotificationComponent";
 import './ContactForm.css';
 import {toast} from "react-toastify";
 import axios from "axios";
-import cookie from "react-cookies";
 
 export const ContactForm = (props) => {
     const [captchaValue, setCaptchaValue] = useState(null);
@@ -29,8 +28,8 @@ export const ContactForm = (props) => {
             toast.warning('Пройдите капчу')
             return;
         }
-        try {
 
+        try {
             const response = await axios.post(`${props.host.api}/contactus`,
                 {
                 email: email,
@@ -38,18 +37,23 @@ export const ContactForm = (props) => {
             }, {
             headers: {
               "Content-Type": "application/json",
-              "X-CSRFToken": cookie.load("csrftoken"),
             }})
-
-            if(response.data.status === 'success'){
+            console.log(response.data)
+            if(response.status === 200){
                 toast.success('Сообщение успешно отправлено')
-            } else if(response.data.status === 'failed'){
+                clearInputs();
+            } else{
                 toast.warning('Сообщение не было доставлено')
             }
         } catch (e) {
             toast.warning('Что-то пошло не так')
         }
     }
+
+    const clearInputs = () => {
+        if (emailInput.current) emailInput.current.value = "";
+        if (messageInput.current) messageInput.current.value = "";
+    };
 
     const handleCaptchaChange = (value) => {
         setCaptchaValue(value);
