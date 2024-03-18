@@ -77,7 +77,7 @@ export const Header = (props) => {
                         <NavLink to="/contact">Связаться</NavLink>
                         {!useMobile ?
                             <>
-                                <NavLink to="login"><i className="fa-regular fa-user"></i></NavLink>
+                                <NavLink to="/login"><i className="fa-regular fa-user"></i></NavLink>
                                 <a href=""><i className="fa-solid fa-magnifying-glass"></i></a>
                             </>
                             :
