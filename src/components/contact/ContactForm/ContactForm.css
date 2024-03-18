@@ -1,0 +1,51 @@
+#contact-form{
+    width: 100%;
+    padding: 1.8rem 8%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#contact-form p{
+    padding: 0 0 2rem;
+}
+#contact-form label{
+    color: var(--text-white);
+    align-self: flex-end;
+}
+#contact-form textarea{
+    resize: none;
+    width: 100%;
+    margin-bottom: 0.8rem;
+    font-family: "Input Sans", sans-serif;
+    font-size: 16px;
+}
+#contact-form input[type=text]{
+    margin-bottom: 0.8rem;
+    width: 50%;
+    align-self: flex-end;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+}
+#contact-form input[type=text],
+#contact-form textarea{
+    border-radius: 1rem;
+    padding: 0.4rem;
+}
+#contact-form input[type=submit]{
+    padding: 0.4rem 6%;
+    cursor: pointer;
+    margin-top: 0.8rem;
+}
+#contact-form input:focus,
+#contact-form textarea:focus{
+    outline: none;
+}
+.wrong-input-value{
+    color: #a23838;
+    border: 2px solid #e73030;
+}
+.input-correct{
+    color: #058105;
+    border: 2px solid #13ad13;
+}
