@@ -38,7 +38,7 @@ export const ContactForm = (props) => {
             headers: {
               "Content-Type": "application/json",
             }})
-            console.log(response.data)
+
             if(response.status === 200){
                 toast.success('Сообщение успешно отправлено')
                 clearInputs();
@@ -46,7 +46,7 @@ export const ContactForm = (props) => {
                 toast.warning('Сообщение не было доставлено')
             }
         } catch (e) {
-            toast.warning('Что-то пошло не так')
+            toast.error('Что-то пошло не так')
         }
     }
 
@@ -69,7 +69,6 @@ export const ContactForm = (props) => {
         e.target.classList.toggle('wrong-input-value', !isValid);
         e.target['data-valid'] = isValid
 
-        console.log(e.target['data-valid'])
     }
 
     return (
@@ -102,7 +101,7 @@ export const ContactForm = (props) => {
                             onChange={handleCaptchaChange}
                         />
                     </label>
-                    <input type="submit" value="Отправить"/>
+                    <input type="submit" value="Отправить" className="contact-form-submit"/>
                 </form>
             </div>
         </>
