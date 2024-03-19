@@ -11,6 +11,7 @@ import {Routes, Route} from "react-router";
 import {Mainpage} from "./components/mainpage/Mainpage";
 import {About} from "./components/About/About";
 import {Contact} from "./components/contact/Contact";
+import {Login} from "./components/Login/Login";
 
 
 export default function App(){
@@ -43,7 +44,7 @@ export default function App(){
                         <Route path="/" element={<Mainpage changeLanguage={changeLanguage} host={host}/>} />
                         <Route path="about/" element={<About/>}/>
                         <Route path="contact/" element={<Contact host={host}/>}/>
-                        {/*<Route path="/login" element={<Login host={host}/>}/>*/}
+                        <Route path="/login" element={<Login host={host}/>}/>
                     </Routes>
                 </IntlProvider>
             </div>
