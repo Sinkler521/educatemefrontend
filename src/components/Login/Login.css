@@ -248,6 +248,27 @@ form div label i{
   color: var(--text-gray);
 }
 
+.wrong-input-value{
+    border: 1px solid #e73030!important;
+}
+.input-correct{
+    color: var(--text-white)!important;
+    border: 1px solid #13ad13!important;
+}
+
+.login-switch {
+  display: inline-block;
+  height: 17px; /* уменьшенный размер в 2 раза */
+  position: relative;
+  width: 30px; /* уменьшенный размер в 2 раза */
+}
+
+.login-switch input {
+  display:none;
+}
+
+
+
 @media screen and (max-width: 1000px) {
     .login-content{
         width: var(--content-width-1000);
