@@ -5,6 +5,7 @@ import {LOCALES} from "./translations/locales";
 import translationsConfig from "./translations/translationsConfig";
 import {messages} from "./translations/languages/messages";
 import {IntlProvider} from "react-intl";
+import store from './store';
 import {Routes, Route} from "react-router";
 
 // Components
@@ -12,6 +13,7 @@ import {Mainpage} from "./components/mainpage/Mainpage";
 import {About} from "./components/About/About";
 import {Contact} from "./components/contact/Contact";
 import {Login} from "./components/Login/Login";
+import {Provider} from "react-redux";
 
 
 export default function App(){
@@ -39,14 +41,16 @@ export default function App(){
     return (
         <>
             <div className="App">
-                <IntlProvider locale={translationsConfig.CURRENTLANGUAGE} defaultLocale={translationsConfig.CURRENTLANGUAGE} messages={currentMessages}>
-                    <Routes>
-                        <Route path="/" element={<Mainpage changeLanguage={changeLanguage} host={host}/>} />
-                        <Route path="about/" element={<About/>}/>
-                        <Route path="contact/" element={<Contact host={host}/>}/>
-                        <Route path="/login" element={<Login host={host}/>}/>
-                    </Routes>
-                </IntlProvider>
+                <Provider store={store}>
+                    <IntlProvider locale={translationsConfig.CURRENTLANGUAGE} defaultLocale={translationsConfig.CURRENTLANGUAGE} messages={currentMessages}>
+                        <Routes>
+                            <Route path="/" element={<Mainpage changeLanguage={changeLanguage} host={host}/>} />
+                            <Route path="about/" element={<About/>}/>
+                            <Route path="contact/" element={<Contact host={host}/>}/>
+                            <Route path="/login" element={<Login host={host}/>}/>
+                        </Routes>
+                    </IntlProvider>
+                </Provider>
             </div>
         </>
     )
