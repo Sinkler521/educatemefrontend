@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import './Login.css';
 import classNames from "classnames";
 import {NavLink} from "react-router-dom";
@@ -8,7 +8,8 @@ import {NotificationComponent} from "../NotificationComponent/NotificationCompon
 import {toast} from "react-toastify";
 import axios from "axios";
 import {userLogged} from "../../store/userSlice";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {useCookies} from "react-cookie";
 
 export const Login = (props) => {
     const [checked, setChecked] = useState(false);
@@ -16,11 +17,16 @@ export const Login = (props) => {
     const [switchToReset, setSwitchToReset] = useState(false);
     const [captchaValue, setCaptchaValue] = useState(null);
 
+    const [cookies, setCookie, removeCookie] = useCookies(['user', 'token']);
     const dispatch = useDispatch();
 
-    const toggleCheckbox = () => setChecked(!checked);
     const toggleSwitchToReg = () => setSwitchToRegister(!switchToRegister);
     const toggleSwitchToReset = () => setSwitchToReset(!switchToReset)
+
+    const toggleCheckbox = (e) => {
+        const value = e.currentTarget.htmlFor === "yes";
+        setChecked(value);
+    };
 
     const handleCaptchaChange = (value) => {
         setCaptchaValue(value);
@@ -95,11 +101,14 @@ export const Login = (props) => {
             if (error.response) {
                 if (error.response.status === 409) {
                     toast.error('Пользователь с такими данными уже существует');
+                    console.log(error);
                 } else {
                     toast.error('Регистрация прошла неудачно. Попробуйте еще раз');
+                    console.log(error);
                 }
             } else {
                 toast.error('Регистрация в данный момент невозможна. Пожалуйста, попробуйте позже');
+                console.log(error);
             }
         }
     }
@@ -123,15 +132,21 @@ export const Login = (props) => {
                         "Content-Type": "application/json",
                     }
                 })
-
             if(response.status === 200){
-                toast.success('Заявка на смену пароля обработана. Проверьте электронную почту')
-            } else{
-                toast.warning('Не удалось запросить смену пароля')
+                toast.success('Заявка на смену пароля обработана. Проверьте электронную почту');
+                toggleSwitchToReset();
             }
         }
-        catch (e){
-            toast.error('Сброс пароля в данный момент недоступен. Пожалуйста попробуйте позже')
+        catch (error){
+            if(error.response){
+                if(error.response.code === 404){
+                    toast.warning('Пользователь не найден');
+                    console.log(error);
+                }
+            }else{
+                toast.error('Сброс пароля в данный момент недоступен. Пожалуйста попробуйте позже');
+                console.log(error);
+            }
         }
     }
 
@@ -139,17 +154,17 @@ export const Login = (props) => {
         e.preventDefault();
         const form = e.currentTarget;
 
-        if(!allInputsFilled(form)){
+        if (!allInputsFilled(form)) {
             toast.warning('Заполните все поля');
             return;
         }
 
-        if(!captchaValue){
+        if (!captchaValue) {
             toast.warning('Подтвердите что Вы человек');
             return;
         }
 
-        try{
+        try {
             const response = await axios.post(
                 `${props.host.auth}/login/`,
                 {
@@ -160,26 +175,33 @@ export const Login = (props) => {
                         "Content-Type": "application/json",
                     }
                 });
-            if(response.status === 200){
-                toast.success('LOGGED IN')
 
+            if (response.status === 200) {
                 const { user, token } = response.data;
                 const userData = { ...user, token };
                 dispatch(userLogged(userData));
 
-                // TODO: подключить к компоненту хранилище
+                toast.success('Вы успешно авторизованы');
+
+                if (checked) {
+                    setCookie('user', user)
+                    setCookie('token', token)
+                }
             }
-        }
-        catch (error) {
+        } catch (error) {
             if (error.response) {
                 if (error.response.status === 401) {
                     toast.error('Вы указали неверные данные');
+                    console.log(error);
+                } else {
+                    toast.error('Авторизация в данный момент недоступна. Пожалуйста попробуйте позже');
+                    console.log(error);
                 }
             } else {
                 toast.error('Авторизация в данный момент недоступна. Пожалуйста попробуйте позже');
+                console.log(error);
             }
         }
-
     }
 
     return (
@@ -213,7 +235,7 @@ export const Login = (props) => {
                                     </label>
                                     <input className="user-input"
                                            type="text"
-                                           name="password"
+                                           name="email"
                                            pattern={regexPatterns.email.source}
                                            onChange={handleInputChange}
                                            placeholder="Email"/>
@@ -293,7 +315,7 @@ export const Login = (props) => {
                             'login-switch-right': switchToRegister,
                             'login-switch-left': switchToReset,
                         })}>
-                        <div className="login-header">
+                            <div className="login-header">
                                 <h3 className="sign-in">Register</h3>
                                 <div className="button" onClick={() => {
                                     toggleSwitchToReg();
