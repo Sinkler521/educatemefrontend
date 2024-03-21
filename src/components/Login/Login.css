@@ -248,10 +248,10 @@ form div label i{
   color: var(--text-gray);
 }
 
-.wrong-input-value{
+.login-wrong-input-value{
     border: 1px solid #e73030!important;
 }
-.input-correct{
+.login-input-correct{
     color: var(--text-white)!important;
     border: 1px solid #13ad13!important;
 }

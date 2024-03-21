@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef, createFactory} from "react";
+import React, {useState} from "react";
 import './Login.css';
 import classNames from "classnames";
 import {NavLink} from "react-router-dom";
@@ -7,12 +7,16 @@ import ReCAPTCHA from "react-google-recaptcha";
 import {NotificationComponent} from "../NotificationComponent/NotificationComponent";
 import {toast} from "react-toastify";
 import axios from "axios";
+import {userLogged} from "../../store/userSlice";
+import {useDispatch} from "react-redux";
 
 export const Login = (props) => {
     const [checked, setChecked] = useState(false);
     const [switchToRegister, setSwitchToRegister] = useState(false);
     const [switchToReset, setSwitchToReset] = useState(false);
     const [captchaValue, setCaptchaValue] = useState(null);
+
+    const dispatch = useDispatch();
 
     const toggleCheckbox = () => setChecked(!checked);
     const toggleSwitchToReg = () => setSwitchToRegister(!switchToRegister);
@@ -27,8 +31,8 @@ export const Login = (props) => {
             return
         }
         const isValid = new RegExp(pattern).test(value);
-        e.target.classList.toggle('input-correct', isValid);
-        e.target.classList.toggle('wrong-input-value', !isValid);
+        e.target.classList.toggle('login-input-correct', isValid);
+        e.target.classList.toggle('login-wrong-input-value', !isValid);
         e.target['data-valid'] = isValid
 
     }
@@ -39,8 +43,8 @@ export const Login = (props) => {
 
         [...textInputs, ...passwordInputs].forEach(input => {
             input.value=null;
-            input.classList.remove('wrong-input-value');
-            input.classList.remove('input-correct');
+            input.classList.remove('login-wrong-input-value');
+            input.classList.remove('login-input-correct');
         })
     }
 
@@ -63,34 +67,40 @@ export const Login = (props) => {
             toast.warning('Заполните все поля');
             return;
         }
-        if(form.elements['password'].value !== form.elements['passwordconfirm'].value){
-            toast.warning('Пароли должны совпадать')
-            return;
-        }
         if(!captchaValue){
             toast.warning('Подтвердите что Вы человек');
             return;
         }
 
-        try{
+        try {
             const response = await axios.post(
-                `${props.host.auth}/register`,
+                `${props.host.auth}/register/`,
                 {
-                email: form.elements['email'],
-                password: form.elements['password'],
-            }, {
-            headers: {
-              "Content-Type": "application/json",
-            }})
+                    email: form.elements['email'].value,
+                    username: form.elements['username'].value,
+                    password: form.elements['password'].value,
+                },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                }
+            );
 
-            if(response.status === 200){
-                toast.success('Вы успешно зарегистрированы. Пожалуйста авторизуйтесь')
+            if (response.status === 201) {
+                toast.success('Вы успешно зарегистрированы. Пожалуйста авторизуйтесь');
                 toggleSwitchToReg();
-            } else {
-                toast.error('Регистрация прошла неудачно. Попробуйте еще раз')
             }
-        } catch (e) {
-            toast.error('Регистрация в данный момент невозможна. Пожалуйста, попробуйте позже')
+        } catch (error) {
+            if (error.response) {
+                if (error.response.status === 409) {
+                    toast.error('Пользователь с такими данными уже существует');
+                } else {
+                    toast.error('Регистрация прошла неудачно. Попробуйте еще раз');
+                }
+            } else {
+                toast.error('Регистрация в данный момент невозможна. Пожалуйста, попробуйте позже');
+            }
         }
     }
 
@@ -105,9 +115,9 @@ export const Login = (props) => {
 
         try {
             const response = await axios.post(
-                `${props.host.auth}/resetpassword`,
+                `${props.host.auth}/resetpassword/`,
                 {
-                    email: form.elements['email'],
+                    email: form.elements['email'].value,
                 }, {
                     headers: {
                         "Content-Type": "application/json",
@@ -141,10 +151,10 @@ export const Login = (props) => {
 
         try{
             const response = await axios.post(
-                `${props.host.auth}/login`,
+                `${props.host.auth}/login/`,
                 {
-                    email: form.elements['email'],
-                    password: form.elements['password'],
+                    email: form.elements['email'].value,
+                    password: form.elements['password'].value,
                 }, {
                     headers: {
                         "Content-Type": "application/json",
@@ -152,17 +162,23 @@ export const Login = (props) => {
                 });
             if(response.status === 200){
                 toast.success('LOGGED IN')
-                // TODO здесь проверка что логин и пароль правильные, выдача токена, сохранение в редакс хранилище,
-                // TODO обработка чекбокса и сохранение куки если галочка стоит
-            } else{
-                toast.error('Не удалось войти в аккаунт. Попробуйте позже')
+
+                const { user, token } = response.data;
+                const userData = { ...user, token };
+                dispatch(userLogged(userData));
+
+                // TODO: подключить к компоненту хранилище
             }
         }
-        catch (e) {
-            toast.error('Авторизация в данный момент недоступна. Пожалуйста попробуйте позже')
+        catch (error) {
+            if (error.response) {
+                if (error.response.status === 401) {
+                    toast.error('Вы указали неверные данные');
+                }
+            } else {
+                toast.error('Авторизация в данный момент недоступна. Пожалуйста попробуйте позже');
+            }
         }
-
-
 
     }
 
@@ -290,7 +306,7 @@ export const Login = (props) => {
                             <form method="POST" onSubmit={handleRegister}>
                                 <div>
                                     <label className="user" htmlFor="text">
-                                        <i className="fa-solid fa-user"></i>
+                                        <i className="fa-solid fa-envelope"></i>
                                     </label>
                                     <input className="user-input" type="text"
                                            name="email"
@@ -300,19 +316,22 @@ export const Login = (props) => {
                                     />
                                 </div>
                                 <div>
+                                    <label className="user" htmlFor="text">
+                                        <i className="fa-solid fa-user"></i>
+                                    </label>
+                                    <input type="text"
+                                           name="username"
+                                           placeholder="Username"
+                                           pattern={regexPatterns.username.source}
+                                           onChange={handleInputChange}/>
+                                </div>
+                                <div>
                                     <label className="lock" htmlFor="password">
                                         <i className="fa-solid fa-key"></i>
                                     </label>
                                     <input type="password"
                                            name="password"
                                            placeholder="Password"
-                                           pattern={regexPatterns.password.source}
-                                           onChange={handleInputChange}/>
-                                </div>
-                                <div>
-                                    <input type="password"
-                                           name="passwordconfirm"
-                                           placeholder="Repeat password"
                                            pattern={regexPatterns.password.source}
                                            onChange={handleInputChange}/>
                                 </div>

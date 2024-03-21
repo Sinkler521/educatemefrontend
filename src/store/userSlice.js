@@ -6,18 +6,20 @@ const userSlice = createSlice({
         user: {
             userId: null,
             email: null,
-            firstName: null,
-            lastName: null,
+            username: null,
+            dateJoined: null,
+            token: null,git 
         }
     },
     reducers: {
         userLogged(state, action){
             const data = action.payload.text;
             state.user = {
-                userId: data.userId,
+                userId: data.id,
                 email: data.email,
-                firstName: data.firstName,
-                lastName: data.lastName,
+                username: data.username,
+                dateJoined: data.date_joined,
+                token: data.token,
             }
         }
     }

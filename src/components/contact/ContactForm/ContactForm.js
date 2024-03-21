@@ -30,7 +30,7 @@ export const ContactForm = (props) => {
         }
 
         try {
-            const response = await axios.post(`${props.host.api}/contactus`,
+            const response = await axios.post(`${props.host.api}/contactus/`,
                 {
                 email: email,
                 message: message,
@@ -41,6 +41,7 @@ export const ContactForm = (props) => {
 
             if(response.status === 200){
                 toast.success('Сообщение успешно отправлено')
+                console.log(response.data)
                 clearInputs();
             } else{
                 toast.warning('Сообщение не было доставлено')
@@ -65,8 +66,8 @@ export const ContactForm = (props) => {
             return
         }
         const isValid = new RegExp(pattern).test(value);
-        e.target.classList.toggle('input-correct', isValid);
-        e.target.classList.toggle('wrong-input-value', !isValid);
+        e.target.classList.toggle('contact-input-correct', isValid);
+        e.target.classList.toggle('contact-wrong-input-value', !isValid);
         e.target['data-valid'] = isValid
 
     }
@@ -99,6 +100,7 @@ export const ContactForm = (props) => {
                         <ReCAPTCHA
                             sitekey={process.env.REACT_APP_CAPTCHA_KEY}
                             onChange={handleCaptchaChange}
+                            className="contact-form-captcha"
                         />
                     </label>
                     <input type="submit" value="Отправить" className="contact-form-submit"/>
