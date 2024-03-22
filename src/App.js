@@ -49,7 +49,6 @@ export default function App(){
                         <Route path="about/" element={<About/>}/>
                         <Route path="contact/" element={<Contact host={host}/>}/>
                         <Route path="login/" element={<Login host={host}/>}/>
-                        <Route path="logout/" element={<Logout/>}/>
                         <Route path="/app/*" element={<Application user={user} host={host}/>}/>
                     </Routes>
                 </IntlProvider>
