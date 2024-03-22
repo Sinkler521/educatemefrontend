@@ -1,41 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const loadState = () => {
-  try {
-    const serializedState = localStorage.getItem("reduxState");
-    if (serializedState === null) {
-      return undefined;
-    }
-    return JSON.parse(serializedState);
-  } catch (err) {
-    return undefined;
-  }
-};
-
-const saveState = (state) => {
-  try {
-    const serializedState = JSON.stringify(state);
-    localStorage.setItem("reduxState", serializedState);
-  } catch {
-
-  }
-};
-
 const userSlice = createSlice({
   name: "user",
-  initialState: loadState() || {
-    user: {
-      userId: null,
-      email: null,
-      username: null,
-      dateJoined: null,
-      token: null,
-    },
+  initialState: {
+    userId: null,
+    email: null,
+    username: null,
+    dateJoined: null,
+    token: null,
   },
   reducers: {
     userLogged(state, action) {
       const data = action.payload;
-      state.user = {
+      return {
+        ...state,
         userId: data.id,
         email: data.email,
         username: data.username,

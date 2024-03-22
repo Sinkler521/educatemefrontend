@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import './Login.css';
 import classNames from "classnames";
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {regexPatterns} from "../../helpers/regex";
 import ReCAPTCHA from "react-google-recaptcha";
 import {NotificationComponent} from "../NotificationComponent/NotificationComponent";
@@ -16,6 +16,8 @@ export const Login = (props) => {
     const [switchToRegister, setSwitchToRegister] = useState(false);
     const [switchToReset, setSwitchToReset] = useState(false);
     const [captchaValue, setCaptchaValue] = useState(null);
+
+    const navigate = useNavigate()
 
     const [cookies, setCookie, removeCookie] = useCookies(['user', 'token']);
     const dispatch = useDispatch();
@@ -187,6 +189,7 @@ export const Login = (props) => {
                     setCookie('user', user)
                     setCookie('token', token)
                 }
+                navigate('/app/profile')
             }
         } catch (error) {
             if (error.response) {

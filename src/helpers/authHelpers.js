@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const logoutUser = async () => {
+export const logoutUser = async () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_BACKEND_AUTH}/logout/`);
         if (response.status === 200) {
