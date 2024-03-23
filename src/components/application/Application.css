@@ -1,0 +1,17 @@
+.application-container {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 2fr 8fr 1fr;
+    min-height: 100vh;
+    align-items: normal;
+    transition: all 0.4s ease-in;
+}
+
+.application-content {
+    overflow-y: auto;
+    height: 100vh;
+}
+.application-container.minimize-menu{
+    grid-template-columns: 1fr 10fr 1fr;
+}
+
