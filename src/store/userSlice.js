@@ -21,8 +21,17 @@ const userSlice = createSlice({
         token: data.token,
       };
     },
+    userLogout(state) {
+      return {
+        userId: null,
+        email: null,
+        username: null,
+        dateJoined: null,
+        token: null,
+      };
+    },
   },
 });
 
-export const { userLogged } = userSlice.actions
+export const { userLogged, userLogout } = userSlice.actions
 export default userSlice.reducer
