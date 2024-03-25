@@ -7,6 +7,7 @@ export const logoutUser = async (user, dispatch, removeCookie) => {
     const response = await axios.get(`${process.env.REACT_APP_BACKEND_AUTH}/logout/`);
 
     if (response.status === 200) {
+      removeCookie('token')
       removeCookie('user');
 
       dispatch(userLogout());

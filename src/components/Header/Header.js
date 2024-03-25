@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import {NavLink} from "react-router-dom";
 import classNames from 'classnames'
 import './Header.css'
+import {useSelector} from "react-redux";
 
 export const Header = (props) => {
     const [lastScroll, setLastScroll] = useState(0)
@@ -9,6 +10,8 @@ export const Header = (props) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolledFar, setIsScrolledFar] = useState(false);
     const [useMobile, setUseMobile] = useState(false);
+
+    const user = useSelector(state => state.user)
 
     useEffect(() => {
         const handleMobile = () => {
@@ -21,7 +24,6 @@ export const Header = (props) => {
         handleMobile()
         window.addEventListener('DOMContentLoaded', handleMobile)
         window.addEventListener('resize', handleMobile);
-
         return () => {
             window.removeEventListener('DOMContentLoaded', handleMobile);
             window.removeEventListener('resize', handleMobile);
@@ -72,13 +74,12 @@ export const Header = (props) => {
                     </nav> : null}
                     <label htmlFor="menu-toggle"><i className={`fa ${isMenuOpen ? 'fa-times' : 'fa-bars'}`} onClick={toggleMenu}></i></label>
                     <nav className={classNames("navbar", {'navbar-scrolled-far': isScrolledFar, 'mobile-background': useMobile, 'is-open': isMenuOpen})}>
-                        <NavLink to="/courses">Начать</NavLink>
+                        <NavLink to={user.token ? "/app/profile" : "/login"}>Начать</NavLink>
                         <NavLink to="/about">О нас</NavLink>
                         <NavLink to="/contact">Связаться</NavLink>
                         {!useMobile ?
                             <>
                                 <NavLink to="/login"><i className="fa-regular fa-user"></i></NavLink>
-                                <a href=""><i className="fa-solid fa-magnifying-glass"></i></a>
                             </>
                             :
                             null}

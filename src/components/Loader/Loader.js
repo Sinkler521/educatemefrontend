@@ -20,14 +20,14 @@ export const Loader = () => {
                             <div>
                                 <div></div>
                             </div>
+                            <h4>Loading
+                                <span>.</span>
+                                <span>.</span>
+                                <span>.</span>
+                            </h4>
                         </div>
                     </div>
                 </div>
-                <h4>Loading
-                    <span>.</span>
-                    <span>.</span>
-                    <span>.</span>
-                </h4>
             </div>
         </>
     )

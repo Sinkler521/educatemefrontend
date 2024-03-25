@@ -10,17 +10,22 @@ import {Profile} from "./Profile/Profile";
 import {News} from "./News/News";
 import {Courses} from "./courses/Courses";
 import {AppMenu} from "./AppMenu/AppMenu";
+import {Loader} from "../Loader/Loader";
 
 export const Application = (props) => {
     const navigate = useNavigate();
-    const cookie = useCookies();
+    const cookie = useCookies(['user']);
 
     const [menuMinimized, setMenuMinimized] = useState(false);
+    const [allowSurf, setAllowSurf] = useState(false);
 
     useEffect(() => {
-        if(!props.user.token && !cookie[0].token){
+        console.log(cookie)
+        if(!props.user.token && !cookie.token){
             navigate('/login')
         }
+        toggleMenu();
+        setAllowSurf(true);
     }, []);
 
     const toggleMenu = () => setMenuMinimized(!menuMinimized)
@@ -28,17 +33,25 @@ export const Application = (props) => {
 
     return (
         <>
-            <div className={classNames("container application-container", {'minimize-menu': menuMinimized})}>
+            <div className={classNames("container application-container", {'minimize-menu': menuMinimized, 'close-page': !allowSurf})}>
                 <section className="application-menu">
-                    <AppMenu menuMinimized={menuMinimized} toggleMenu={toggleMenu}/>
+                    {allowSurf ?
+                        <AppMenu menuMinimized={menuMinimized} toggleMenu={toggleMenu}/>
+                        :
+                        null
+                    }
                 </section>
-                <section className="application-content">
+                <section className={classNames("application-content", {'close-page': !allowSurf})}>
                     <div className="some-content">
-                        <Routes>
-                            <Route path="/profile" element={<Profile />} />
-                            <Route path="/news" element={<News />}/>
-                            <Route path="/mycourses" element={<Courses />} />
-                        </Routes>
+                        {allowSurf ?
+                            <Routes>
+                                <Route path="/profile" element={<Profile />} />
+                                <Route path="/news" element={<News />}/>
+                                <Route path="/mycourses" element={<Courses />} />
+                            </Routes>
+                            :
+                            <Loader/>
+                        }
                     </div>
                 </section>
                 <div className="pointer-none"></div>

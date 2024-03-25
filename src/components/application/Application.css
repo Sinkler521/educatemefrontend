@@ -14,4 +14,35 @@
 .application-container.minimize-menu{
     grid-template-columns: 1fr 10fr 1fr;
 }
+.close-page{
+    overflow: hidden;
+    height: 100vh;
+    max-height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+@media screen and (max-width: 1350px) {
+    .application-container{
+        grid-template-columns: 3fr 9fr 1fr;
+    }
+    .application-container.minimize-menu{
+        grid-template-columns: 2fr 9fr 1fr;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .application-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .application-content{
+        margin-bottom: 5rem;
+        width: 100%!important;
+    }
+    .some-content{
+        width: 100%!important;
+    }
+}
 

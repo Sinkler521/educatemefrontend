@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import axios from "axios";
 import './Mainpage.css'
 
@@ -8,7 +8,6 @@ import {Statistics} from "./Statistics/Statistics";
 import {Advantages} from "./Advantages/Advantages";
 import {Footer} from "../Footer/Footer";
 import {Startnow} from "./Startnow/Startnow";
-import {Loader} from "../Loader/Loader";
 
 export const Mainpage = (props) => {
     const [statisticsInfo, setStatisticsInfo] = useState({})
