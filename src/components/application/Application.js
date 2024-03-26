@@ -20,7 +20,6 @@ export const Application = (props) => {
     const [allowSurf, setAllowSurf] = useState(false);
 
     useEffect(() => {
-        console.log(cookie)
         if(!props.user.token && !cookie.token){
             navigate('/login')
         }
@@ -45,9 +44,9 @@ export const Application = (props) => {
                     <div className="some-content">
                         {allowSurf ?
                             <Routes>
-                                <Route path="/profile" element={<Profile />} />
-                                <Route path="/news" element={<News />}/>
-                                <Route path="/mycourses" element={<Courses />} />
+                                <Route path="/profile" element={<Profile host={props.host}/>} />
+                                <Route path="/news" element={<News host={props.host}/>}/>
+                                <Route path="/mycourses" element={<Courses host={props.host}/>} />
                             </Routes>
                             :
                             <Loader/>

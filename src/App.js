@@ -5,8 +5,8 @@ import {LOCALES} from "./translations/locales";
 import translationsConfig from "./translations/translationsConfig";
 import {messages} from "./translations/languages/messages";
 import {IntlProvider} from "react-intl";
-import {Routes, Route, Navigate, Outlet} from "react-router";
-import {logoutUser} from "./helpers/authHelpers"
+import {Routes, Route} from "react-router";
+import {useNavigate} from "react-router-dom";
 
 // Components
 import {Mainpage} from "./components/mainpage/Mainpage";
@@ -15,6 +15,7 @@ import {Contact} from "./components/contact/Contact";
 import {Login} from "./components/Login/Login";
 import {useSelector} from "react-redux";
 import {Application} from "./components/application/Application";
+import {useCookies} from "react-cookie";
 
 
 export default function App(){
@@ -23,12 +24,21 @@ export default function App(){
         auth: process.env.REACT_APP_BACKEND_AUTH,
     })
     const [currentMessages, setCurrentMessages] = useState('');
+
     const user = useSelector((state) => state.user);
+    const [setCookie, cookie, removeCookie] = useCookies(['user']);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const languageKey = Object.keys(LOCALES).find(key => LOCALES[key] === translationsConfig.CURRENTLANGUAGE);
         setCurrentMessages(messages[languageKey])
     }, [translationsConfig.CURRENTLANGUAGE]);
+
+    useEffect(() => {
+        if(user.token || cookie.token){
+            navigate('/app/news')
+        }
+    }, []);
 
 
     const changeLanguage = (e) => {

@@ -189,7 +189,7 @@ export const Login = (props) => {
                     setCookie('user', user)
                     setCookie('token', token)
                 }
-                navigate('/app/profile')
+                navigate('/app/news')
             }
         } catch (error) {
             if (error.response) {
