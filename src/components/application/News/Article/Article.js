@@ -3,7 +3,7 @@ import axios from "axios";
 import {toast} from "react-toastify";
 import {Loader} from "../../../Loader/Loader";
 import {useParams} from "react-router";
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import "./Article.css";
 import {fileToBase64, normalizeDate} from "../../../../helpers/apiHelpers";
 import {motion} from "framer-motion";
@@ -21,6 +21,11 @@ export const Article = (props) => {
     const descriptionRef = useRef(null);
     const [newImage, setNewImage] = useState(null);
     const user = useSelector(state => state.user)
+
+    const navigate = useNavigate();
+
+    const [deletionRequest, setDeletionRequest] = useState(false);
+    const toggleDeletionRequest = () => setDeletionRequest(!deletionRequest);
     //
     const toggleChangeMode = () => setChangeMode(!changeMode)
 
@@ -34,6 +39,10 @@ export const Article = (props) => {
             descriptionRef.current.value = articleData.description;
         }
     }, [changeMode]);
+
+    useEffect(() => {
+        console.log(deletionRequest)
+    }, [deletionRequest]);
 
     const getArticleData = async () => {
         try {
@@ -99,7 +108,37 @@ export const Article = (props) => {
                 toast.error('Произошла ошибка при попытке изменить данные')
             }
         }
+    }
 
+    const deleteArticle = async () => {
+        const data = {id: id}
+
+        try{
+            const response = await axios.post(
+                `${props.host.api}/articledelete/`,
+                data,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                }
+            )
+
+            if(response.status === 200){
+                toast.success('Новость успешно удалена');
+                toggleDeletionRequest();
+                navigate('/app/news');
+            }
+
+        } catch(error){
+            if(error.response){
+                if(error.response.status === 404){
+                    toast.warning('Не удалось удалить новость');
+                }
+            } else{
+                toast.error('Произошла ошибка. Попробуйте позже')
+            }
+        }
     }
 
     const showImagePreview = async (e) => {
@@ -130,7 +169,28 @@ export const Article = (props) => {
                             <span>{normalizeDate(articleData.publication_date)}</span>
                             {user.isStaff ?
                                 <div className="article-change-button" onClick={toggleChangeMode}><i
-                                    className="fa-solid fa-pencil"></i></div>
+                                    className="fa-solid fa-pencil"></i>
+                                </div>
+                                :
+                                null
+                            }
+                            {user.isStaff ?
+                                <div className="article-delete-button" onClick={toggleDeletionRequest}>
+                                    <i className="fa-solid fa-trash"></i>
+                                </div>
+                                :
+                                null
+                            }
+                            {deletionRequest ?
+                                <div className="deletion-block">
+                                    <h3>Вы уверены что хотите удалить эту новость?</h3>
+                                    <div className="deletion-buttons">
+                                        <button className="deletion-btn-yes" onClick={deleteArticle}><i className="fa-solid fa-check"></i>
+                                        </button>
+                                        <button className="deletion-btn-no" onClick={toggleDeletionRequest}><i
+                                            className="fa-solid fa-xmark"></i></button>
+                                    </div>
+                                </div>
                                 :
                                 null
                             }
