@@ -212,8 +212,8 @@ export const Login = (props) => {
             <div className="container">
                 <NotificationComponent position="top-right"/>
                 <div className="login-content">
-                    <div className="login-back-button">
-                        <NavLink to="/" id="login-back-arrow"><i className="fa-solid fa-arrow-left"></i></NavLink>
+                    <div className="back-button">
+                        <NavLink to="/" className="back-arrow"><i className="fa-solid fa-arrow-left"></i></NavLink>
                     </div>
                     <div className="login-wrapper">
 

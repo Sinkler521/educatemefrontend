@@ -5,13 +5,15 @@ import {Article} from "./Article/Article";
 import {useSelector} from "react-redux";
 
 import './News.css';
-import newsEmpty from "../../../assets/images/application/news/news-empty.png";
 import axios from "axios";
 import {NotificationComponent} from "../../NotificationComponent/NotificationComponent";
 import {toast} from "react-toastify";
-import {normalizeDate} from "../../../helpers/apiHelpers";
+import {normalizeDate, truncateString} from "../../../helpers/apiHelpers";
 import {ArticleForm} from "./ArticleForm/ArticleForm";
 import classNames from "classnames";
+
+import {motion} from "framer-motion";
+import {Route, Routes} from "react-router";
 
 export const News = (props) => {
     const user = useSelector(state => state.user)
@@ -168,13 +170,13 @@ export const News = (props) => {
                                     {currentFirstArticle ?
                                         <>
                                             <div className="news-first-article-container">
-                                                <a className="news-first-image-wrap" href="#">
+                                                <motion.a className="news-first-image-wrap" href={`/app/news/${currentFirstArticle.id}/`} initial={{x: -200, opacity: 0}} transition={{duration: 0.6}} whileInView={{x: 0, opacity: 1}}>
                                                     <img src={`data:image/jpeg;base64,${currentFirstArticle.image}`}
                                                          alt="No image" loading="lazy"/>
-                                                </a>
-                                                <div><h1>{currentFirstArticle.title}</h1></div>
-                                                <div><p>{currentFirstArticle.description}</p></div>
-                                                <div><span>{normalizeDate(currentFirstArticle.publication_date)}</span></div>
+                                                </motion.a>
+                                                <motion.div initial={{y: 150, opacity: 0}} transition={{duration: 0.6, delay: 0.2}} whileInView={{y: 0, opacity: 1}} ><h1>{currentFirstArticle.title}</h1></motion.div>
+                                                <motion.div initial={{y: 150, opacity: 0}} transition={{duration: 0.6, delay: 0.6}} whileInView={{y: 0, opacity: 1}}><p>{truncateString(currentFirstArticle.description, 120)}</p></motion.div>
+                                                <motion.div initial={{x: 150, opacity: 0}} transition={{duration: 0.6, delay: 1}} whileInView={{x: 0, opacity: 1}}><span>{normalizeDate(currentFirstArticle.publication_date)}</span></motion.div>
                                             </div>
                                         </>
                                         :

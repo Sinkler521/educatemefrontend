@@ -32,3 +32,12 @@ export const base64ToFile = (base64String, fileName) => {
         return null;
     }
 };
+
+export const truncateString = (string, maxLength) => {
+    if (string.length <= maxLength) {
+        return string;
+    }
+    const lastWord = string.substring(0, maxLength).replace(/\s+\S*$/, '');
+
+    return `${lastWord}...`;
+}

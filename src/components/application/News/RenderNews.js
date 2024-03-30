@@ -18,7 +18,7 @@ export const RenderNews = ({ news }) => {
               <div key={colIndex} className={classNames({"article-exists": newsItem})}>
                 {newsItem && (
                   <>
-                    <a href="">
+                    <a href={`/app/news/${newsItem.id}/`}>
                       <img className="news-image" src={`data:image/jpeg;base64,${newsItem.image}`} alt="no image" loading="lazy"/>
                     </a>
                     <h4>{newsItem.title}</h4>

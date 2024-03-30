@@ -34,13 +34,6 @@ export default function App(){
         setCurrentMessages(messages[languageKey])
     }, [translationsConfig.CURRENTLANGUAGE]);
 
-    useEffect(() => {
-        if(user.token || cookie.token){
-            navigate('/app/news')
-        }
-    }, []);
-
-
     const changeLanguage = (e) => {
         const newLanguage = e.target.value;
         translationsConfig.CURRENTLANGUAGE = newLanguage;
