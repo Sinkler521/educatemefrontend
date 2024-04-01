@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import './Login.css';
 import classNames from "classnames";
 import {NavLink, useNavigate} from "react-router-dom";
@@ -8,7 +8,7 @@ import {NotificationComponent} from "../NotificationComponent/NotificationCompon
 import {toast} from "react-toastify";
 import axios from "axios";
 import {userLogged} from "../../store/userSlice";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {useCookies} from "react-cookie";
 
 export const Login = (props) => {
@@ -225,7 +225,7 @@ export const Login = (props) => {
                                 <h3></h3>
                                 <div className="button" onClick={() => {
                                     toggleSwitchToReset();
-                                    clearInputs();
+
                                 }}>
                                     I remember my password
                                 </div>
@@ -258,7 +258,7 @@ export const Login = (props) => {
                                 <h3 className="sign-in">Sign in</h3>
                                 <div className="button" onClick={() => {
                                     toggleSwitchToReg();
-                                    clearInputs();
+
                                 }}>
                                     Register
                                 </div>
@@ -308,7 +308,7 @@ export const Login = (props) => {
                                 <span className="check-label">Remember me</span>
                                 <span className="forgot-label" onClick={() => {
                                     toggleSwitchToReset();
-                                    clearInputs();
+
                                 }}>Lost your password?</span>
                                 <div className="clear"></div>
                             </form>
@@ -322,7 +322,7 @@ export const Login = (props) => {
                                 <h3 className="sign-in">Register</h3>
                                 <div className="button" onClick={() => {
                                     toggleSwitchToReg();
-                                    clearInputs();
+
                                 }}>
                                     I have an account
                                 </div>

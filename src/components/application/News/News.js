@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import {Loader} from "../../Loader/Loader";
 import {RenderNews} from "./RenderNews";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 import './News.css';
 import axios from "axios";
@@ -12,6 +12,8 @@ import {ArticleForm} from "./ArticleForm/ArticleForm";
 import classNames from "classnames";
 
 import {motion} from "framer-motion";
+import {useCookies} from "react-cookie";
+import {logoutUser} from "../../../helpers/authHelpers";
 
 export const News = (props) => {
     const user = useSelector(state => state.user)
@@ -135,7 +137,7 @@ export const News = (props) => {
         }
         setAddingArticle(true);
     }
-
+    
     return (
         <>
             {newsLoaded ?

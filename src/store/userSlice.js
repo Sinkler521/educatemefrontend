@@ -9,6 +9,7 @@ const userSlice = createSlice({
     dateJoined: null,
     token: null,
     isStaff: null,
+    avatar: null,
   },
   reducers: {
     userLogged(state, action) {
@@ -21,6 +22,7 @@ const userSlice = createSlice({
         dateJoined: data.date_joined,
         token: data.token,
         isStaff: data.is_staff,
+        avatar: data.avatar,
       };
     },
     userLogout(state) {
@@ -31,6 +33,7 @@ const userSlice = createSlice({
         dateJoined: null,
         token: null,
         isStaff: null,
+        avatar: null,
       };
     },
   },
