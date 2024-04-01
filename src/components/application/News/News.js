@@ -172,7 +172,9 @@ export const News = (props) => {
                                                     <img src={`data:image/jpeg;base64,${currentFirstArticle.image}`}
                                                          alt="No image" loading="lazy"/>
                                                 </motion.a>
-                                                <motion.div initial={{y: 150, opacity: 0}} transition={{duration: 0.6, delay: 0.2}} whileInView={{y: 0, opacity: 1}} ><h1>{currentFirstArticle.title}</h1></motion.div>
+                                                <motion.div initial={{y: 150, opacity: 0}} transition={{duration: 0.6, delay: 0.2}} whileInView={{y: 0, opacity: 1}}>
+                                                    <a href={`/app/news/${currentFirstArticle.id}/`}><h1>{currentFirstArticle.title}</h1></a>
+                                                </motion.div>
                                                 <motion.div initial={{y: 150, opacity: 0}} transition={{duration: 0.6, delay: 0.6}} whileInView={{y: 0, opacity: 1}}><p>{truncateString(currentFirstArticle.description, 120)}</p></motion.div>
                                                 <motion.div initial={{x: 150, opacity: 0}} transition={{duration: 0.6, delay: 1}} whileInView={{x: 0, opacity: 1}}><span>{normalizeDate(currentFirstArticle.publication_date)}</span></motion.div>
                                             </div>
