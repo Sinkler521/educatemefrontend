@@ -1,7 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
 import {Loader} from "../../Loader/Loader";
 import {RenderNews} from "./RenderNews";
-import {Article} from "./Article/Article";
 import {useSelector} from "react-redux";
 
 import './News.css';
@@ -13,7 +12,6 @@ import {ArticleForm} from "./ArticleForm/ArticleForm";
 import classNames from "classnames";
 
 import {motion} from "framer-motion";
-import {Route, Routes} from "react-router";
 
 export const News = (props) => {
     const user = useSelector(state => state.user)

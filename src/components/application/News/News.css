@@ -208,6 +208,9 @@
     transform: scale(1.05);
     filter: grayscale(0);
 }
+.article-exists h4{
+    min-height: 53px;
+}
 .news-row div a{
     width: 100%;
     min-height: 100px;
