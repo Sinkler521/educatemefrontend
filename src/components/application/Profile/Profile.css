@@ -84,6 +84,7 @@
     flex-direction: column;
     align-items: center;
     position: relative;
+    padding: 0.8rem 8%;
 }
 .profile-avatar-form img{
     border-radius: 50%;
@@ -133,6 +134,7 @@
 .profile-header-block,
 .profile-main-block{
     border-left: 1px solid #34363a;
+    padding: 0;
 }
 .profile-header-block{
     border-bottom: 1px solid #34363a;

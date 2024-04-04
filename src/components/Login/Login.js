@@ -193,7 +193,7 @@ export const Login = (props) => {
             }
         } catch (error) {
             if (error.response) {
-                if (error.response.status === 401) {
+                if (error.response.status === 401 || error.response.status === 404) {
                     toast.error('Вы указали неверные данные');
                     console.log(error);
                 } else {

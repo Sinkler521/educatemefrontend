@@ -1,14 +1,17 @@
-import React, {useState, useEffect, useRef} from "react";
+import React, {useState, useRef} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import './Profile.css';
 import {useCookies} from "react-cookie";
 import {logoutUser} from "../../../helpers/authHelpers";
-import {NavLink, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {fileToBase64} from "../../../helpers/apiHelpers";
 import {NotificationComponent} from "../../NotificationComponent/NotificationComponent";
 import {toast} from "react-toastify";
 import axios from "axios";
 import {userLogged} from "../../../store/userSlice";
+
+import {GeneralMenu} from "./settingsMenu/GeneralMenu";
+import {SecurityMenu} from "./settingsMenu/SecurityMenu";
 
 export const Profile = (props) => {
     const user = useSelector(state => state.user);
@@ -22,17 +25,9 @@ export const Profile = (props) => {
 
     const avatarRef = useRef();
 
-    const generalMenu = () => {
-
-    }
-
-    const securityMenu = () => {
-
-    }
-
     const menuOptions = { // TODO should take from translations
-        'general': generalMenu,
-        'security': securityMenu,
+        'general': GeneralMenu,
+        'security': SecurityMenu,
     }
     const MenuComponent = menuOptions[currentProfileState]
     const toggleChangeAvatar = () => setChangingAvatar(!changingAvatar)
