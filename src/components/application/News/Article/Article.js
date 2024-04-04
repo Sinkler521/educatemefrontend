@@ -40,10 +40,6 @@ export const Article = (props) => {
         }
     }, [changeMode]);
 
-    useEffect(() => {
-        console.log(deletionRequest)
-    }, [deletionRequest]);
-
     const getArticleData = async () => {
         try {
             const response = await axios.get(

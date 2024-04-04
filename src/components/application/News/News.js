@@ -137,7 +137,8 @@ export const News = (props) => {
         }
         setAddingArticle(true);
     }
-    
+
+
     return (
         <>
             {newsLoaded ?
