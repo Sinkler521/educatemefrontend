@@ -12,6 +12,7 @@ import {Courses} from "./courses/Courses";
 import {AppMenu} from "./AppMenu/AppMenu";
 import {Loader} from "../Loader/Loader";
 import {Article} from "./News/Article/Article";
+import {FAQComponent} from "./FAQComponent/FAQComponent";
 
 export const Application = (props) => {
     const navigate = useNavigate();
@@ -47,8 +48,9 @@ export const Application = (props) => {
                             <Routes>
                                 <Route path="/profile" element={<Profile host={props.host}/>} />
                                 <Route path="/news" element={<News host={props.host}/>}/>
-                                <Route path="/mycourses" element={<Courses host={props.host}/>} />
                                 <Route path="/news/:id" element={<Article host={props.host} />} />
+                                <Route path="/mycourses" element={<Courses host={props.host}/>} />
+                                <Route path="/faq" element={<FAQComponent host={props.host}/>} />
                             </Routes>
                             :
                             <Loader/>

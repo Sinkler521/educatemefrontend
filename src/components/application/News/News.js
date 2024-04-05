@@ -12,8 +12,6 @@ import {ArticleForm} from "./ArticleForm/ArticleForm";
 import classNames from "classnames";
 
 import {motion} from "framer-motion";
-import {useCookies} from "react-cookie";
-import {logoutUser} from "../../../helpers/authHelpers";
 
 export const News = (props) => {
     const user = useSelector(state => state.user)
@@ -26,7 +24,10 @@ export const News = (props) => {
     const navLinks = useRef([]);
 
     useEffect(() => {
-        getLatestNews().then(res => setNewsLoaded(true));
+        getLatestNews().then(res => {
+            setNewsLoaded(true);
+            console.log(currentNews);
+        });
     }, []);
 
     const navLinkClick = (e) => {

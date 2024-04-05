@@ -54,7 +54,7 @@ export const AppMenu = (props) => {
                             </NavLink>
                         </li>
                         <li onClick={closeAfterUsingLink}>
-                            <NavLink to='contact/'>
+                            <NavLink to='faq/'>
                                 {props.menuMinimized ?
                                     <i className="fa-solid fa-question"></i>
                                     :
@@ -88,7 +88,7 @@ export const AppMenu = (props) => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to='contact/'>
+                            <NavLink to='faq/'>
                                 <i className="fa-solid fa-question"></i>
                             </NavLink>
                         </li>

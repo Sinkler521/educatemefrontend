@@ -1,0 +1,86 @@
+.accordeon{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    position: relative;
+    max-height: 85px;
+    transition: all 0.4s ease-in;
+}
+.accordeon.accordeon-height{
+    max-height: 1000px;
+}
+.accordeon-header{
+    border: 1px solid #4a4e54;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    transition: all 0.4s ease-in;
+    background-color: #242526;
+    z-index: 5;
+}
+.accordeon-header.accordeon-header-active{
+    background-color: #2d2f33;
+}
+.accordeon-body {
+    pointer-events: none;
+    overflow: hidden;
+    transition: transform 0.5s ease-in;
+    transform: translateY(-300%);
+    min-height: 5rem;
+    border: 1px solid #2b2d31;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: #e8e7e7;
+    z-index: 4;
+}
+.accordeon-body > *{
+    text-align: left;
+}
+.accordeon-body h2,
+.accordeon-body p{
+    width: 100%;
+    padding: 0 12%;
+}
+.accordeon-body h2{
+    font-weight: 300;
+    font-size: 20px;
+    font-family: "Input Sans", sans-serif;
+}
+.accordeon-body p{
+    font-family: Lato, "Verdana", sans-serif;
+}
+.accordeon-body.accordeon-opened {
+    display: block;
+    transform: translateY(0);
+}
+
+.accordeon-header i{
+    font-size: 30px;
+    color: var(--text-gray);
+    transition: all 0.5s ease-in;
+    margin-left: 1.2rem;
+}
+.accordeon-header i.accordeon-icon-opened{
+    transform: rotate(135deg) scale(1.3);
+    color: var(--text-white);
+}
+.accordeon-header p{
+    text-align: left;
+    align-self: center;
+    margin-right: 1.2rem;
+    font-size: 18px;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-weight: 300;
+    color: var(--text-gray);
+    transition: all 0.4s ease-in;
+}
+.accordeon-header p.accordeon-p-opened{
+    color: var(--text-white);
+    transform: translateX(-10%);
+}
+
