@@ -1,4 +1,4 @@
-.accordeon{
+.accordion{
     width: 80%;
     display: flex;
     flex-direction: column;
@@ -9,10 +9,10 @@
     max-height: 85px;
     transition: all 0.4s ease-in;
 }
-.accordeon.accordeon-height{
+.accordion.accordion-height{
     max-height: 1000px;
 }
-.accordeon-header{
+.accordion-header{
     border: 1px solid #4a4e54;
     display: flex;
     justify-content: space-between;
@@ -21,13 +21,12 @@
     padding-bottom: 0.8rem;
     transition: all 0.4s ease-in;
     background-color: #242526;
-    z-index: 5;
+    z-index: 15;
 }
-.accordeon-header.accordeon-header-active{
+.accordion-header.accordion-header-active{
     background-color: #2d2f33;
 }
-.accordeon-body {
-    pointer-events: none;
+.accordion-body {
     overflow: hidden;
     transition: transform 0.5s ease-in;
     transform: translateY(-300%);
@@ -36,40 +35,43 @@
     padding-top: 1rem;
     padding-bottom: 1rem;
     background-color: #e8e7e7;
-    z-index: 4;
+    z-index: 10;
 }
-.accordeon-body > *{
+.accordion-body > *{
     text-align: left;
 }
-.accordeon-body h2,
-.accordeon-body p{
+.accordion-body h2,
+.accordion-body p{
     width: 100%;
     padding: 0 12%;
 }
-.accordeon-body h2{
+.accordion-body h2{
     font-weight: 300;
     font-size: 20px;
     font-family: "Input Sans", sans-serif;
 }
-.accordeon-body p{
+.accordion-body h2.text-center{
+    text-align: center;
+}
+.accordion-body p{
     font-family: Lato, "Verdana", sans-serif;
 }
-.accordeon-body.accordeon-opened {
+.accordion-body.accordion-opened {
     display: block;
     transform: translateY(0);
 }
 
-.accordeon-header i{
+.accordion-header i{
     font-size: 30px;
     color: var(--text-gray);
     transition: all 0.5s ease-in;
     margin-left: 1.2rem;
 }
-.accordeon-header i.accordeon-icon-opened{
+.accordion-header i.accordion-icon-opened{
     transform: rotate(135deg) scale(1.3);
     color: var(--text-white);
 }
-.accordeon-header p{
+.accordion-header p{
     text-align: left;
     align-self: center;
     margin-right: 1.2rem;
@@ -79,8 +81,20 @@
     color: var(--text-gray);
     transition: all 0.4s ease-in;
 }
-.accordeon-header p.accordeon-p-opened{
+.accordion-header p.accordion-p-opened{
     color: var(--text-white);
     transform: translateX(-10%);
 }
 
+@media screen and (max-width: 1000px) {
+
+}
+
+@media screen and (max-width: 700px) {
+    .accordion{
+        width: 100%;
+    }
+    .accordion-header p.accordion-p-opened{
+        transform: translateX(0);
+    }
+}

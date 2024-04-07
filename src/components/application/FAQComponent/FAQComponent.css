@@ -28,3 +28,21 @@
     padding-top: 1.6rem;
     padding-bottom: 1.6rem;
 }
+
+@media screen and (max-width: 1000px) {
+    .faq-content{
+        width: 100%;
+    }
+    .faq-content-main{
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .faq-content{
+        width: 90%;
+    }
+    .faq-content-main{
+        width: 100%;
+    }
+}
