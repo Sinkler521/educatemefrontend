@@ -107,6 +107,13 @@
     width: auto!important;
     height: 100vh!important;
 }
+.minimize-toggle i{
+    transition: all 0.4s ease-in;
+    transform: translateX(0);
+}
+.minimize-toggle i.menu-icon-rotate{
+    transform: rotate(180deg) translateX(3px);
+}
 .menu-minimized li::after {
     content: "";
     background-color: #232222;

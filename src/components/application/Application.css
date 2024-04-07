@@ -5,7 +5,8 @@
     min-height: 100vh;
     align-items: normal;
     transition: all 0.4s ease-in;
-
+    max-height: 100vh;
+    overflow: hidden;
 }
 
 .application-content {

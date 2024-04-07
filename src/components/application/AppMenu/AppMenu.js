@@ -63,7 +63,7 @@ export const AppMenu = (props) => {
                             </NavLink>
                         </li>
                         <li className="minimize-toggle" onClick={props.toggleMenu}>
-                            <i className={`fa-solid fa-${props.menuMinimized ? 'forward' : 'backward'}`}></i>
+                            <i className={classNames('fa-solid fa-forward', {'menu-icon-rotate': !props.menuMinimized})}></i>
                         </li>
                     </ul>
                     <ul className="app-menu-mobile">

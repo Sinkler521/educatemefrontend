@@ -17,8 +17,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: hidden;
-    max-height: 100vh;
 }
 .loader {
   border: 7px solid #f3f3f3;
