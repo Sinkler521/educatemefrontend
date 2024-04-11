@@ -1,0 +1,270 @@
+.products-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1400px;
+    min-height: 100vh;
+}
+.products-header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(to right,#232222, #252424);;
+}
+.products-header-search-block,
+.products-header-profile-block{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 2%;
+    width: 40%;
+}
+.products-header-profile-block{
+    width: 10%;
+    min-width: 150px;
+    justify-content: center;
+}
+.products-header-logo{
+    background-size: cover;
+    background-position: center center;
+    background-image: url("../../../assets/images/footer/footerlogo.png");
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    position: relative;
+}
+.products-header-logo:before{
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    opacity: 0.2;
+    background-color: #4a4e54;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+}
+.products-header-search-block form{
+    display: flex;
+    flex-direction: row;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+}
+.products-header-search-block form input[type=text]{
+    min-width: 200px;
+    border-radius: 1rem 0 0 1rem;
+    border: 2px solid #33353a;
+    border-right: none;
+    margin: 0;
+    padding: 0.2rem 0.4rem;
+    background-color: #efeeee;
+}
+.products-header-search-block form input[type=text]:focus{
+    background-color: #f8f8f8;
+}
+.products-header-search-block form button{
+    min-width: 50px;
+    border-radius: 0 1rem 1rem 0;
+    border: 2px solid #33353a;
+    border-left: none;
+    margin: 0;
+    padding: 0.2rem 1rem;
+    cursor: pointer;
+    font-family: Lato, "Verdana", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    background-color: #232427;
+    color: var(--text-gray);
+}
+.products-header-search-block form button:hover{
+    background-color: #252a38;
+    color: var(--text-white);
+}
+.products-header-profile-avatar {
+    position: relative;
+}
+
+.products-header-profile-avatar:hover ul {
+    display: block;
+}
+
+.products-header-profile-avatar img {
+    width: 53px;
+    height: 53px;
+    border-radius: 50%;
+    border: 3px solid #53555b;
+    cursor: pointer;
+}
+
+.products-header-profile-block ul {
+    display: none;
+    position: absolute;
+    top: calc(100% + 5px);
+    left: -100%;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+.products-header-profile-block ul li {
+    padding: 1rem 2rem;
+}
+.products-header-profile-block ul li:hover {
+    background-color: #f0f0f0;
+}
+.products-header-profile-block ul li a,
+.products-header-profile-block ul li{
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 300;
+    font-family: Lato, "Verdana", sans-serif;
+    color: #1c202c;
+}
+.products-header-profile-block ul li:last-child{
+    color: #8a1b31;
+    font-weight: 400;
+}
+.products-subheader{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #232222;
+    padding-top: 1.4rem;
+    padding-bottom: 1.4rem;
+}
+.products-subheader h2{
+    font-weight: 300;
+    font-size: 24px;
+    color: var(--text-white);
+    font-family: Lato, "Verdana", sans-serif;
+}
+.products-content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.products-main{
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-rows: 1fr;
+    grid-template-columns: 3fr 1fr;
+    width: 100%;
+}
+.products-menu{
+    background-color: #232427;
+    border-radius: 0.8rem;
+    border: 1px solid #3f3e3e;
+}
+.products-menu ul {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style-type: none;
+}
+.products-menu ul p{
+    font-size: 14px;
+    color: #f3f3f3;
+    font-family: "Input Sans", sans-serif;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    width: 80%;
+    text-transform: uppercase;
+}
+.products-menu ul li a {
+    color: var(--text-gray);
+    font-size: 20px;
+    font-family: "IBM Plex Sans", sans-serif;
+    text-decoration: none;
+    text-align: left;
+    display: block;
+    width: 100%;
+    height: 100%;
+    transition: all 0.2s ease-in;
+}
+.products-menu ul li{
+    color: var(--text-gray);
+    font-size: 16px;
+    font-family: "IBM Plex Sans", sans-serif;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    padding-left: 1.4rem;
+    width: 100%;
+    text-align: left;
+    transition: all 0.2s ease-in;
+}
+.products-menu-main:hover,
+.products-menu-info:hover,
+.products-menu-admin:hover{
+    color: var(--text-white);
+    background-color: #53555b;
+}
+.products-menu ul li a{
+    width: 100%!important;
+    height: 100%!important;
+}
+.products-menu-main i{
+    font-size: 22px;
+    color: #6faf58;
+    width: 28px;
+}
+.products-menu-info i{
+    font-size: 22px;
+    color: #6276b9;
+    width: 28px;
+}
+.products-menu-admin i{
+    font-size: 22px;
+    color: #bd6377;
+    width: 28px;
+}
+.products-menu-user-block{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+}
+.products-menu-user-block img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+.products-menu-user-block p{
+    text-align: center;
+    color: var(--text-white);
+    font-size: 18px;
+}
+.products-display{
+    min-height: 100vh;
+    border: 1px solid #3f3e3e;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+@media screen and (max-width: 1100px) {
+    .products-header-search-block,
+    .products-header-profile-block{
+        width: 50%;
+    }
+}
+@media screen and (max-width: 820px) {
+    .products-header{
+        flex-direction: column;
+    }
+    .products-header-search-block,
+    .products-header-profile-block{
+        width: 100%;
+    }
+}
