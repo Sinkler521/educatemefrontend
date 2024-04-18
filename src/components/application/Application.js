@@ -13,6 +13,7 @@ import {Loader} from "../Loader/Loader";
 import {Article} from "./News/Article/Article";
 import {FAQComponent} from "./FAQComponent/FAQComponent";
 import {Products} from "./Products/Products";
+import {Course} from "./Products/productsComponents/Courses/Course/Course";
 
 export const Application = (props) => {
     const navigate = useNavigate();

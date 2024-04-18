@@ -6,6 +6,10 @@ import {useCookies} from "react-cookie";
 import {logoutUser} from "../../../helpers/authHelpers";
 import {Route, Routes} from "react-router";
 import {Courses} from "./productsComponents/Courses/Courses";
+import {ProductsMenu} from "./ProductsMenu";
+import {NotificationComponent} from "../../NotificationComponent/NotificationComponent";
+import classNames from "classnames";
+import {Course} from "./productsComponents/Courses/Course/Course";
 
 export const Products = (props) => {
     const [useMobile, setUseMobile] = useState(false);
@@ -15,6 +19,9 @@ export const Products = (props) => {
     const dispatch = useDispatch();
     const [isProfileOpen, setIsProfileOpen] = useState(false);
     const [pageTitle, setPageTitle] = useState('');
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const toggleMobileMenu = () => setIsMenuOpen(!isMenuOpen)
 
     useEffect(() => {
         const handleWindowResize = () => {
@@ -38,6 +45,7 @@ export const Products = (props) => {
         };
     }, []);
 
+
     const toggleProfileMenu = () => setIsProfileOpen(!isProfileOpen);
     const closeProfileMenu = () => setIsProfileOpen(false);
 
@@ -47,14 +55,20 @@ export const Products = (props) => {
 
     return (
         <div className="container products-container">
+            <NotificationComponent position="top-right"/>
+            {isMenuOpen ?
+                <div className={classNames("products-menu-modal", {'menu-called': isMenuOpen})}>
+                    <ProductsMenu user={user} toggleMobileMenu={toggleMobileMenu}/>
+                </div>
+                :
+                null
+            }
             <div className="products-header">
                 <div className="products-header-search-block">
-                    {useMobile ?
-                        <h1>ASD</h1>
-                        :
-                        <NavLink to="/app/news/" className="products-header-logo" />
-                    }
-
+                    <NavLink to="/app/news/" className="products-header-logo"/>
+                    <button className="products-mobile-button">
+                        <i className={`fa ${isMenuOpen ? 'fa-times' : 'fa-bars'}`} onClick={toggleMobileMenu}></i>
+                    </button>
                     <form method="get">
                         <input type="text" name="searchvalue"/>
                         <button type="submit">
@@ -65,7 +79,8 @@ export const Products = (props) => {
                 {useMobile ?
                     null
                     :
-                    <div className="products-header-profile-block" onMouseEnter={toggleProfileMenu} onMouseLeave={closeProfileMenu}>
+                    <div className="products-header-profile-block" onMouseEnter={toggleProfileMenu}
+                         onMouseLeave={closeProfileMenu}>
                         <div className="products-header-profile-avatar">
                             <NavLink to="/app/profile/">
                                 <img src={`data:image/jpeg;base64,${user.avatar}`} alt="no image"/>
@@ -89,39 +104,10 @@ export const Products = (props) => {
                     <section className="products-display">
                        <Routes>
                             <Route path="courses" element={<Courses host={props.host} changePageTitle={changePageTitle} />} />
+                            <Route path="courses/:id" element={<Course host={props.host}/>} />
                        </Routes>
                     </section>
-                    <section className="products-menu">
-                        <div className="products-menu-user-block">
-                            <img src={`data:image/jpeg;base64,${user.avatar}`} alt=""/>
-                            <p>{user.username}</p>
-                        </div>
-                        <ul>
-                            <li><p>Main</p></li>
-                            <li className="products-menu-main"><NavLink to="/app/products/courses/"><i
-                                className="fa-solid fa-flag-checkered"></i> Courses</NavLink>
-                            </li>
-                            <li className="products-menu-main"><NavLink to="/app/products/tests/"><i
-                                className="fa-solid fa-paperclip"></i> Tests</NavLink>
-                            </li>
-                            <li></li>
-                            <li><p>Info</p></li>
-                            <li className="products-menu-info"><NavLink to="/app/products/info"><i
-                                className="fa-solid fa-circle-info"></i> Help</NavLink></li>
-                            <li></li>
-                            {user.isStaff ?
-                                <>
-                                    <li><p>Staff controls</p></li>
-                                    <li className="products-menu-admin"><NavLink to="/app/products/admin/"><i
-                                        className="fa-solid fa-user-tie"></i> Admin
-                                        panel</NavLink></li>
-                                    <li></li>
-                                </>
-                                :
-                                null
-                            }
-                        </ul>
-                    </section>
+                    <ProductsMenu user={user}/>
                 </div>
             </div>
         </div>
