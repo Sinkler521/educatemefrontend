@@ -31,7 +31,7 @@ export const RenderCourses = (props) => {
             <div className="course-preview" key={index}>
               <div className="course-example-badge">{checkIfNew(course.publication_date) ? "New" : ""}</div>
               <div className="course-example-card">
-                <NavLink to={`/products/courses/${course.id}`}>
+                <NavLink to={`/app/products/courses/${course.id}`}>
                   <img src={`data:image/jpeg;base64,${course.image}`} alt="no image" loading="lazy"/>
                 </NavLink>
 

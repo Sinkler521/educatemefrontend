@@ -10,6 +10,7 @@ import {ProductsMenu} from "./ProductsMenu";
 import {NotificationComponent} from "../../NotificationComponent/NotificationComponent";
 import classNames from "classnames";
 import {Course} from "./productsComponents/Courses/Course/Course";
+import {ProductsAdmin} from "./productsComponents/ProductsAdmin/ProductsAdmin";
 
 export const Products = (props) => {
     const [useMobile, setUseMobile] = useState(false);
@@ -104,7 +105,9 @@ export const Products = (props) => {
                     <section className="products-display">
                        <Routes>
                             <Route path="courses" element={<Courses host={props.host} changePageTitle={changePageTitle} />} />
-                            <Route path="courses/:id" element={<Course host={props.host}/>} />
+                            <Route path="courses/:id" element={<Course host={props.host} changePageTitle={changePageTitle}/>} />
+
+                            <Route path="admin" element={<ProductsAdmin host={props.host} changePageTitle={changePageTitle}/> } />
                        </Routes>
                     </section>
                     <ProductsMenu user={user}/>
