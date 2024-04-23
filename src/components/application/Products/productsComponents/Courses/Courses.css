@@ -140,6 +140,9 @@
     padding-top: 1.6rem;
     padding-bottom: 1.6rem;
 }
+.course-example-card img{
+    height: 270px;
+}
 .course-example-badge{
     position: absolute;
     text-transform: uppercase;

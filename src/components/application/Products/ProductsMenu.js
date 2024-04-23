@@ -23,11 +23,6 @@ export const ProductsMenu = (props) => {
                             <i className="fa-solid fa-flag-checkered"></i> Courses
                         </NavLink>
                     </li>
-                    <li className="products-menu-main">
-                        <NavLink to="/app/products/tests/" onClick={handleNavLinkClick}>
-                            <i className="fa-solid fa-paperclip"></i> Tests
-                        </NavLink>
-                    </li>
                     <li></li>
                     <li><p>Info</p></li>
                     <li className="products-menu-info">
