@@ -270,6 +270,126 @@
 .productsadmin-section-main{
     width: 100%;
 }
+.productsadmin-adding-block{
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 600px;
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+}
+.productsadmin-back{
+    position: absolute;
+    top: 1rem;
+    left: 2rem;
+    border: 1px solid #646464;
+    background-color: #2e313a;
+    cursor: pointer;
+    padding: 0.4rem 1rem;
+    border-radius: 0.4rem;
+    color: var(--text-gray);
+}
+.productsadmin-back:hover{
+    background-color: #252933;
+    color: var(--text-white);
+}
+.productsadmin-back-message{
+    transition: all 0.3s ease-in;
+    position: absolute;
+    left: -200px;
+    top: 3rem;
+    background-color: #3f3e3e;
+    color: var(--text-white);
+    padding: 0.2rem 0.4rem 0.2rem 4rem;
+    border-top-right-radius: 0.2rem;
+    border-bottom-right-radius: 0.2rem;
+    font-family: Lato, "Verdana", sans-serif;
+    font-size: 14px;
+}
+.productsadmin-back:hover .productsadmin-back-message{
+    left: -30px;
+}
+.course-add-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.course-add-container h2{
+    color: var(--text-white);
+    font-size: 26px;
+    font-weight: 300;
+    font-family: "Input Sans", sans-serif;
+    margin-bottom: 0;
+}
+.course-add-form{
+    min-width: 450px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid #3f3e3e;
+    padding: 1.6rem 3rem;
+}
+.course-add-form select{
+    align-self: flex-end;
+    margin-top: 0.4rem;
+    margin-bottom: 0.4rem;
+}
+.course-add-form input[type=file]{
+    width: 100%;
+    align-self: center;
+    color: var(--text-gray);
+    text-align: center;
+}
+.course-add-form input[type=text],
+.course-add-form textarea{
+    width: 100%;
+    padding: 0.4rem;
+    font-family: Lato, "Verdana", sans-serif;
+    resize: none;
+}
+.course-add-button-group{
+    display: flex;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.course-add-button-group button:first-child{
+    border-radius: 0.4rem 0 0 0.4rem;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    background-color: #61a86f;
+    border-color: #f3f3f3;
+}
+.course-add-button-group button:last-child{
+    border-radius: 0 0.4rem 0.4rem 0;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    background-color: #6173a8;
+    border-color: #f3f3f3;
+}
+.course-add-button-group button:first-child:hover{
+    background-color: #48724f;
+}
+.course-add-button-group button:last-child:hover{
+    background-color: #303c60;
+}
+.course-add-button-group button:first-child i{
+    font-size: 20px;
+    color: #054105;
+}
+.course-add-button-group button:last-child i{
+    font-size: 20px;
+    color: #1a233f;
+}
+.course-add-button-group button:hover i{
+    color: var(--text-white);
+}
+.course-add-form h2{
+    margin-bottom: 1.4rem;
+}
 @media screen and (max-width: 1350px) {
     .course-section-h-wrap h1 span{
         top: -20px;
