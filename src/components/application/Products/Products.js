@@ -106,8 +106,11 @@ export const Products = (props) => {
                        <Routes>
                             <Route path="courses" element={<Courses host={props.host} changePageTitle={changePageTitle} />} />
                             <Route path="courses/:id" element={<Course host={props.host} changePageTitle={changePageTitle}/>} />
-
-                            <Route path="admin" element={<ProductsAdmin host={props.host} changePageTitle={changePageTitle}/> } />
+                           {user.isStaff ?
+                               <Route path="admin" element={<ProductsAdmin host={props.host} changePageTitle={changePageTitle}/> } />
+                               :
+                                null
+                           }
                        </Routes>
                     </section>
                     <ProductsMenu user={user}/>

@@ -39,15 +39,17 @@ export const RenderCourses = (props) => {
               <div className="course-preview-body">
                 <h2 className="course-example-h">{course.title}</h2>
                 <div className="course-example-tags">
-                  <div className="course-example-tag">{course.topic}</div>
+                  <div className="course-example-tag">
+                    {course.topic.charAt(0).toUpperCase() + course.topic.slice(1)}
+                  </div>
                   <div
                     className={classNames("course-example-tag", {
-                      "tag-easy": course.complexity === "Easy",
-                      "tag-medium": course.complexity === "Medium",
-                      "tag-hard": course.complexity === "Hard",
+                      "tag-easy": course.complexity === "Easy" || course.complexity === "easy",
+                      "tag-medium": course.complexity === "Medium" || course.complexity === "medium",
+                      "tag-hard": course.complexity === "Hard" || course.complexity === "hard",
                     })}
                   >
-                    {course.complexity}
+                    {course.complexity.charAt(0).toUpperCase() + course.complexity.slice(1)}
                   </div>
                   <div className="course-example-tag tag-sections">{`${course.sections ? course.sections : 0} sections`}</div>
                 </div>

@@ -18,7 +18,7 @@ export const AppMenu = (props) => {
                 <div className="app-menu-content">
                     <ul className={classNames("app-menu-list", {"menu-minimized": props.menuMinimized})}>
                         <li onClick={closeAfterUsingLink}>
-                            <NavLink to='products/'>
+                            <NavLink to='/app/products/courses/'>
                                 {props.menuMinimized ?
                                     <i className="fa-solid fa-magnifying-glass menu-minimized-icon"></i>
                                     :
@@ -27,7 +27,7 @@ export const AppMenu = (props) => {
                             </NavLink>
                         </li>
                         <li onClick={closeAfterUsingLink}>
-                            <NavLink to='mycourses/'>
+                            <NavLink to='/app/products/mycourses/'>
                                 {props.menuMinimized ?
                                     <i className="fa-solid fa-star"></i>
                                     :

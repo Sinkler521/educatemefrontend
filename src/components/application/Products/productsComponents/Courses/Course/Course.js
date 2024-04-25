@@ -137,9 +137,9 @@ export const Course = (props) => {
                                         {courseInfo.title}
                                         <span>{courseInfo.topic}</span>
                                         <span className={classNames({
-                                          "tag-easy": courseInfo.complexity === "Easy",
-                                          "tag-medium": courseInfo.complexity === "Medium",
-                                          "tag-hard": courseInfo.complexity === "Hard",
+                                          "course-tag-easy": courseInfo.complexity === "easy" || courseInfo.complexity === "Easy",
+                                          "course-tag-medium": courseInfo.complexity === "medium" || courseInfo.complexity === "Medium",
+                                          "course-tag-hard": courseInfo.complexity === "hard" || courseInfo.complexity === "Hard",
                                         })}>{courseInfo.complexity}</span>
                                     </h1>
                                 </div>
