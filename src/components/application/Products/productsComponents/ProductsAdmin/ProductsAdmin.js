@@ -5,7 +5,7 @@ import './ProductsAdmin.css';
 import {Loader} from "../../../../Loader/Loader";
 import {toast} from "react-toastify";
 import axios from "axios";
-import {fileToBase64, normalizeDate} from "../../../../../helpers/apiHelpers";
+import {cutVideoUrl, fileToBase64, normalizeDate} from "../../../../../helpers/apiHelpers";
 
 export const ProductsAdmin = (props) => {
     const user = useSelector(state => state.user);
@@ -148,6 +148,16 @@ export const ProductsAdmin = (props) => {
         }
     }
 
+    const isFormEmpty = (form) => {
+      const inputs = form.querySelectorAll('input, textarea');
+      for (let i = 0; i < inputs.length; i++) {
+        if (inputs[i].value.trim() !== '') {
+          return false;
+        }
+      }
+      return true;
+    };
+
     const addCourseDataFromForms = async () => {
         const courseForms = document.querySelectorAll('.course-add-form');
 
@@ -168,6 +178,10 @@ export const ProductsAdmin = (props) => {
 
         // stages part
         for(let i = 1; i < courseForms.length; i++){
+            const form = courseForms[i];
+            if(isFormEmpty(form)){
+                continue
+            }
             const imageFile = courseForms[i].files ? courseForms[i].files[0] : null
             const imageBase64 = imageFile ? await fileToBase64(imageFile) : '';
 
@@ -175,14 +189,13 @@ export const ProductsAdmin = (props) => {
                 title: courseForms[i].elements['title'].value || '',
                 description: courseForms[i].elements['description'].value || '',
                 image: imageBase64,
-                video: courseForms[i].elements['video'].value || '',
+                video: cutVideoUrl(courseForms[i].elements['video'].value) || '',
                 text: courseForms[i].elements['text'].value || '',
                 order: i - 1,
             }
 
             newCourse.stages.push(stage);
         }
-        console.log(newCourse);
     };
 
     const createNewStage = () => {

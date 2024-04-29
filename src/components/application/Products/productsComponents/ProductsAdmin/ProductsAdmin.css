@@ -39,6 +39,7 @@
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 0.8rem;
     width: 100%;
+    padding: 0 1rem;
 }
 .productsadmin-info div{
     padding: 1.8rem;
@@ -178,6 +179,12 @@
     }
     .productsadmin-section-info{
         width: 100%;
+    }
+    .productsadmin-course-delete{
+        bottom: 0;
+        top: auto;
+        border-top: 1px solid #646464;
+        border-bottom: 0;
     }
 }
 
