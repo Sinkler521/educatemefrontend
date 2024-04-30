@@ -1,0 +1,19 @@
+.course-completed-badge{
+    position: absolute;
+    background-color: #1c202c;
+    top: 1rem;
+    right: 0;
+    padding: 0.4rem 0.6rem;
+    border-top-left-radius: 0.4rem;
+    border-bottom-left-radius: 0.4rem;
+}
+.course-completed-badge h4{
+    font-weight: 300;
+    font-size: 14px;
+    color: var(--text-gray);
+    margin: 0;
+    padding: 0;
+}
+.course-example-card{
+    position: relative;
+}

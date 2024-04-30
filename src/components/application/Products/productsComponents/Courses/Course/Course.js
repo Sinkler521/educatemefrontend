@@ -124,7 +124,7 @@ export const Course = (props) => {
                                 <div>
                                     <h2>{courseInfo.title}</h2>
                                     {courseAdded ?
-                                        <NavLink to={`/app/products/myproducts/${courseInfo.id}`}>Start</NavLink>
+                                        <NavLink to={`/app/products/mycourses/${courseInfo.id}`}>Start</NavLink>
                                         :
                                         <button className="course-btn-square" onClick={userAddCourse}><i className="fa-solid fa-plus"></i>  Add</button>
                                     }

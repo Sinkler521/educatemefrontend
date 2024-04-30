@@ -41,3 +41,10 @@ export const truncateString = (string, maxLength) => {
 
     return `${lastWord}...`;
 }
+
+export const cutVideoUrl = (url) => {
+  const regex = /[?&]v=([^&]+)/;
+  const match = url.match(regex);
+
+  return match ? match[1] : null;
+};

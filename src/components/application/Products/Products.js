@@ -11,6 +11,8 @@ import {NotificationComponent} from "../../NotificationComponent/NotificationCom
 import classNames from "classnames";
 import {Course} from "./productsComponents/Courses/Course/Course";
 import {ProductsAdmin} from "./productsComponents/ProductsAdmin/ProductsAdmin";
+import {MyCourses} from "./productsComponents/MyCourses/MyCourses";
+import {CourseMain} from "./productsComponents/CourseMain/CourseMain";
 
 export const Products = (props) => {
     const [useMobile, setUseMobile] = useState(false);
@@ -106,6 +108,8 @@ export const Products = (props) => {
                        <Routes>
                             <Route path="courses" element={<Courses host={props.host} changePageTitle={changePageTitle} />} />
                             <Route path="courses/:id" element={<Course host={props.host} changePageTitle={changePageTitle}/>} />
+                            <Route path="mycourses" element={<MyCourses host={props.host} changePageTitle={changePageTitle}/>} />
+                            <Route path="mycourses/:id" element={<CourseMain host={props.host} changePageTitle={changePageTitle}/>} />
                            {user.isStaff ?
                                <Route path="admin" element={<ProductsAdmin host={props.host} changePageTitle={changePageTitle}/> } />
                                :

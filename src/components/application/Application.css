@@ -5,13 +5,12 @@
     min-height: 100vh;
     align-items: normal;
     transition: all 0.4s ease-in;
-    max-height: 100vh;
+    height: 100vh;
     overflow: hidden;
 }
-
 .application-content {
     overflow-y: auto;
-    height: 100vh;
+    min-height: 100vh;
 }
 .application-container.minimize-menu{
     grid-template-columns: 1fr 10fr 1fr;
