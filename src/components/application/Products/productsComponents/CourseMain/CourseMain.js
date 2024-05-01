@@ -7,13 +7,13 @@ import {Loader} from "../../../../Loader/Loader";
 import classNames from "classnames";
 import './CourseMain.css';
 import {truncateString} from "../../../../../helpers/apiHelpers";
-import {current} from "@reduxjs/toolkit";
 import {VideoPlayer} from "./VideoPlayer";
 
 export const CourseMain = (props) => {
     const { id } = useParams();
     const [course, setCourse] = useState(null);
     const [stages, setStages] = useState(null);
+    const [progress, setProgress] = useState(null);
     const user = useSelector(state => state.user);
 
     const [isMenuOpened, setIsMenuOpened] = useState(false);
@@ -44,6 +44,7 @@ export const CourseMain = (props) => {
                 const {course, stages, progress} = response.data;
                 setCourse(course);
                 setStages(stages);
+                setProgress(progress)
                 setCurrentStage(progress.current_stage)
             }
         } catch(error){
@@ -60,18 +61,18 @@ export const CourseMain = (props) => {
 
 
     const completeStage = async () => {
-        nextStage();
         if(currentStage === stages.length - 1){
-            // TODO some actions to let user out of course and tell that he has passed
+            await completeCourse();
         } else{
             const data = {
                 user_id: user.userId,
                 course_id: course.id,
-                stage: currentStage,
+                new_stage_order: currentStage + 1,
             }
+
             try{
                 const response = await axios.post(
-                    `${props.host.api}/getcourseinfo/?id=${id}`,
+                    `${props.host.api}/usercompletestage/`,
                     data,
                 {
                     headers: {
@@ -81,6 +82,7 @@ export const CourseMain = (props) => {
 
                 if(response.status === 200){
                     await getCourseInfo();
+                    nextStage();
                 }
 
             } catch(error){
@@ -98,6 +100,10 @@ export const CourseMain = (props) => {
                 }
             }
         }
+    }
+
+    const completeCourse = async () => {
+
     }
 
     const nextStage = () => {
@@ -134,10 +140,25 @@ export const CourseMain = (props) => {
                                     null
                                 }
                                 <div className="coursemain-buttons">
-                                    <button onClick={nextStage}>Next<i className="fa-solid fa-arrow-right"></i></button>
-                                    <button onClick={completeStage}><i className="fa-solid fa-square-check"></i>Mark as
-                                        complete & next
-                                    </button>
+                                    {currentStage !== stages.length - 1 ?
+                                        <button onClick={nextStage}>Next<i className="fa-solid fa-arrow-right"></i>
+                                        </button>
+                                        :
+                                        null}
+                                    {(currentStage === progress.current_stage && currentStage !== stages.length - 1) ?
+                                        <button onClick={completeStage}><i className="fa-solid fa-square-check"></i>Mark
+                                            as
+                                            complete & next
+                                        </button>
+                                        :
+                                        null}
+                                    {currentStage === stages.length - 1 && progress.current_stage === stages.length - 1 ?
+                                        <button onClick={completeCourse}>
+                                            <i className="fa-solid fa-square-check"></i>
+                                            Complete course
+                                        </button>
+                                        :
+                                        null}
                                 </div>
                             </>
                             :
@@ -151,7 +172,7 @@ export const CourseMain = (props) => {
                                     className={classNames({
                                         'opened-menu-li': isMenuOpened,
                                         'li-active': currentStage === index,
-                                        'li-visited': index < currentStage,
+                                        'li-visited': index < progress.current_stage,
                                     })}
                                     key={index}
                                     onClick={() => {
@@ -162,7 +183,7 @@ export const CourseMain = (props) => {
                                 >
                                     {isMenuOpened ? (
                                         <>
-                                            {index < currentStage && <i className="fa-solid fa-check"></i>}
+                                            {index < progress.current_stage && <i className="fa-solid fa-check"></i>}
                                             {truncateString(stage.title, 24)}
                                         </>
                                     ) : (

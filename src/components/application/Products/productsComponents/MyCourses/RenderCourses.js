@@ -32,7 +32,7 @@ export const RenderCourses = (props) => {
                 <div className="course-example-badge">{checkIfNew(course.publication_date) ? "New" : ""}</div>
                 <div className="course-example-card">
                   <div className="course-completed-badge">
-                    <h4>completed: {course.completed * 100}%</h4>
+                    <h4>completed: {course.completed}%</h4>
                   </div>
                   <NavLink to={`/app/products/courses/${course.id}`} class="relative">
                     <img src={`data:image/jpeg;base64,${course.image}`} alt="no image" loading="lazy"/>

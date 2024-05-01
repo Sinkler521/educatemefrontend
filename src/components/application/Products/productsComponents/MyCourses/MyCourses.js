@@ -22,7 +22,6 @@ export const MyCourses = (props) => {
 
     useEffect(() => {
         getTopics();
-        console.log(courses)
     }, [courses]);
 
     const getCourseList = async () => {
