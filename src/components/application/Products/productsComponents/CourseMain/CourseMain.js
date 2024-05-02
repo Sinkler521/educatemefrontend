@@ -8,9 +8,11 @@ import classNames from "classnames";
 import './CourseMain.css';
 import {truncateString} from "../../../../../helpers/apiHelpers";
 import {VideoPlayer} from "./VideoPlayer";
+import {useNavigate} from "react-router-dom";
 
 export const CourseMain = (props) => {
     const { id } = useParams();
+    const navigate = useNavigate();
     const [course, setCourse] = useState(null);
     const [stages, setStages] = useState(null);
     const [progress, setProgress] = useState(null);
@@ -61,14 +63,11 @@ export const CourseMain = (props) => {
 
 
     const completeStage = async () => {
-        if(currentStage === stages.length - 1){
-            await completeCourse();
-        } else{
-            const data = {
+        const data = {
                 user_id: user.userId,
                 course_id: course.id,
                 new_stage_order: currentStage + 1,
-            }
+        }
 
             try{
                 const response = await axios.post(
@@ -88,8 +87,13 @@ export const CourseMain = (props) => {
             } catch(error){
                 if(error.response){
                     if(error.response.status === 400){
-                        toast.warning('Error trying to complete stage');
-                        console.log('error:', error);
+                        if (error.response.data.error === 'User has already completed all stages of the course') {
+                            toast.success(`You have finished course "${course.title}"`);
+                            navigate('/app/products/mycourses/');
+                        } else {
+                            toast.warning('Error trying to complete stage');
+                            console.log('error:', error);
+                        }
                     } else if (error.response.status === 404){
                         toast.warning('Some data missing. Try again later');
                         console.log('error:', error);
@@ -99,11 +103,6 @@ export const CourseMain = (props) => {
                     console.log('error', error);
                 }
             }
-        }
-    }
-
-    const completeCourse = async () => {
-
     }
 
     const nextStage = () => {
@@ -153,7 +152,7 @@ export const CourseMain = (props) => {
                                         :
                                         null}
                                     {currentStage === stages.length - 1 && progress.current_stage === stages.length - 1 ?
-                                        <button onClick={completeCourse}>
+                                        <button onClick={completeStage}>
                                             <i className="fa-solid fa-square-check"></i>
                                             Complete course
                                         </button>
