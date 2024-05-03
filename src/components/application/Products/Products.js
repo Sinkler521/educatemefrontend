@@ -28,6 +28,7 @@ export const Products = (props) => {
 
     const [isSearchedContent, setIsSearchedContent] = useState(false);
     const [searchResults, setSearchResults] = useState(null);
+    const toggleIsSearchedContent = () => setIsSearchedContent(!isSearchedContent);
 
     const toggleMobileMenu = () => setIsMenuOpen(!isMenuOpen)
 
@@ -102,7 +103,7 @@ export const Products = (props) => {
             <NotificationComponent position="top-right"/>
             {isMenuOpen ?
                 <div className={classNames("products-menu-modal", {'menu-called': isMenuOpen})}>
-                    <ProductsMenu user={user} toggleMobileMenu={toggleMobileMenu}/>
+                    <ProductsMenu user={user} toggleMobileMenu={toggleMobileMenu} toggleIsSearchedContent={toggleIsSearchedContent}/>
                 </div>
                 :
                 null

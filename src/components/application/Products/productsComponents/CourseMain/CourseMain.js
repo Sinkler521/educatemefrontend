@@ -183,7 +183,7 @@ export const CourseMain = (props) => {
                                     {isMenuOpened ? (
                                         <>
                                             {index < progress.current_stage && <i className="fa-solid fa-check"></i>}
-                                            {truncateString(stage.title, 24)}
+                                            {truncateString(stage.title, 20)}
                                         </>
                                     ) : (
                                         index + 1

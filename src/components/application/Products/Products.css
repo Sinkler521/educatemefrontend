@@ -383,4 +383,13 @@
     .products-main{
         width: auto;
     }
+    .search-content h3{
+        font-size: 24px;
+    }
+    .products-display{
+        margin: 0;
+    }
+    .products-main{
+        width: 80%;
+    }
 }
