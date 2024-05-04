@@ -1,5 +1,5 @@
 import './Products.css';
-import {NavLink, Outlet, useNavigate} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useCookies} from "react-cookie";
@@ -103,7 +103,7 @@ export const Products = (props) => {
             <NotificationComponent position="top-right"/>
             {isMenuOpen ?
                 <div className={classNames("products-menu-modal", {'menu-called': isMenuOpen})}>
-                    <ProductsMenu user={user} toggleMobileMenu={toggleMobileMenu} toggleIsSearchedContent={toggleIsSearchedContent}/>
+                    <ProductsMenu user={user} toggleMobileMenu={toggleMobileMenu} toggleIsSearchedContent={toggleIsSearchedContent} isSearchedContent={isSearchedContent}/>
                 </div>
                 :
                 null
@@ -150,7 +150,7 @@ export const Products = (props) => {
                         {isSearchedContent ?
                             <>
                                 <div className="search-content">
-                                    <h3>Search results ({searchResults.length})</h3>
+                                    <h3>Search results ({searchResults ? searchResults.length : null})</h3>
                                     {searchResults ?
 
                                         searchResults.map((result, index) => (

@@ -68,12 +68,12 @@ export const AppMenu = (props) => {
                     </ul>
                     <ul className="app-menu-mobile">
                         <li>
-                            <NavLink to='products/'>
+                            <NavLink to='/app/products/courses/'>
                                 <i className="fa-solid fa-magnifying-glass menu-minimized-icon"></i>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to='mycourses/'>
+                            <NavLink to='/app/products/mycourses'>
                                 <i className="fa-solid fa-star"></i>
                             </NavLink>
                         </li>
