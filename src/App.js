@@ -47,9 +47,9 @@ export default function App(){
                 <IntlProvider locale={translationsConfig.CURRENTLANGUAGE} defaultLocale={translationsConfig.DEFAULTLANGUAGE} messages={currentMessages}>
                     <Routes>
                         <Route path="/" element={<Mainpage changeLanguage={changeLanguage} host={host}/>} />
-                        <Route path="about/" element={<About/>}/>
-                        <Route path="contact/" element={<Contact host={host}/>}/>
-                        <Route path="login/" element={<Login host={host}/>}/>
+                        <Route path="about/" element={<About changeLanguage={changeLanguage}/>}/>
+                        <Route path="contact/" element={<Contact host={host} changeLanguage={changeLanguage}/>}/>
+                        <Route path="login/" element={<Login host={host} changeLanguage={changeLanguage}/>}/>
                         <Route path="/app/*" element={<Application user={user} changeLanguage={changeLanguage} host={host}/>}/>
                     </Routes>
                 </IntlProvider>

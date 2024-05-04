@@ -5,8 +5,10 @@ import {NotificationComponent} from "../../NotificationComponent/NotificationCom
 import './ContactForm.css';
 import {toast} from "react-toastify";
 import axios from "axios";
+import {FormattedMessage, useIntl} from "react-intl";
 
 export const ContactForm = (props) => {
+    const intl = useIntl();
     const [captchaValue, setCaptchaValue] = useState(null);
 
     const emailInput = useRef(null);
@@ -20,12 +22,12 @@ export const ContactForm = (props) => {
         if(emailInput.current['data-valid']){
             email = emailInput.current.value;
         } else{
-            toast.warning('Неверный емейл')
+            toast.warning(intl.formatMessage({ id: 'contact_toast_email' }))
             return;
         }
 
         if(!captchaValue){
-            toast.warning('Пройдите капчу')
+            toast.warning(intl.formatMessage({ id: 'contact_toast_captcha' }))
             return;
         }
 
@@ -40,14 +42,14 @@ export const ContactForm = (props) => {
             }})
 
             if(response.status === 200){
-                toast.success('Сообщение успешно отправлено')
+                toast.success(intl.formatMessage({ id: 'contact_toast_sent' }))
                 console.log(response.data)
                 clearInputs();
             } else{
-                toast.warning('Сообщение не было доставлено')
+                toast.warning(intl.formatMessage({ id: 'contact_toast_not_sent' }))
             }
         } catch (e) {
-            toast.error('Что-то пошло не так')
+            toast.error(intl.formatMessage({ id: 'request_goes_wrong' }))
         }
     }
 
@@ -77,9 +79,9 @@ export const ContactForm = (props) => {
             <div className="container">
                 <NotificationComponent position="top-right"/>
                 <form method="POST" id="contact-form" onSubmit={handleSubmit}>
-                    <p>Свяжитесь с нами</p>
+                    <p><FormattedMessage id="contact_us_contact"/></p>
                     <input type="text"
-                           placeholder="Email"
+                           placeholder={intl.formatMessage({ id: 'placeholder_email' })}
                            onChange={handleInputChange}
                            ref={emailInput}
                            required={true}
@@ -92,7 +94,7 @@ export const ContactForm = (props) => {
                               rows="10"
                               ref={messageInput}
                               required={true}
-                              placeholder="Ваше сообщение"
+                              placeholder={intl.formatMessage({ id: 'placeholder_message' })}
                               minLength={20}
                               maxLength={350}
                     />
@@ -103,7 +105,7 @@ export const ContactForm = (props) => {
                             className="contact-form-captcha"
                         />
                     </label>
-                    <input type="submit" value="Отправить" className="contact-form-submit"/>
+                    <input type="submit" value={intl.formatMessage({ id: 'value_send' })} className="contact-form-submit"/>
                 </form>
             </div>
         </>

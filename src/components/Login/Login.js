@@ -10,8 +10,10 @@ import axios from "axios";
 import {userLogged} from "../../store/userSlice";
 import {useDispatch} from "react-redux";
 import {useCookies} from "react-cookie";
+import {FormattedMessage, useIntl} from "react-intl";
 
 export const Login = (props) => {
+    const intl = useIntl();
     const [checked, setChecked] = useState(false);
     const [switchToRegister, setSwitchToRegister] = useState(false);
     const [switchToReset, setSwitchToReset] = useState(false);
@@ -45,17 +47,6 @@ export const Login = (props) => {
 
     }
 
-    const clearInputs = () => {
-        const textInputs = Array.from(document.querySelectorAll('input[type=text]'));
-        const passwordInputs = Array.from(document.querySelectorAll('input[type=password]'));
-
-        [...textInputs, ...passwordInputs].forEach(input => {
-            input.value=null;
-            input.classList.remove('login-wrong-input-value');
-            input.classList.remove('login-input-correct');
-        })
-    }
-
     const allInputsFilled = (form) => {
         let filled = true;
         for (const el of form.elements) {
@@ -72,11 +63,11 @@ export const Login = (props) => {
         const form = e.currentTarget
 
         if(!allInputsFilled(form)){
-            toast.warning('Заполните все поля');
+            toast.warning(intl.formatMessage({ id: 'login_toast_all' }));
             return;
         }
         if(!captchaValue){
-            toast.warning('Подтвердите что Вы человек');
+            toast.warning(intl.formatMessage({ id: 'login_toast_confirm' }));
             return;
         }
 
@@ -96,20 +87,20 @@ export const Login = (props) => {
             );
 
             if (response.status === 201) {
-                toast.success('Вы успешно зарегистрированы. Пожалуйста авторизуйтесь');
+                toast.success(intl.formatMessage({ id: 'login_toast_reg_success' }));
                 toggleSwitchToReg();
             }
         } catch (error) {
             if (error.response) {
                 if (error.response.status === 409) {
-                    toast.error('Пользователь с такими данными уже существует');
+                    toast.error(intl.formatMessage({ id: 'login_toast_reg_exists' }));
                     console.log(error);
                 } else {
-                    toast.error('Регистрация прошла неудачно. Попробуйте еще раз');
+                    toast.error(intl.formatMessage({ id: 'login_toast_reg_unsuccess' }));
                     console.log(error);
                 }
             } else {
-                toast.error('Регистрация в данный момент невозможна. Пожалуйста, попробуйте позже');
+                toast.error(intl.formatMessage({ id: 'login_toast_reg_impossible' }));
                 console.log(error);
             }
         }
@@ -120,7 +111,7 @@ export const Login = (props) => {
         const form = e.currentTarget
 
         if(!allInputsFilled(form)){
-            toast.warning('Заполните все поля');
+            toast.warning(intl.formatMessage({ id: 'login_toast_all' }));
             return;
         }
 
@@ -135,18 +126,19 @@ export const Login = (props) => {
                     }
                 })
             if(response.status === 200){
-                toast.success('Заявка на смену пароля обработана. Проверьте электронную почту');
+                toast.success(intl.formatMessage({ id: 'login_toast_passreset_ok' }));
                 toggleSwitchToReset();
             }
         }
         catch (error){
             if(error.response){
-                if(error.response.code === 404){
-                    toast.warning('Пользователь не найден');
+                if(error.response.status === 404){
+
+                    toast.warning(intl.formatMessage({ id: 'login_toast_no_user' }));
                     console.log(error);
                 }
             }else{
-                toast.error('Сброс пароля в данный момент недоступен. Пожалуйста попробуйте позже');
+                toast.error(intl.formatMessage({ id: 'login_toast_passreset_not_ok' }));
                 console.log(error);
             }
         }
@@ -157,12 +149,12 @@ export const Login = (props) => {
         const form = e.currentTarget;
 
         if (!allInputsFilled(form)) {
-            toast.warning('Заполните все поля');
+            toast.warning(intl.formatMessage({ id: 'login_toast_all' }));
             return;
         }
 
         if (!captchaValue) {
-            toast.warning('Подтвердите что Вы человек');
+            toast.warning(intl.formatMessage({ id: 'login_toast_confirm' }));
             return;
         }
 
@@ -183,7 +175,7 @@ export const Login = (props) => {
                 const userData = { ...user, token };
                 dispatch(userLogged(userData));
 
-                toast.success('Вы успешно авторизованы');
+                toast.success(intl.formatMessage({ id: 'login_toast_auth_ok' }));
 
                 if (checked) {
                     setCookie('user', user)
@@ -194,14 +186,14 @@ export const Login = (props) => {
         } catch (error) {
             if (error.response) {
                 if (error.response.status === 401 || error.response.status === 404) {
-                    toast.error('Вы указали неверные данные');
+                    toast.error(intl.formatMessage({ id: 'login_toast_wrong_data' }));
                     console.log(error);
                 } else {
-                    toast.error('Авторизация в данный момент недоступна. Пожалуйста попробуйте позже');
+                    toast.error(intl.formatMessage({ id: 'login_auth_not_ok' }));
                     console.log(error);
                 }
             } else {
-                toast.error('Авторизация в данный момент недоступна. Пожалуйста попробуйте позже');
+                toast.error(intl.formatMessage({ id: 'request_goes_wrong' }));
                 console.log(error);
             }
         }
@@ -227,7 +219,7 @@ export const Login = (props) => {
                                     toggleSwitchToReset();
 
                                 }}>
-                                    I remember my password
+                                    <FormattedMessage id='login_i_remember_password' />
                                 </div>
                             </div>
                             <div className="clear"></div>
@@ -241,10 +233,10 @@ export const Login = (props) => {
                                            name="email"
                                            pattern={regexPatterns.email.source}
                                            onChange={handleInputChange}
-                                           placeholder="Email"/>
+                                           placeholder={intl.formatMessage({ id: 'placeholder_email' })}/>
                                 </div>
                                 <div>
-                                    <input type="submit" value="Reset password"/>
+                                    <input type="submit" value={intl.formatMessage({ id: 'login_reset_password' })}/>
                                 </div>
                                 <div className="clear"></div>
                             </form>
@@ -255,12 +247,12 @@ export const Login = (props) => {
                             'login-switch-left': switchToReset,
                             })}>
                             <div className="login-header">
-                                <h3 className="sign-in">Sign in</h3>
+                                <h3 className="sign-in"><FormattedMessage id='login_sign_in' /></h3>
                                 <div className="button" onClick={() => {
                                     toggleSwitchToReg();
 
                                 }}>
-                                    Register
+                                    <FormattedMessage id='login_register' />
                                 </div>
                             </div>
                             <div className="clear"></div>
@@ -272,7 +264,7 @@ export const Login = (props) => {
                                     <input className="user-input"
                                            type="text"
                                            name="email"
-                                           placeholder="Email"
+                                           placeholder={intl.formatMessage({ id: 'placeholder_email' })}
                                            pattern={regexPatterns.email.source}
                                            onChange={handleInputChange}
                                     />
@@ -283,7 +275,7 @@ export const Login = (props) => {
                                     </label>
                                     <input type="password"
                                            name="password"
-                                           placeholder="Password"
+                                           placeholder={intl.formatMessage({ id: 'placeholder_password' })}
                                            pattern={regexPatterns.password.source}
                                            onChange={handleInputChange}
                                     />
@@ -295,7 +287,7 @@ export const Login = (props) => {
                                     />
                                 </label>
                                 <div>
-                                    <input type="submit" value="Sign in"/>
+                                    <input type="submit" value={intl.formatMessage({ id: 'login_sign_in' })}/>
                                 </div>
                                 <div className={classNames("radio-check", {'login-checkbox-success': checked})}>
                                     <input type="radio" className="radio-no" id="no" name="remember" value="no"/>
@@ -305,11 +297,11 @@ export const Login = (props) => {
                                         className="fa fa-check"></i></label>
                                     <span className="switch-selection"></span>
                                 </div>
-                                <span className="check-label">Remember me</span>
+                                <span className="check-label"><FormattedMessage id='login_remember_me' /></span>
                                 <span className="forgot-label" onClick={() => {
                                     toggleSwitchToReset();
 
-                                }}>Lost your password?</span>
+                                }}><FormattedMessage id='login_lost_password' /></span>
                                 <div className="clear"></div>
                             </form>
                         </div>
@@ -319,12 +311,12 @@ export const Login = (props) => {
                             'login-switch-left': switchToReset,
                         })}>
                             <div className="login-header">
-                                <h3 className="sign-in">Register</h3>
+                                <h3 className="sign-in"><FormattedMessage id='login_register' /></h3>
                                 <div className="button" onClick={() => {
                                     toggleSwitchToReg();
 
                                 }}>
-                                    I have an account
+                                    <FormattedMessage id='login_i_have_account' />
                                 </div>
                             </div>
                             <div className="clear"></div>
@@ -335,7 +327,7 @@ export const Login = (props) => {
                                     </label>
                                     <input className="user-input" type="text"
                                            name="email"
-                                           placeholder="Email"
+                                           placeholder={intl.formatMessage({ id: 'placeholder_email' })}
                                            pattern={regexPatterns.email.source}
                                            onChange={handleInputChange}
                                     />
@@ -346,7 +338,7 @@ export const Login = (props) => {
                                     </label>
                                     <input type="text"
                                            name="username"
-                                           placeholder="Username"
+                                           placeholder={intl.formatMessage({ id: 'placeholder_username' })}
                                            pattern={regexPatterns.username.source}
                                            onChange={handleInputChange}/>
                                 </div>
@@ -356,7 +348,7 @@ export const Login = (props) => {
                                     </label>
                                     <input type="password"
                                            name="password"
-                                           placeholder="Password"
+                                           placeholder={intl.formatMessage({ id: 'placeholder_password' })}
                                            pattern={regexPatterns.password.source}
                                            onChange={handleInputChange}/>
                                 </div>
@@ -367,7 +359,7 @@ export const Login = (props) => {
                                     />
                                 </label>
                                 <div>
-                                    <input type="submit" value="Register"/>
+                                    <input type="submit" value={intl.formatMessage({ id: 'login_register' })}/>
                                 </div>
                                 <div className="clear"></div>
                             </form>

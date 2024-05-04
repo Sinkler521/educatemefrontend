@@ -1,11 +1,11 @@
-import React, {useState, useEffect, useRef} from "react";
+import React from "react";
 import './Statistics.css';
 import student from '../../../assets/images/statistics/student.png';
 import teacher from '../../../assets/images/statistics/teacher.png';
 import { motion } from 'framer-motion';
 import {FormattedMessage} from "react-intl";
 
-export const Statistics = (props) => { // SHOULD BE DATA HERE FROM BACKEND
+export const Statistics = (props) => {
 
     return (
         <div className="statistics-container">

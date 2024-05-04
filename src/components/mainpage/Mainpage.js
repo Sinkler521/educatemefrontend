@@ -8,30 +8,27 @@ import {Statistics} from "./Statistics/Statistics";
 import {Advantages} from "./Advantages/Advantages";
 import {Footer} from "../Footer/Footer";
 import {Startnow} from "./Startnow/Startnow";
+import {useIntl} from "react-intl";
 
 export const Mainpage = (props) => {
     const [statisticsInfo, setStatisticsInfo] = useState({})
+    const intl = useIntl();
 
     useEffect(() => {
         getStatisticsInfo();
     }, []);
-
-    useEffect(() => {
-        console.log(statisticsInfo);
-    }, [statisticsInfo]);
 
     const getStatisticsInfo = async () => {
         try{
             const response = await axios.get(
                 `${props.host.api}/getstatistics/`
             )
-
             if(response.status === 200){
                 setStatisticsInfo(response.data)
             }
 
         } catch (e) {
-            console.log('Error receiving Statistics info', e)
+            console.log(intl.formatMessage({ id: 'request_goes_wrong' }), e)
         }
     }
 

@@ -45,4 +45,48 @@ export const pl = {
     statistics_teacher_text: "POLISH PHRASE",
 
     footer_rights: "POLISH PHRASE",
+
+    about_whatis: "POLISH PHRASE",
+    about_more: "POLISH PHRASE",
+    about_we: "POLISH PHRASE",
+    about_thank: "POLISH PHRASE",
+    about_quality: "POLISH PHRASE",
+    about_check: "POLISH PHRASE",
+    about_main: "POLISH PHRASE",
+
+    contact_you_want: "POLISH PHRASE",
+    contact_toast_sent: "POLISH PHRASE",
+    contact_toast_not_sent: "POLISH PHRASE",
+    contact_toast_captcha: "POLISH PHRASE",
+    contact_toast_email: "POLISH PHRASE",
+    contact_us_contact: "POLISH PHRASE",
+
+    login_toast_all: "POLISH PHRASE",
+    login_toast_confirm: "POLISH PHRASE",
+    login_toast_reg_success: "POLISH PHRASE",
+    login_toast_reg_unsuccess: "POLISH PHRASE",
+    login_toast_reg_exists: "POLISH PHRASE",
+    login_toast_reg_impossible: "POLISH PHRASE",
+    login_toast_passreset_ok: "POLISH PHRASE",
+    login_toast_no_user: "POLISH PHRASE",
+    login_toast_wrong_data: "POLISH PHRASE",
+    login_toast_passreset_not_ok: "POLISH PHRASE",
+    login_toast_auth_ok: "POLISH PHRASE",
+    login_toast_auth_not_ok: "POLISH PHRASE",
+    login_i_remember_password: "POLISH PHRASE",
+    login_sign_in: "POLISH PHRASE",
+    login_remember_me: "POLISH PHRASE",
+    login_lost_password: "POLISH PHRASE",
+    login_register: "POLISH PHRASE",
+    login_i_have_account: "POLISH PHRASE",
+    login_reset_password: "POLISH PHRASE",
+    
+    request_goes_wrong: "POLISH PHRASE",
+    value_send: "POLISH PHRASE",
+
+    placeholder_email: "POLISH PHRASE",
+    placeholder_password: "POLISH PHRASE",
+    placeholder_username: "POLISH PHRASE",
+    placeholder_message: "POLISH PHRASE",
+
 }
