@@ -38,7 +38,7 @@ export const Application = (props) => {
             <div className={classNames("container application-container", {'minimize-menu': menuMinimized, 'close-page': !allowSurf})}>
                 <section className="application-menu">
                     {allowSurf ?
-                        <AppMenu menuMinimized={menuMinimized} toggleMenu={toggleMenu}/>
+                        <AppMenu menuMinimized={menuMinimized} changeLanguage={props.changeLanguage} toggleMenu={toggleMenu}/>
                         :
                         null
                     }

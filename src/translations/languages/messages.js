@@ -1,8 +1,9 @@
 import {pl} from './pl'
-import {ru} from './ru'
+import {ua} from './ua'
+import {LOCALES} from "../locales";
 
 export const messages = {
-    POLISH: pl,
-    RUSSIAN: ru,
+    [LOCALES.POLISH]: pl,
+    [LOCALES.UKRAINIAN]: ua,
 }
 

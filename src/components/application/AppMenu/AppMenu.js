@@ -3,6 +3,7 @@ import './AppMenu.css'
 import {NavLink} from "react-router-dom";
 import classNames from "classnames";
 import {logoutUser} from "../../../helpers/authHelpers";
+import {LangSwitch} from "../../LangSwitch/LangSwitch";
 
 export const AppMenu = (props) => {
 
@@ -62,6 +63,9 @@ export const AppMenu = (props) => {
                                 }
                             </NavLink>
                         </li>
+                        <div className="langswitch">
+                            <LangSwitch changeLanguage={props.changeLanguage}/>
+                        </div>
                         <li className="minimize-toggle" onClick={props.toggleMenu}>
                             <i className={classNames('fa-solid fa-forward', {'menu-icon-rotate': !props.menuMinimized})}></i>
                         </li>

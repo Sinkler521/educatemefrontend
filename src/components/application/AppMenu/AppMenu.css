@@ -139,6 +139,20 @@
 .app-menu-mobile{
     display: none;
 }
+.langswitch select{
+    background: transparent;
+    color: var(--text-white);
+    border: 1px solid #3f3e3e;
+    padding: 0.4rem 0.4rem;
+}
+.langswitch select option{
+    font-size: 24px;
+    border: 1px solid #3f3e3e;
+    cursor: pointer;
+}
+.langswitch{
+    margin-top: 4rem;
+}
 
 @media screen and (max-width: 1350px) {
     .app-menu-list{

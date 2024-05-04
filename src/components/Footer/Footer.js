@@ -3,6 +3,7 @@ import footerLogo from '../../assets/images/footer/footerlogo.png'
 import './Footer.css'
 import {NavLink} from "react-router-dom";
 import {TELEGRAMCONTACT, EMAILCONTACT} from '../../config'
+import {FormattedMessage} from "react-intl";
 
 export const Footer = (props) => {
 
@@ -23,7 +24,7 @@ export const Footer = (props) => {
                 </div>
                 <div className="footer-basement">
                     <hr/>
-                    <p>Все права защищены</p>
+                    <p><FormattedMessage id='footer_rights' /></p>
                 </div>
             </div>
         </>

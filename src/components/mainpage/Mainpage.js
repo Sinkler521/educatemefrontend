@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import './Mainpage.css'
 
@@ -12,15 +12,24 @@ import {Startnow} from "./Startnow/Startnow";
 export const Mainpage = (props) => {
     const [statisticsInfo, setStatisticsInfo] = useState({})
 
-    const getStatisticsInfo = () => {
-        try{
-            return axios.get(`${props.host.api}/getstatistics`, {
+    useEffect(() => {
+        getStatisticsInfo();
+    }, []);
 
-            }).then(response => {
-                setStatisticsInfo(response.data.result)
-            }).catch(error => {
-                console.log('Request error', error)
-            })
+    useEffect(() => {
+        console.log(statisticsInfo);
+    }, [statisticsInfo]);
+
+    const getStatisticsInfo = async () => {
+        try{
+            const response = await axios.get(
+                `${props.host.api}/getstatistics/`
+            )
+
+            if(response.status === 200){
+                setStatisticsInfo(response.data)
+            }
+
         } catch (e) {
             console.log('Error receiving Statistics info', e)
         }
@@ -29,7 +38,7 @@ export const Mainpage = (props) => {
     return (
         <>
             <div className="container">
-                <Header/>
+                <Header changeLanguage={props.changeLanguage}/>
                 <FirstScreen/>
                 <Statistics statisticsInfo={statisticsInfo}/>
                 <Advantages/>

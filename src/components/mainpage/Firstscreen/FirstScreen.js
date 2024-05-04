@@ -1,9 +1,11 @@
 import React, {useState, useEffect, useRef} from "react";
 import Typed from "typed.js";
 import './Firstscreen.css'
+import {FormattedMessage} from "react-intl";
 
 export const FirstScreen = (props) => {
-    const [typed, setTyped] = useState(null)
+    const [typed, setTyped] = useState(null);
+    const typed1 = useRef();
 
     useEffect(() => {
         setTyped(new Typed('#typed', {
@@ -13,6 +15,7 @@ export const FirstScreen = (props) => {
             backSpeed: 50,
             loop: true
         }));
+
     }, [])
 
     const handleScroll = () => {
@@ -31,21 +34,21 @@ export const FirstScreen = (props) => {
                 </div>
 
                 <div id="typed-strings">
-                    <span>Курсы, уроки</span>
-                    <span>Повышение квалификации</span>
-                    <span>Новые знания</span>
+                    <span ref={typed1}><FormattedMessage id='firstscreen_courses' /></span>
+                    <span><FormattedMessage id='firstscreen_qual' /></span>
+                    <span><FormattedMessage id='firstscreen_new' /></span>
                 </div>
                 <p>
-                    <span className="firstscreen-span">Бесплатный</span>
-                    <span className="firstscreen-span">многофункциональный</span>
-                    <span className="firstscreen-span">сервис</span>
-                    <span className="firstscreen-span">для</span>
-                    <span className="firstscreen-span">проведения</span>
-                    <span className="firstscreen-span">тестирования</span>
-                    <span className="firstscreen-span">и</span>
-                    <span className="firstscreen-span">обучения</span>
+                    <span className="firstscreen-span"><FormattedMessage id='firstscreen_span_free' /></span>
+                    <span className="firstscreen-span"><FormattedMessage id='firstscreen_span_mult' /></span>
+                    <span className="firstscreen-span"><FormattedMessage id='firstscreen_span_service' /></span>
+                    <span className="firstscreen-span"><FormattedMessage id='firstscreen_span_for' /></span>
+                    <span className="firstscreen-span"><FormattedMessage id='firstscreen_span_do' /></span>
+                    <span className="firstscreen-span"><FormattedMessage id='firstscreen_span_testing' /></span>
+                    <span className="firstscreen-span"><FormattedMessage id='firstscreen_span_and' /></span>
+                    <span className="firstscreen-span"><FormattedMessage id='firstscreen_span_lessons' /></span>
                 </p>
-                <button id="firstscreen-button" onClick={handleScroll}>Почему мы?</button>
+                <button id="firstscreen-button" onClick={handleScroll}><FormattedMessage id='firstscreen_why' /></button>
             </div>
 
         </div>

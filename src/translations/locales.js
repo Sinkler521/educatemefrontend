@@ -1,4 +1,4 @@
 export const LOCALES = {
-  RUSSIAN: 'ru',
-  POLISH: 'pl',
+  UKRAINIAN: 'ua-UA',
+  POLISH: 'pl-PL',
 }

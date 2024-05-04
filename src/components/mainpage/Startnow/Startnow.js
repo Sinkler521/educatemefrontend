@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import './Startnow.css';
 import {NavLink} from "react-router-dom";
 import {Cube} from '../../Cube/Cube'
+import {FormattedMessage} from "react-intl";
 
 export const Startnow = () => {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -65,8 +66,8 @@ export const Startnow = () => {
         <>
             <div className="startnow-container" onMouseMove={handleMouseMove}>
                 <div className="startnow-content">
-                    <h2>Дорога к знаниям лежит тут</h2>
-                    <NavLink to='login'>Присоединиться</NavLink>
+                    <h2><FormattedMessage id='startnow_road' /></h2>
+                    <NavLink to='login'><FormattedMessage id='startnow_join' /></NavLink>
                 </div>
                 <div className="startnow-floating-squares-grid">
                     {createLineOfCubes(6, indexFirstRow)}

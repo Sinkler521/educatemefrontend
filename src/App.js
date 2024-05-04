@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import React from 'react';
 import './App.css';
 import {LOCALES} from "./translations/locales";
-import translationsConfig from "./translations/translationsConfig";
+import translationsConfig, {CURRENTLANGUAGE} from "./translations/translationsConfig";
 import {messages} from "./translations/languages/messages";
 import {IntlProvider} from "react-intl";
 import {Routes, Route} from "react-router";
@@ -13,9 +13,10 @@ import {Mainpage} from "./components/mainpage/Mainpage";
 import {About} from "./components/About/About";
 import {Contact} from "./components/contact/Contact";
 import {Login} from "./components/Login/Login";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Application} from "./components/application/Application";
 import {useCookies} from "react-cookie";
+import {changeLang} from "./store/langSlice";
 
 
 export default function App(){
@@ -26,33 +27,30 @@ export default function App(){
     const [currentMessages, setCurrentMessages] = useState('');
 
     const user = useSelector((state) => state.user);
-    const [setCookie, cookie, removeCookie] = useCookies(['user']);
-    const navigate = useNavigate();
+    const dispatch = useDispatch()
+
 
     useEffect(() => {
-        const languageKey = Object.keys(LOCALES).find(key => LOCALES[key] === translationsConfig.CURRENTLANGUAGE);
-        setCurrentMessages(messages[languageKey])
-    }, [translationsConfig.CURRENTLANGUAGE]);
+        setCurrentMessages(messages[translationsConfig.CURRENTLANGUAGE])
+    }, []);
 
-    const changeLanguage = (e) => {
-        const newLanguage = e.target.value;
+    const changeLanguage = (newLanguage) => {
         translationsConfig.CURRENTLANGUAGE = newLanguage;
         setCurrentMessages(messages[newLanguage]);
-
-        e.target.innerText = translationsConfig.CURRENTLANGUAGE
+        dispatch(changeLang(newLanguage))
         localStorage.setItem('CURRENTLANGUAGE', newLanguage);
     }
 
     return (
         <>
             <div className="App">
-                <IntlProvider locale={translationsConfig.CURRENTLANGUAGE} defaultLocale={translationsConfig.CURRENTLANGUAGE} messages={currentMessages}>
+                <IntlProvider locale={translationsConfig.CURRENTLANGUAGE} defaultLocale={translationsConfig.DEFAULTLANGUAGE} messages={currentMessages}>
                     <Routes>
                         <Route path="/" element={<Mainpage changeLanguage={changeLanguage} host={host}/>} />
                         <Route path="about/" element={<About/>}/>
                         <Route path="contact/" element={<Contact host={host}/>}/>
                         <Route path="login/" element={<Login host={host}/>}/>
-                        <Route path="/app/*" element={<Application user={user} host={host}/>}/>
+                        <Route path="/app/*" element={<Application user={user} changeLanguage={changeLanguage} host={host}/>}/>
                     </Routes>
                 </IntlProvider>
             </div>

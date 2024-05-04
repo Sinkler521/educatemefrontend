@@ -3,6 +3,8 @@ import {NavLink} from "react-router-dom";
 import classNames from 'classnames'
 import './Header.css'
 import {useSelector} from "react-redux";
+import {LangSwitch} from "../LangSwitch/LangSwitch";
+import {FormattedMessage} from "react-intl";
 
 export const Header = (props) => {
     const [lastScroll, setLastScroll] = useState(0)
@@ -74,17 +76,19 @@ export const Header = (props) => {
                     </nav> : null}
                     <label htmlFor="menu-toggle"><i className={`fa ${isMenuOpen ? 'fa-times' : 'fa-bars'}`} onClick={toggleMenu}></i></label>
                     <nav className={classNames("navbar", {'navbar-scrolled-far': isScrolledFar, 'mobile-background': useMobile, 'is-open': isMenuOpen})}>
-                        <NavLink to={user.token ? "/app/profile" : "/login"}>Начать</NavLink>
-                        <NavLink to="/about">О нас</NavLink>
-                        <NavLink to="/contact">Связаться</NavLink>
+                        <NavLink to={user.token ? "/app/profile" : "/login"}><FormattedMessage id='header_start' /></NavLink>
+                        <NavLink to="/about"><FormattedMessage id='header_about' /></NavLink>
+                        <NavLink to="/contact"><FormattedMessage id='header_contact' /></NavLink>
                         {!useMobile ?
                             <>
                                 <NavLink to="/login"><i className="fa-regular fa-user"></i></NavLink>
                             </>
                             :
                             null}
-
                     </nav>
+                    <div className="lang-switch">
+                        <LangSwitch changeLanguage={props.changeLanguage}/>
+                    </div>
                 </header>
             </div>
         </>
