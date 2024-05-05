@@ -2,8 +2,10 @@ import React, {useEffect, useRef} from 'react';
 import './settingsMenu.css';
 import {toast} from "react-toastify";
 import axios from "axios";
+import {FormattedMessage, useIntl} from "react-intl";
 
 export const GeneralMenu = (props) => {
+    const intl = useIntl();
     const emailRef = useRef();
 
     useEffect(() => {
@@ -30,15 +32,15 @@ export const GeneralMenu = (props) => {
                 }
             )
             if(response.status === 200){
-                toast.success('Электронная почта успешно изменена')
+                toast.success(intl.formatMessage({ id: 'profile_toast_email_update' }))
             }
         } catch (error){
             if(error.response){
                 if(error.response.status === 400){
-                    toast.warning('Не удалось сменить электронную почту')
+                    toast.warning(intl.formatMessage({ id: 'profile_toast_email_not_update' }))
                 }
             } else{
-                toast.error('Произошла ошибка, попробуйте позже')
+                toast.error(intl.formatMessage({ id: 'request_goes_wrong' }))
             }
         }
     }
@@ -48,9 +50,9 @@ export const GeneralMenu = (props) => {
             <div className="container profile-settings-container">
                 <div className="profile-settings-content">
                     <form className="profile-settings-form" method="post" onSubmit={saveEmail}>
-                        <h2>Email</h2>
+                        <h2><FormattedMessage id="placeholder_email"/></h2>
                         <input type="text" name="email" placeholder="email" ref={emailRef}/>
-                        <input type="submit" value="Save"/>
+                        <input type="submit" value={intl.formatMessage({ id: 'save' })}/>
                     </form>
                 </div>
             </div>

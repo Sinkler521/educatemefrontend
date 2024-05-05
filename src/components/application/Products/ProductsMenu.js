@@ -1,5 +1,6 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
+import {FormattedMessage} from "react-intl";
 
 export const ProductsMenu = (props) => {
 
@@ -25,7 +26,7 @@ export const ProductsMenu = (props) => {
                             }
                             handleNavLinkClick()
                         }}>
-                            <i className="fa-solid fa-flag-checkered"></i> Courses
+                            <i className="fa-solid fa-flag-checkered"></i> <FormattedMessage id="appmenu_products"/>
                         </NavLink>
                     </li>
                     <li></li>
@@ -37,7 +38,7 @@ export const ProductsMenu = (props) => {
                             }
                             handleNavLinkClick()
                         }}>
-                            <i className="fa-solid fa-circle-info"></i> Help
+                            <i className="fa-solid fa-circle-info"></i> <FormattedMessage id="appmenu_contact"/>
                         </NavLink>
                     </li>
                     <li></li>
@@ -51,7 +52,7 @@ export const ProductsMenu = (props) => {
                                     }
                                     handleNavLinkClick()
                                 }}>
-                                    <i className="fa-solid fa-user-tie"></i> Admin panel
+                                    <i className="fa-solid fa-user-tie"></i> <FormattedMessage id="appmenu_admin"/>
                                 </NavLink>
                             </li>
                             <li></li>

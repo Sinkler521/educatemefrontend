@@ -3,8 +3,10 @@ import {fileToBase64} from "../../../../helpers/apiHelpers";
 import './ArticleForm.css';
 import axios from "axios";
 import {toast} from "react-toastify";
+import {FormattedMessage, useIntl} from "react-intl";
 
 export const ArticleForm = (props) => {
+    const intl = useIntl();
 
     const addArticle = async (e) => {
         e.preventDefault();
@@ -30,17 +32,17 @@ export const ArticleForm = (props) => {
                 });
 
             if(response.status === 200){
-                toast.success('Новость была успешно добавлена');
+                toast.success(intl.formatMessage({ id: 'news_toast_added' }));
                 props.setAddingArticle(false);
             }
 
         } catch (error) {
             if(error.response){
                 if(error.response.status === 400){
-                    toast.warning('Что-то пошло не так, попробуйте еще раз')
+                    toast.warning(intl.formatMessage({ id: 'toast_try_again' }))
                 }
             } else{
-                toast.error('Произошла ошибка. Повторите попытку позже')
+                toast.error(intl.formatMessage({ id: 'request_goes_wrong' }))
             }
         }
     }
@@ -48,10 +50,10 @@ export const ArticleForm = (props) => {
     return (
         <>
             <div className="article-form-container">
-                <h1>Adding new article</h1>
+                <h1><FormattedMessage id='news_adding_article' /></h1>
 
                 <form method="post" className="article-form" onSubmit={addArticle}>
-                    <input required type="text" name="title" placeholder="Title"/>
+                    <input required type="text" name="title" placeholder={intl.formatMessage({ id: 'placeholder_title' })}/>
                     <textarea required name="description" cols="30" rows="6"></textarea>
                     <input required type="file" name="image"/>
                     <input type="submit" value="Add"/>

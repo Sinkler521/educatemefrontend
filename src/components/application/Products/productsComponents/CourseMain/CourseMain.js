@@ -9,8 +9,10 @@ import './CourseMain.css';
 import {truncateString} from "../../../../../helpers/apiHelpers";
 import {VideoPlayer} from "./VideoPlayer";
 import {useNavigate} from "react-router-dom";
+import {FormattedMessage, useIntl} from "react-intl";
 
 export const CourseMain = (props) => {
+    const intl = useIntl();
     const { id } = useParams();
     const navigate = useNavigate();
     const [course, setCourse] = useState(null);
@@ -52,10 +54,10 @@ export const CourseMain = (props) => {
         } catch(error){
             if(error.response){
                 if(error.response.status === 404){
-                    toast.warning('No info')
+                    toast.warning(intl.formatMessage({ id: 'products_toast_no_info'}))
                 }
             } else{
-                toast.error("Something goes wrong");
+                toast.error(intl.formatMessage({ id: 'request_goes_wrong'}));
                 console.log('error trying to load info', error)
             }
         }
@@ -88,18 +90,18 @@ export const CourseMain = (props) => {
                 if(error.response){
                     if(error.response.status === 400){
                         if (error.response.data.error === 'User has already completed all stages of the course') {
-                            toast.success(`You have finished course "${course.title}"`);
+                            toast.success(`${intl.formatMessage({ id: 'products_toast_finished'})} ${course.title}"`);
                             navigate('/app/products/mycourses/');
                         } else {
-                            toast.warning('Error trying to complete stage');
+                            toast.warning(intl.formatMessage({ id: 'products_toast_stage_fail'}));
                             console.log('error:', error);
                         }
                     } else if (error.response.status === 404){
-                        toast.warning('Some data missing. Try again later');
+                        toast.warning(intl.formatMessage({ id: 'products_toast_no_info'}));
                         console.log('error:', error);
                     }
                 } else{
-                    toast.error("Something goes wrong");
+                    toast.error(intl.formatMessage({ id: 'request_goes_wrong'}));
                     console.log('error', error);
                 }
             }
@@ -140,21 +142,20 @@ export const CourseMain = (props) => {
                                 }
                                 <div className="coursemain-buttons">
                                     {currentStage !== stages.length - 1 ?
-                                        <button onClick={nextStage}>Next<i className="fa-solid fa-arrow-right"></i>
+                                        <button onClick={nextStage}><FormattedMessage id="products_next"/><i className="fa-solid fa-arrow-right"></i>
                                         </button>
                                         :
                                         null}
                                     {(currentStage === progress.current_stage && currentStage !== stages.length - 1) ?
-                                        <button onClick={completeStage}><i className="fa-solid fa-square-check"></i>Mark
-                                            as
-                                            complete & next
+                                        <button onClick={completeStage}><i className="fa-solid fa-square-check"></i>
+                                            <FormattedMessage id="products_complete_next"/>
                                         </button>
                                         :
                                         null}
                                     {currentStage === stages.length - 1 && progress.current_stage === stages.length - 1 ?
                                         <button onClick={completeStage}>
                                             <i className="fa-solid fa-square-check"></i>
-                                            Complete course
+                                            <FormattedMessage id="products_complete"/>
                                         </button>
                                         :
                                         null}

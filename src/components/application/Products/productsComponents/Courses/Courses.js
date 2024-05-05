@@ -5,8 +5,10 @@ import {toast} from "react-toastify";
 import ReactPaginate from "react-paginate";
 import {Loader} from "../../../../Loader/Loader";
 import {RenderCourses} from "./RenderCourses";
+import {FormattedMessage, useIntl} from "react-intl";
 
 export const Courses = (props) => {
+    const intl = useIntl();
     const [courses, setCourses] = useState(null);
     const [page, setPage] = useState(0);
     const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -35,11 +37,11 @@ export const Courses = (props) => {
         } catch(error){
             if(error.response){
                 if(error.response.status === 400){
-                    toast.warning('Error trying to receive course list');
+                    toast.warning(intl.formatMessage({ id: 'products_receive_error'}));
                     console.log('error', error)
                 }
             } else{
-                toast.error('Some error')
+                toast.error(intl.formatMessage({ id: 'request_goes_wrong'}))
                 console.log('error:', error)
             }
         }
@@ -77,11 +79,11 @@ export const Courses = (props) => {
         } catch(error){
             if(error.response){
                 if(error.response.status === 400){
-                    toast.warning('Error trying filter by title');
+                    toast.warning(intl.formatMessage({ id: 'products_filter_error'}));
                 }
             }
             console.log(error, 'error');
-            toast.error('Something goes wrong');
+            toast.error(intl.formatMessage({ id: 'request_goes_wrong'}));
         }
 
     }
@@ -98,7 +100,7 @@ export const Courses = (props) => {
                         <div className="products-search-select-block">
                             {topics ? (
                                 <label>
-                                    Topic
+                                    <FormattedMessage id="products_search_topic"/>
                                     <select name="topic">
                                         <option key="empty"></option>
                                         {topics.map((topic, index) => (
@@ -108,20 +110,20 @@ export const Courses = (props) => {
                                 </label>
                             ) : null}
                             <label>
-                                Complexity
+                                <FormattedMessage id="products_search_complexity"/>
                                 <select name="complexity">
                                     <option></option>
-                                    <option value="Easy">Easy</option>
-                                    <option value="Medium">Medium</option>
-                                    <option value="Hard">Hard</option>
+                                    <option value="Easy"><FormattedMessage id="products_easy"/></option>
+                                    <option value="Medium"><FormattedMessage id="products_medium"/></option>
+                                    <option value="Hard"><FormattedMessage id="products_hard"/></option>
                                 </select>
                             </label>
                             <label>
-                                Sort by
+                                <FormattedMessage id="products_search_orderby"/>
                                 <select name="sortby">
                                     <option></option>
-                                    <option value="newest">Newest</option>
-                                    <option value="oldest">Oldest</option>
+                                    <option value="newest"><FormattedMessage id="products_newest"/></option>
+                                    <option value="oldest"><FormattedMessage id="products_oldest"/></option>
                                 </select>
                             </label>
                         </div>
@@ -129,7 +131,7 @@ export const Courses = (props) => {
                     </form>
                     <form method="GET" className="products-filter-form" onSubmit={handleTitleSearch}>
                         <button type="submit"><i className="fa-solid fa-filter"></i></button>
-                        <input type="text" name="title" required={true} placeholder="Filter by title"/>
+                        <input type="text" name="title" required={true} placeholder={intl.formatMessage({ id: 'placeholder_filter_title'})}/>
                     </form>
                 </div>
                 <section className="courses-board">

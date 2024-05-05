@@ -12,8 +12,10 @@ import {ArticleForm} from "./ArticleForm/ArticleForm";
 import classNames from "classnames";
 
 import {motion} from "framer-motion";
+import {FormattedMessage, useIntl} from "react-intl";
 
 export const News = (props) => {
+    const intl = useIntl();
     const user = useSelector(state => state.user)
     const [newsLoaded, setNewsLoaded] = useState(false);
     const [currentFirstArticle, setCurrentFirstArticle] = useState(null);
@@ -68,12 +70,12 @@ export const News = (props) => {
         catch (error) {
             if(error.response){
                 if(error.response.status === 400){
-                    toast.warning('No results found');
+                    toast.warning(intl.formatMessage({ id: 'toast_no_results' }));
                     console.log('No results found', error)
                 }
             } else{
                 console.log('Error trying to search news', error);
-                toast.error('Error trying to search')
+                toast.error(intl.formatMessage({ id: 'request_goes_wrong' }))
             }
         }
     }
@@ -147,12 +149,12 @@ export const News = (props) => {
                     <NotificationComponent position="top-right"/>
                     <div className="news-header">
                         <ul className="news-menu-all">
-                            <li onClick={getLatestNews} className="news-active" ref={el => navLinks.current[0] = el}>Latest</li>
-                            <li onClick={getAllNews} ref={el => navLinks.current[1] = el}>All</li>
+                            <li onClick={getLatestNews} className="news-active" ref={el => navLinks.current[0] = el}><FormattedMessage id='news_header_latest' /></li>
+                            <li onClick={getAllNews} ref={el => navLinks.current[1] = el}><FormattedMessage id='news_header_all' /></li>
                         </ul>
                         {user.isStaff ?
                             <ul className="news-menu-staff">
-                                <li onClick={addArticle} ref={el => navLinks.current[2] = el}>Add</li>
+                                <li onClick={addArticle} ref={el => navLinks.current[2] = el}><FormattedMessage id='news_header_add' /></li>
                             </ul>
                             :
                             null
@@ -185,7 +187,7 @@ export const News = (props) => {
                                         </>
                                         :
                                         <div className="news-empty">
-                                            <h2>Здесь будут новости EducateMe</h2>
+                                            <h2><FormattedMessage id='news_here_will' /></h2>
                                         </div>
                                     }
                                 <div className="news-preview-container">

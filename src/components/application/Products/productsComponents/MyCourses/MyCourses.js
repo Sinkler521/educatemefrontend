@@ -6,8 +6,10 @@ import axios from "axios";
 import {RenderCourses} from "./RenderCourses";
 import ReactPaginate from "react-paginate";
 import {Loader} from "../../../../Loader/Loader";
+import {FormattedMessage, useIntl} from "react-intl";
 
 export const MyCourses = (props) => {
+    const intl = useIntl();
     const user = useSelector(state => state.user);
     const [courses, setCourses] = useState(null);
     const [firstTimeLoaded, setFirstTimeLoaded] = useState(false); // hack
@@ -41,11 +43,11 @@ export const MyCourses = (props) => {
         } catch(error){
             if(error.response){
                 if(error.response.status === 404){
-                    toast.warning('Could not receive data');
+                    toast.warning(intl.formatMessage({ id: 'products_toast_no_info'}));
                     console.log(error);
                 }
             } else{
-                toast.error("Something goes wrong");
+                toast.error(intl.formatMessage({ id: 'request_goes_wrong'}));
                 console.log(error);
             }
         }
@@ -82,11 +84,11 @@ export const MyCourses = (props) => {
         } catch(error){
             if(error.response){
                 if(error.response.status === 400){
-                    toast.warning('Error trying filter by title');
+                    toast.warning(intl.formatMessage({ id: 'products_filter_error'}));
                 }
             }
             console.log(error, 'error');
-            toast.error('Something goes wrong');
+            toast.error(intl.formatMessage({ id: 'request_goes_wrong'}));
         }
     }
 
@@ -116,7 +118,7 @@ export const MyCourses = (props) => {
                             <div className="products-search-select-block">
                                 {topics ? (
                                     <label>
-                                        Topic
+                                        <FormattedMessage id="products_search_topic"/>
                                         <select name="topic">
                                             <option key="empty"></option>
                                             {topics.map((topic, index) => (
@@ -126,20 +128,20 @@ export const MyCourses = (props) => {
                                     </label>
                                 ) : null}
                                 <label>
-                                    Complexity
+                                    <FormattedMessage id="products_search_complexity"/>
                                     <select name="complexity">
                                         <option></option>
-                                        <option value="Easy">Easy</option>
-                                        <option value="Medium">Medium</option>
-                                        <option value="Hard">Hard</option>
+                                        <option value="Easy"><FormattedMessage id="products_easy"/></option>
+                                        <option value="Medium"><FormattedMessage id="products_medium"/></option>
+                                        <option value="Hard"><FormattedMessage id="products_hard"/></option>
                                     </select>
                                 </label>
                                 <label>
-                                    Sort by
+                                    <FormattedMessage id="products_search_orderby"/>
                                     <select name="sortby">
                                         <option></option>
-                                        <option value="newest">Newest</option>
-                                        <option value="oldest">Oldest</option>
+                                        <option value="newest"><FormattedMessage id="products_newest"/></option>
+                                        <option value="oldest"><FormattedMessage id="products_oldest"/></option>
                                     </select>
                                 </label>
                             </div>

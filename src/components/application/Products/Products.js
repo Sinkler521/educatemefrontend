@@ -15,8 +15,10 @@ import {MyCourses} from "./productsComponents/MyCourses/MyCourses";
 import {CourseMain} from "./productsComponents/CourseMain/CourseMain";
 import {toast} from "react-toastify";
 import axios from "axios";
+import {FormattedMessage, useIntl} from "react-intl";
 
 export const Products = (props) => {
+    const intl = useIntl();
     const [useMobile, setUseMobile] = useState(false);
     const user = useSelector(state => state.user);
     const [removeCookie, cookie, setCookie] = useCookies(['user']);
@@ -88,11 +90,11 @@ export const Products = (props) => {
         } catch (error) {
              if(error.response){
                 if(error.response.status === 400){
-                    toast.warning('Could not receive data');
+                    toast.warning(intl.formatMessage({ id: 'request_goes_wrong'}));
                     console.log(error);
                 }
             } else{
-                toast.error("Something goes wrong");
+                toast.error(intl.formatMessage({ id: 'reqeust_goes_wrong' }));
                 console.log(error);
             }
         }
@@ -131,11 +133,11 @@ export const Products = (props) => {
                                 <img src={`data:image/jpeg;base64,${user.avatar}`} alt="no image"/>
                             </NavLink>
                             <ul className="products-profile-ul" style={{ display: isProfileOpen ? 'block' : 'none' }}>
-                                <li><NavLink to="/app/products/mycourses/">Favorites</NavLink></li>
-                                <li><NavLink to="/app/profile/">Profile</NavLink></li>
+                                <li><NavLink to="/app/products/mycourses/"><FormattedMessage id="appmenu_favorites"/></NavLink></li>
+                                <li><NavLink to="/app/profile/"><FormattedMessage id="appmenu_profile"/></NavLink></li>
                                 <li onClick={() => {
                                     logoutUser(user, dispatch, cookie).then(_ => navigate('/'))
-                                }}>Logout</li>
+                                }}><FormattedMessage id="logout"/></li>
                             </ul>
                         </div>
                     </div>

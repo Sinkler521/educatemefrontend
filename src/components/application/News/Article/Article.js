@@ -10,9 +10,11 @@ import {motion} from "framer-motion";
 import {useSelector} from "react-redux";
 import classNames from "classnames";
 import {NotificationComponent} from "../../../NotificationComponent/NotificationComponent";
+import {FormattedMessage, useIntl} from "react-intl";
 
 
 export const Article = (props) => {
+    const intl = useIntl();
     const { id } = useParams();
     const [articleData, setArticleData] = useState(null);
     const [changeMode, setChangeMode] = useState(false);
@@ -56,12 +58,12 @@ export const Article = (props) => {
         } catch (error) {
             if(error.response){
                 if(error.response.status === 404){
-                    toast.warning('Такой записи не существует');
+                    toast.warning(intl.formatMessage({ id: 'news_toast_no_data' }));
                 } else if(error.response.status === 400){
-                    toast.warning('Попробуйте еще раз')
+                    toast.warning(intl.formatMessage({ id: 'toast_try_again' }))
                 }
             } else{
-                toast.error('Произошла ошибка. Попробуйте позже')
+                toast.error(intl.formatMessage({ id: 'request_goes_wrong' }))
             }
         }
     }
@@ -91,17 +93,17 @@ export const Article = (props) => {
                 });
 
             if(response.status === 200){
-                toast.success('Данные успешно обновлены')
+                toast.success(intl.formatMessage({ id: 'news_toast_update' }))
                 toggleChangeMode();
                 await getArticleData();
             }
         } catch (error) {
             if(error.response){
                 if(error.response.status === 400){
-                    toast.warning('Такая статья не найдена');
+                    toast.warning(intl.formatMessage({ id: 'news_toast_not_update' }));
                 }
             } else{
-                toast.error('Произошла ошибка при попытке изменить данные')
+                toast.error(intl.formatMessage({ id: 'request_goes_wrong' }))
             }
         }
     }
@@ -121,7 +123,7 @@ export const Article = (props) => {
             )
 
             if(response.status === 200){
-                toast.success('Новость успешно удалена');
+                toast.success(intl.formatMessage({ id: 'news_toast_deleted' }));
                 toggleDeletionRequest();
                 navigate('/app/news');
             }
@@ -129,10 +131,10 @@ export const Article = (props) => {
         } catch(error){
             if(error.response){
                 if(error.response.status === 404){
-                    toast.warning('Не удалось удалить новость');
+                    toast.warning(intl.formatMessage({ id: 'news_toast_not_deleted' }));
                 }
             } else{
-                toast.error('Произошла ошибка. Попробуйте позже')
+                toast.error(intl.formatMessage({ id: 'request_goes_wrong' }))
             }
         }
     }
@@ -179,7 +181,7 @@ export const Article = (props) => {
                             }
                             {deletionRequest ?
                                 <div className="deletion-block">
-                                    <h3>Вы уверены что хотите удалить эту новость?</h3>
+                                    <h3><FormattedMessage id="news_sure_delete"/></h3>
                                     <div className="deletion-buttons">
                                         <button className="deletion-btn-yes" onClick={deleteArticle}><i className="fa-solid fa-check"></i>
                                         </button>
@@ -203,7 +205,7 @@ export const Article = (props) => {
                             />
                             <textarea name="description" cols="30" rows="10" ref={descriptionRef}/>
                             <input type="submit" value="Save"/>
-                            <button onClick={toggleChangeMode} className="article-back">Отменить</button>
+                            <button onClick={toggleChangeMode} className="article-back"><FormattedMessage id="news_cancel"/></button>
                         </form>
                         <motion.div className={classNames("article-header-block", {'d-none': changeMode})}
                                     initial={{opacity: 0}}

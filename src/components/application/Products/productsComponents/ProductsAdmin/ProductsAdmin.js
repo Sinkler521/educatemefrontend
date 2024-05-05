@@ -6,8 +6,10 @@ import {Loader} from "../../../../Loader/Loader";
 import {toast} from "react-toastify";
 import axios from "axios";
 import {cutVideoUrl, fileToBase64, normalizeDate} from "../../../../../helpers/apiHelpers";
+import {FormattedMessage, useIntl} from "react-intl";
 
 export const ProductsAdmin = (props) => {
+    const intl = useIntl();
     const user = useSelector(state => state.user);
     const navigate = useNavigate();
     const [teacherInfo, setTeacherInfo] = useState(null);
@@ -58,11 +60,11 @@ export const ProductsAdmin = (props) => {
         } catch(error){
             if(error.response){
                 if(error.response.status === 400){
-                    toast.warning('Some info missing');
+                    toast.warning(intl.formatMessage({ id: 'products_toast_no_info'}));
                     console.log(error, 'error');
                 }
             } else{
-                toast.error('Something goes wrong');
+                toast.error(intl.formatMessage({ id: 'request_goes_wrong'}));
                 console.log(error, 'error');
             }
         }
@@ -101,14 +103,14 @@ export const ProductsAdmin = (props) => {
                 if (error.response.status === 400) {
                     const errorMessage = error.response.data.error;
                     if (errorMessage === 'Incorrect course title') {
-                        toast.warning('Incorrect course title');
+                        toast.warning(intl.formatMessage({ id: 'products_incorrect_title'}));
                     } else {
-                        toast.warning('Some info missing');
+                        toast.warning(intl.formatMessage({ id: 'products_toast_no_info'}));
                     }
                     console.log(error, 'error');
                 }
             } else {
-                toast.error('Something goes wrong');
+                toast.error(intl.formatMessage({ id: 'request_goes_wrong'}));
                 console.log(error, 'error');
             }
         }
@@ -130,7 +132,7 @@ export const ProductsAdmin = (props) => {
 
             if(response.status === 200 || response.status === 201){
                 console.log('Course has been successfully added');
-                toast.success('Course has been added!');
+                toast.success(intl.formatMessage({ id: 'products_course_added'}));
                 setAddingNew(false);
                 await getTeacherInfo();
             }
@@ -138,11 +140,11 @@ export const ProductsAdmin = (props) => {
         } catch(error){
             if(error.response){
                 if(error.response.status === 400){
-                    toast.warning('Some info missing');
+                    toast.warning(intl.formatMessage({ id: 'products_toast_no_info'}));
                     console.log(error, 'error');
                 }
             } else{
-                toast.error('Something goes wrong');
+                toast.error(intl.formatMessage({ id: 'request_goes_wrong'}));
                 console.log(error, 'error');
             }
         }
@@ -241,15 +243,15 @@ export const ProductsAdmin = (props) => {
                             <h2>My courses</h2>
                             <div className="productsadmin-info">
                                 <div>
-                                    <h3>Total courses</h3>
+                                    <h3><FormattedMessage id="products_total"/></h3>
                                     <p>{teacherInfo.courses.length}</p>
                                 </div>
                                 <div>
-                                    <h3>Most popular</h3>
+                                    <h3><FormattedMessage id="products_most"/></h3>
                                     <p>{teacherInfo.mostPopular}</p>
                                 </div>
                                 <div>
-                                    <h3>Different topics</h3>
+                                    <h3><FormattedMessage id="products_topics"/></h3>
                                     <p>{teacherInfo.differentTopics}</p>
                                 </div>
                             </div>
@@ -261,24 +263,25 @@ export const ProductsAdmin = (props) => {
                                     <div className="productsadmin-adding-block">
                                         <div className="productsadmin-back" onClick={toggleAddingNew}>
                                             <i className="fa-solid fa-arrow-left"></i>
-                                            <div className="productsadmin-back-message">Back</div>
+                                            <div className="productsadmin-back-message"><FormattedMessage id="back"/></div>
                                         </div>
                                         <div className="course-add-container" ref={addCourseContainer}>
-                                            <h2>New course</h2>
+                                            <h2><FormattedMessage id="products_new_course"/></h2>
                                             <form className="course-add-form">
                                                 <input name="title" type="text" placeholder="title" required={true}/>
                                                 <textarea name="description" placeholder="description" cols="30" rows="4"></textarea>
                                                 <input type="file" placeholder="image"/>
                                                 <input type="text" name="topic" placeholder="Topic"/>
                                                 <select name="complexity">
-                                                    <option value="easy">Easy</option>
-                                                    <option value="medium">Medium</option>
-                                                    <option value="hard">Hard</option>
+                                                    <option value="easy"><FormattedMessage id="products_easy"/></option>
+                                                    <option value="medium"><FormattedMessage id="products_medium"/></option>
+                                                    <option value="hard"><FormattedMessage id="products_hard"/></option>
                                                 </select>
                                             </form>
 
                                             <div className="course-add-button-group" ref={addCourseButtons}>
-                                                <button onClick={createNewStage}><i className="fa-solid fa-plus"></i></button>
+                                                <button onClick={createNewStage}><i className="fa-solid fa-plus"></i>
+                                                </button>
                                                 <button onClick={addNewCourse}><i className="fa-solid fa-floppy-disk"></i></button>
                                             </div>
                                         </div>
@@ -294,9 +297,8 @@ export const ProductsAdmin = (props) => {
                                                         <i className="fa-solid fa-xmark"></i>
                                                     </div>
                                                     <form method="POST" onSubmit={deleteCourse}>
-                                                        <h2>Курс: {deleteCourseTitle}</h2>
-                                                        <h2>Чтобы подтвердить удаление напишите полностью название курса
-                                                            и нажмите на кнопку ниже</h2>
+                                                        <h2><FormattedMessage id="course_current"/> {deleteCourseTitle}</h2>
+                                                        <h2><FormattedMessage id="course_to_delete"/></h2>
                                                         <input type="text" name="title"/>
                                                         <button type="submit">
                                                             <i className="fa-solid fa-trash"></i>
@@ -311,7 +313,7 @@ export const ProductsAdmin = (props) => {
                                                     <div className="productsadmin-course-delete" onClick={() => deleteCourseInit(course.id, course.title)}>
                                                         <i className="fa-solid fa-trash"></i>
                                                         <div className="productsadmin-course-delete-tip">
-                                                            Delete
+                                                            <FormattedMessage id="delete"/>
                                                         </div>
                                                     </div>
                                                     <div>
@@ -332,7 +334,7 @@ export const ProductsAdmin = (props) => {
                                         }
                                     </div>
                                     <button onClick={toggleAddingNew} className="productsadmin-btn"><i
-                                        className="fa-solid fa-plus"></i> new
+                                        className="fa-solid fa-plus"></i> <FormattedMessage id="new"/>
                                     </button>
                                 </>
                             }

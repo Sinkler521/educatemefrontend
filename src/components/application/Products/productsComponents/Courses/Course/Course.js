@@ -8,8 +8,10 @@ import {NavLink, useNavigate} from "react-router-dom";
 import {truncateString} from "../../../../../../helpers/apiHelpers";
 import classNames from "classnames";
 import {useSelector} from "react-redux";
+import {FormattedMessage, useIntl} from "react-intl";
 
 export const Course = (props) => {
+    const intl = useIntl();
     const [courseInfo, setCourseInfo] = useState(null);
     const [stagesInfo, setStagesInfo] = useState(null);
     const [courseAdded, setCourseAdded] = useState(false);
@@ -64,11 +66,11 @@ export const Course = (props) => {
         } catch(error){
             if(error.response){
                 if(error.response.status === 404){
-                    toast.warning('Info not found');
+                    toast.warning(intl.formatMessage({ id: 'products_toast_no_info'}));
                     navigate('/app/products/courses/');
                 }
             } else{
-                toast.error('Something goes wrong');
+                toast.error(intl.formatMessage({ id: 'request_goes_wrong'}));
                 navigate('/app/products/courses/');
             }
         }
@@ -99,14 +101,14 @@ export const Course = (props) => {
             if(error.response){
                 if(error.response.status === 409){
                     console.log(error, 'error');
-                    toast.warning('User has already added this course');
+                    toast.warning(intl.formatMessage({ id: 'products_user_added'}));
                 } else if(error.response.status === 404){
                     console.log(error.response.message, 'error');
-                    toast.warning('Some data missing');
+                    toast.warning(intl.formatMessage({ id: 'products_toast_no_data'}));
                 }
             } else{
                 console.log(error, 'error');
-                toast.error('Something goes wrong');
+                toast.error(intl.formatMessage({ id: 'request_goes_wrong'}));
             }
         }
     }
@@ -124,9 +126,9 @@ export const Course = (props) => {
                                 <div>
                                     <h2>{courseInfo.title}</h2>
                                     {courseAdded ?
-                                        <NavLink to={`/app/products/mycourses/${courseInfo.id}`}>Start</NavLink>
+                                        <NavLink to={`/app/products/mycourses/${courseInfo.id}`}><FormattedMessage id="start"/></NavLink>
                                         :
-                                        <button className="course-btn-square" onClick={userAddCourse}><i className="fa-solid fa-plus"></i>  Add</button>
+                                        <button className="course-btn-square" onClick={userAddCourse}><i className="fa-solid fa-plus"></i><FormattedMessage id="news_header_add"/></button>
                                     }
 
                                 </div>

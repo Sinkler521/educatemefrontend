@@ -12,8 +12,10 @@ import {userLogged} from "../../../store/userSlice";
 
 import {GeneralMenu} from "./settingsMenu/GeneralMenu";
 import {SecurityMenu} from "./settingsMenu/SecurityMenu";
+import {FormattedMessage, useIntl} from "react-intl";
 
 export const Profile = (props) => {
+    const intl = useIntl();
     const user = useSelector(state => state.user);
     const dispatch = useDispatch();
     const [removeCookie, cookie, setCookie] = useCookies(['user']);
@@ -25,7 +27,7 @@ export const Profile = (props) => {
 
     const avatarRef = useRef();
 
-    const menuOptions = { // TODO should take from translations
+    const menuOptions = {
         'general': GeneralMenu,
         'security': SecurityMenu,
     }
@@ -62,7 +64,7 @@ export const Profile = (props) => {
             )
 
             if(response.status === 200){
-                toast.success('Фото успешно изменено');
+                toast.success(intl.formatMessage({ id: 'profile_photo_update' }));
 
                 const newUserData = response.data;
                 const token = user.token
@@ -76,11 +78,11 @@ export const Profile = (props) => {
         } catch(error){
             if(error.response){
                 if(error.response.status === 400){
-                    toast.warning('Не удалось поменять фото пользователя');
+                    toast.warning(intl.formatMessage({ id: 'profile_photo_not_update' }));
                     console.log(error);
                 }
             } else{
-                toast.error('Произошла ошибка. Попробуйте позже');
+                toast.error(intl.formatMessage({ id: 'request_goes_wrong' }));
                 console.log(error);
             }
         }
@@ -104,7 +106,7 @@ export const Profile = (props) => {
                                         </div>
                                         <input type="file" name="avatar" onChange={handleUploadPhoto}/>
                                         <input type="submit" value="Save"/>
-                                        <button className="profile-avatar-form-back" onClick={toggleChangeAvatar}>Back</button>
+                                        <button className="profile-avatar-form-back" onClick={toggleChangeAvatar}><FormattedMessage id="back"/></button>
                                     </form>
                                 </>
                                 :
@@ -119,12 +121,12 @@ export const Profile = (props) => {
                         </div>
                         <div className="profile-menu-block">
                             <ul className="profile-menu">
-                                <li className="profile-menu-item" onClick={() => setCurrentProfileState('general')}>Общие</li>
-                                <li className="profile-menu-item" onClick={() => setCurrentProfileState('security')}>Безопасность</li>
+                                <li className="profile-menu-item" onClick={() => setCurrentProfileState('general')}><FormattedMessage id="profile_menu_general"/></li>
+                                <li className="profile-menu-item" onClick={() => setCurrentProfileState('security')}><FormattedMessage id="profile_menu_security"/></li>
                             </ul>
                         </div>
                         <div className="profile-logout-block">
-                            <h3 onClick={profileLogout}><i className="fa-solid fa-right-from-bracket"></i>Log out</h3>
+                            <h3 onClick={profileLogout}><i className="fa-solid fa-right-from-bracket"></i><FormattedMessage id="logout"/></h3>
                         </div>
                         <div className="profile-header-block">
                             <h2>{currentProfileState}</h2>

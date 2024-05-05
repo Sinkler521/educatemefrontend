@@ -4,6 +4,7 @@ import {NavLink} from "react-router-dom";
 import classNames from "classnames";
 import {logoutUser} from "../../../helpers/authHelpers";
 import {LangSwitch} from "../../LangSwitch/LangSwitch";
+import {FormattedMessage} from "react-intl";
 
 export const AppMenu = (props) => {
 
@@ -23,7 +24,7 @@ export const AppMenu = (props) => {
                                 {props.menuMinimized ?
                                     <i className="fa-solid fa-magnifying-glass menu-minimized-icon"></i>
                                     :
-                                    "Курсы"
+                                    <FormattedMessage id='appmenu_courses' />
                                 }
                             </NavLink>
                         </li>
@@ -32,7 +33,7 @@ export const AppMenu = (props) => {
                                 {props.menuMinimized ?
                                     <i className="fa-solid fa-star"></i>
                                     :
-                                    "Избранное"
+                                    <FormattedMessage id='appmenu_favorites' />
                                 }
                             </NavLink>
                         </li>
@@ -41,7 +42,7 @@ export const AppMenu = (props) => {
                                 {props.menuMinimized ?
                                     <i className="fa-solid fa-newspaper"></i>
                                     :
-                                    "Новости"
+                                    <FormattedMessage id='appmenu_news' />
                                 }
                             </NavLink>
                         </li>
@@ -50,7 +51,7 @@ export const AppMenu = (props) => {
                                 {props.menuMinimized ?
                                     <i className="fa-solid fa-address-card"></i>
                                     :
-                                    "Профиль"
+                                    <FormattedMessage id='appmenu_profile' />
                                 }
                             </NavLink>
                         </li>
@@ -59,7 +60,7 @@ export const AppMenu = (props) => {
                                 {props.menuMinimized ?
                                     <i className="fa-solid fa-question"></i>
                                     :
-                                    "Написать нам"
+                                    <FormattedMessage id='appmenu_contact' />
                                 }
                             </NavLink>
                         </li>
