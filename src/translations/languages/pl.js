@@ -142,7 +142,7 @@ export const pl = {
     products_toast_no_info: "Brak informacji",
     products_toast_finished: "Ukończyłeś kurs",
     products_toast_stage_fail: "Błąd przy próbie zakończenia etapu kursu",
-    products_complete_next: "Zakończ etap i idź dalej",
+    products_complete_next: "Zakończ & idź dalej",
     products_complete: "Zakończ kurs",
     products_next: "Dalej",
     products_receive_error: "Błąd przy próbie uzyskania informacji o kursach",

@@ -97,6 +97,9 @@ export const AppMenu = (props) => {
                                 <i className="fa-solid fa-question"></i>
                             </NavLink>
                         </li>
+                        <li>
+                            <LangSwitch changeLanguage={props.changeLanguage}/>
+                        </li>
                     </ul>
                 </div>
             </div>

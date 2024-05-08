@@ -245,6 +245,9 @@
         color: var(--text-gray);
         overflow: hidden;
     }
-
+    .coursemain-menu ul.menu-full li{
+        border-left: none;
+        border-right: none;
+    }
 
 }

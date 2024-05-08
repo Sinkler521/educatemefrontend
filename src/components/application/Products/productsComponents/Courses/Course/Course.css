@@ -145,7 +145,6 @@
     position: relative;
 }
 .course-section-h-wrap span {
-    transform: translateY(-50%);
     color: var(--text-gray);
     border: 1px solid #f3f3f3;
     background-color: #18625c;
@@ -157,7 +156,7 @@
     justify-content: center;
     float: right;
 }
-.course-section-h-wrap span:nth-child(2){
+.course-section-h-wrap span:nth-child(1){
     background-color: #416218;
     margin-right: 0.4rem;
 }
@@ -327,7 +326,7 @@
     margin-bottom: 0;
 }
 .course-add-form{
-    /*min-width: 450px;*/
+    max-width: 450px;
     width: 80%;
     display: flex;
     flex-direction: column;
@@ -393,6 +392,15 @@
 .course-add-form h2{
     margin-bottom: 1.4rem;
 }
+.course-tags-wrap{
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    padding-bottom: 1.4rem;
+}
+.course-tags-wrap span{
+    display: block;
+}
 @media screen and (max-width: 1350px) {
     .course-section-h-wrap h1 span{
         top: -20px;
@@ -410,6 +418,9 @@
         grid-template-columns: 1fr;
         grid-template-rows: 2fr 2fr 2fr;
         grid-gap: 2rem;
+    }
+    .course-add-form{
+        max-width: none;
     }
     .course-section-preview{
         grid-row: 1;
@@ -461,14 +472,10 @@
         margin-bottom: 2rem;
         margin-top: 2rem!important;
     }
-    .course-section-h-wrap span {
-        margin: 0!important;
-    }
 }
 
 @media screen and (max-width: 500px) {
     .course-section-h-wrap span {
-        transform: translateY(-250%);
         color: var(--text-gray);
         border: 1px solid #f3f3f3;
         background-color: #18625c;

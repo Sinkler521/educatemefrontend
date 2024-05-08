@@ -142,7 +142,7 @@ export const ua = {
     products_toast_no_info: "Немає інформації",
     products_toast_finished: "Ви завершили курс",
     products_toast_stage_fail: "Помилка при спробі завершити етап курсу",
-    products_complete_next: "Завершити етап та іти далі",
+    products_complete_next: "Завершити & далі",
     products_complete: "Завершити курс",
     products_next: "Далі",
     products_receive_error: "Помилка при спробі отримати інформацію про курси",

@@ -4,28 +4,29 @@ import './Firstscreen.css'
 import {FormattedMessage, useIntl} from "react-intl";
 import {useDispatch, useSelector} from "react-redux";
 import translationsConfig from "../../../translations/translationsConfig";
+import axios from "axios";
 
 export const FirstScreen = (props) => {
     const [typed, setTyped] = useState(null);
-    const typed1 = useRef();
-    const typed2 = useRef();
-    const typed3 = useRef();
+    const [topics, setTopics] = useState(null);
 
     const intl = useIntl();
 
     useEffect(() => {
-        typed1.current.innerText = intl.formatMessage({ id: 'firstscreen_courses' });
-        typed2.current.innerText = intl.formatMessage({ id: 'firstscreen_qual' });
-        typed3.current.innerText = intl.formatMessage({ id: 'firstscreen_new' });
-        setTyped(new Typed('#typed', {
-            stringsElement: '#typed-strings',
-            typeSpeed: 100,
-            startDelay: 500,
-            backSpeed: 50,
-            loop: true
-        }));
-
+        getTopics()
     }, [])
+
+    useEffect(() => {
+        if(topics){
+            setTyped(new Typed('#typed', {
+                stringsElement: '#typed-strings',
+                typeSpeed: 100,
+                startDelay: 500,
+                backSpeed: 50,
+                loop: true
+            }));
+        }
+    }, [topics]);
 
     const handleScroll = () => {
         window.scrollTo({
@@ -34,22 +35,47 @@ export const FirstScreen = (props) => {
         });
     };
 
+    const getTopics = async () => {
+        try{
+            const response = await axios.get(
+                `${props.host.api}/gettopics/`,
+            {
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                });
+
+            if(response.status === 200){
+                console.log(response.data, 'TOPICS')
+                setTopics(response.data)
+            }
+
+        } catch(error){
+            console.log('error', error)
+        }
+    }
+
 
     return (
         <div className="firstscreen-container">
             <div id="firstscreen-content">
-                <div id="text-typing">
-                    <div id="typed"></div>
-                </div>
+                 <div id="text-typing">
+                            <div id="typed"></div>
+                        </div>
 
-                <div id="typed-strings">
-                    <span ref={typed1}><FormattedMessage id='firstscreen_courses' /></span>
-                    <span ref={typed2}><FormattedMessage id='firstscreen_qual' /></span>
-                    <span ref={typed3}><FormattedMessage id='firstscreen_new' /></span>
-                </div>
+                        <div id="typed-strings">
+                            {topics ?
+                                topics.map((topic, index) => (
+                                    <span key={index}>{topic.topic.charAt(0).toUpperCase() + topic.topic.slice(1)}</span>
+                                ))
+                                :
+                                <span></span>
+                            }
+                        </div>
+
                 <p>
-                    <span className="firstscreen-span"><FormattedMessage id='firstscreen_span_free' /></span>
-                    <span className="firstscreen-span"><FormattedMessage id='firstscreen_span_mult' /></span>
+                    <span className="firstscreen-span"><FormattedMessage id='firstscreen_span_free'/></span>
+                    <span className="firstscreen-span"><FormattedMessage id='firstscreen_span_mult'/></span>
                     <span className="firstscreen-span"><FormattedMessage id='firstscreen_span_service' /></span>
                     <span className="firstscreen-span"><FormattedMessage id='firstscreen_span_for' /></span>
                     <span className="firstscreen-span"><FormattedMessage id='firstscreen_span_do' /></span>

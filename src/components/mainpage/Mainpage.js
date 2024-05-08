@@ -36,7 +36,7 @@ export const Mainpage = (props) => {
         <>
             <div className="container">
                 <Header changeLanguage={props.changeLanguage}/>
-                <FirstScreen/>
+                <FirstScreen host={props.host}/>
                 <Statistics statisticsInfo={statisticsInfo}/>
                 <Advantages/>
                 <Startnow/>

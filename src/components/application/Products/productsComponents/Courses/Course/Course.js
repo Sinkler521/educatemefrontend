@@ -135,14 +135,16 @@ export const Course = (props) => {
                             </section>
                             <section className="course-section-main">
                                 <div className="course-section-h-wrap">
-                                    <h1>
-                                        {courseInfo.title}
+                                    <div className="course-tags-wrap">
                                         <span>{courseInfo.topic}</span>
                                         <span className={classNames({
-                                          "course-tag-easy": courseInfo.complexity === "easy" || courseInfo.complexity === "Easy",
-                                          "course-tag-medium": courseInfo.complexity === "medium" || courseInfo.complexity === "Medium",
-                                          "course-tag-hard": courseInfo.complexity === "hard" || courseInfo.complexity === "Hard",
+                                            "course-tag-easy": courseInfo.complexity === "easy" || courseInfo.complexity === "Easy",
+                                            "course-tag-medium": courseInfo.complexity === "medium" || courseInfo.complexity === "Medium",
+                                            "course-tag-hard": courseInfo.complexity === "hard" || courseInfo.complexity === "Hard",
                                         })}>{courseInfo.complexity}</span>
+                                    </div>
+                                    <h1>
+                                        {courseInfo.title}
                                     </h1>
                                 </div>
                                 <div className="course-section-description-wrap">
@@ -151,7 +153,7 @@ export const Course = (props) => {
                             </section>
                             <section className="course-section-stages">
                                 <ul>
-                                    {stagesInfo.map((stage, index) => (
+                                {stagesInfo.map((stage, index) => (
                                         <li key={index}>{stage.title}</li>
                                     ))}
                                 </ul>

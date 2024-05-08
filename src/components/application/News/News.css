@@ -408,4 +408,8 @@
         width: 100%;
         transform: translateX(0);
     }
+    .news-first-image-wrap img{
+        border-bottom-left-radius: 0;
+        max-height: 300px;
+    }
 }
