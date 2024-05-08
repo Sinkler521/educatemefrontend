@@ -145,7 +145,6 @@ export const ua = {
     products_complete_next: "Завершити етап та іти далі",
     products_complete: "Завершити курс",
     products_next: "Далі",
-
     products_receive_error: "Помилка при спробі отримати інформацію про курси",
     products_filter_error: "Помилка при пошуку",
     products_search_topic: "Тема",
@@ -153,11 +152,10 @@ export const ua = {
     products_easy: "Легкі",
     products_medium: "Середні",
     products_hard: "Складні",
-    products_search_orderby: "Фільтрувати за",
+    products_search_orderby: "Фільтр",
     products_oldest: "Старіші",
     products_newest: "Новіші",
     products_user_added: "Користувач вже додав цей курс",
-
     products_course_deleted: "Курс було видалено",
     products_course_not_deleted: "Курс не було видалено",
     products_incorrect_title: "Невірна назва",

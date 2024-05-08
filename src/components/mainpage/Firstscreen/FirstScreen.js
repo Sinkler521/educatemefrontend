@@ -1,13 +1,22 @@
 import React, {useState, useEffect, useRef} from "react";
 import Typed from "typed.js";
 import './Firstscreen.css'
-import {FormattedMessage} from "react-intl";
+import {FormattedMessage, useIntl} from "react-intl";
+import {useDispatch, useSelector} from "react-redux";
+import translationsConfig from "../../../translations/translationsConfig";
 
 export const FirstScreen = (props) => {
     const [typed, setTyped] = useState(null);
     const typed1 = useRef();
+    const typed2 = useRef();
+    const typed3 = useRef();
+
+    const intl = useIntl();
 
     useEffect(() => {
+        typed1.current.innerText = intl.formatMessage({ id: 'firstscreen_courses' });
+        typed2.current.innerText = intl.formatMessage({ id: 'firstscreen_qual' });
+        typed3.current.innerText = intl.formatMessage({ id: 'firstscreen_new' });
         setTyped(new Typed('#typed', {
             stringsElement: '#typed-strings',
             typeSpeed: 100,
@@ -35,8 +44,8 @@ export const FirstScreen = (props) => {
 
                 <div id="typed-strings">
                     <span ref={typed1}><FormattedMessage id='firstscreen_courses' /></span>
-                    <span><FormattedMessage id='firstscreen_qual' /></span>
-                    <span><FormattedMessage id='firstscreen_new' /></span>
+                    <span ref={typed2}><FormattedMessage id='firstscreen_qual' /></span>
+                    <span ref={typed3}><FormattedMessage id='firstscreen_new' /></span>
                 </div>
                 <p>
                     <span className="firstscreen-span"><FormattedMessage id='firstscreen_span_free' /></span>

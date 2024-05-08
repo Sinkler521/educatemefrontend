@@ -167,6 +167,10 @@ export const Products = (props) => {
                                         :
                                         null
                                     }
+                                    <button onClick={() => {
+                                        setIsSearchedContent(false);
+                                        setSearchResults(null);
+                                    }}><FormattedMessage id="back"/></button>
                                 </div>
                             </>
                             :

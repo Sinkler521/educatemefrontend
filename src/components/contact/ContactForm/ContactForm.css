@@ -51,4 +51,16 @@
 }
 .contact-form-submit{
     width: 40%;
+    background-color: transparent!important;
+    border: 2px solid #d0d0d0 !important;
+    border-radius: 1rem;
+    color: var(--text-gray);
+    font-size: 16px;
+    font-family: "IBM Plex Sans", "Input Sans", sans-serif;
+    transition: all 0.2s ease-in;
+}
+.contact-form-submit:hover{
+    border-color: #f3f3f3!important;
+    color: var(--text-white);
+    background-color: #3b3b3b!important;
 }

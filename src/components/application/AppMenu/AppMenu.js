@@ -24,7 +24,7 @@ export const AppMenu = (props) => {
                                 {props.menuMinimized ?
                                     <i className="fa-solid fa-magnifying-glass menu-minimized-icon"></i>
                                     :
-                                    <FormattedMessage id='appmenu_courses' />
+                                    <FormattedMessage id='appmenu_products' />
                                 }
                             </NavLink>
                         </li>
