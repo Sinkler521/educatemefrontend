@@ -1,0 +1,48 @@
+.faq-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.faq-content{
+    width: 70%;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #222326;
+    padding-bottom: 4rem;
+}
+.faq-content h1{
+    text-align: center;
+    padding-top: 1.2rem;
+    color: var(--text-white);
+    font-size: 36px;
+    font-weight: 300;
+    font-family: "IBM Plex Sans", sans-serif;
+}
+.faq-content-main{
+    min-height: 80vh;
+    width: 100%;
+    padding-top: 1.6rem;
+    padding-bottom: 1.6rem;
+}
+
+@media screen and (max-width: 1000px) {
+    .faq-content{
+        width: 100%;
+    }
+    .faq-content-main{
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .faq-content{
+        width: 90%;
+    }
+    .faq-content-main{
+        width: 100%;
+    }
+}

@@ -1,0 +1,74 @@
+.article-form-container{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.article-form-container h1{
+    color: var(--text-white);
+    font-size: 24px;
+    font-weight: 300;
+    text-align: center;
+    font-family: Lato, Verdana, sans-serif;
+}
+.article-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    max-width: 400px;
+}
+.article-form > *{
+    margin-top: 0.6rem;
+}
+.article-form input[type=text]{
+    border-radius: 1.2rem;
+    font-size: 18px;
+    font-weight: 400;
+}
+.article-form textarea{
+    border-radius: 0.8rem;
+    font-size: 14px;
+    font-weight: 300;
+    width: 100%;
+    padding: 0.6rem;
+    resize: none;
+}
+.article-form input[type=file]{
+    width: 100%;
+    color: var(--text-gray);
+    font-size: 18px;
+}
+.article-form input[type=submit]{
+    border-radius: 1.2rem;
+    background-color: #353565;
+    color: var(--text-gray);
+    font-size: 16px;
+    font-weight: 300;
+    font-family: "IBM Plex Sans", sans-serif;
+    cursor: pointer;
+    border: 2px solid #595988;
+}
+.article-form input[type=submit]:hover{
+    color: var(--text-white);
+    border: 2px solid #6d6d9d;
+    background-color: #292954;
+}
+
+@media screen and (max-width: 1000px) {
+    .article-form-container{
+        width: 80%;
+    }
+    .article-form{
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .article-form-container{
+        width: 100%;
+    }
+    .article-form{
+        width: 80%;
+    }
+}

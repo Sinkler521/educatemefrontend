@@ -1,0 +1,95 @@
+.startnow-container{
+    width: 100%;
+    min-height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*background-color: #1e1e1e;*/
+    background-color: #1c202c;
+    padding-top: 2.4rem;
+    padding-bottom: 2.4rem;
+    position: relative;
+    overflow: hidden;
+}
+.startnow-content{
+    width: 80%;
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.startnow-container:before{
+    padding: 0;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    opacity: 5%;
+    background-color: #8c82ce;
+    background-size: cover;
+    background-position: center center;
+}
+.startnow-content h2{
+    font-size: 30px;
+    color: var(--text-white);
+    font-family: "IBM Plex Sans", sans-serif;
+    text-align: center;
+    width: 80%;
+}
+.startnow-content a{
+    padding: 1.6rem 1.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: 2px solid var(--text-white);
+    border-radius: 1rem;
+    margin-top: 1.2rem;
+    z-index: 1001;
+    font-size: 24px;
+    font-family: "Input Sans", sans-serif;
+    color: var(--text-white);
+    text-decoration: none;
+    font-weight: 500;
+}
+.startnow-content a:hover{
+    background-color: #e0dede;
+    color: #232222;
+}
+
+.startnow-floating-squares-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    perspective: 100px;
+    transform-style: preserve-3d;
+}
+.startnow-floating-squares-grid div{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+@media screen and (max-width: 1000px) {
+    .startnow-content h2{
+        width: 100%;
+    }
+    .startnow-floating-squares-grid{
+        visibility: hidden;
+    }
+}
+
+@media screen and (max-width: 700px){
+    .startnow-content{
+        width: var(--content-width-700);
+    }
+}

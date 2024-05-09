@@ -1,0 +1,196 @@
+.statistics-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 1.4rem;
+    padding-bottom: 1.2rem;
+    background-color: #1e1e1e;
+}
+.statistics-content{
+    width: 80%;
+    display: grid;
+    grid-template-rows: 1fr 1fr 2fr;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 1.2rem;
+    min-height: 100vh;
+    max-width: var(--content-max-width);
+}
+.statistics-content div{
+    padding: 0.8rem;
+    border-radius: 1.4rem;
+}
+.statistics-info-block{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    overflow: hidden;
+}
+.statistics-info-block h2,
+.statistics-info-block p{
+    text-align: center;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--text-white);
+}
+.statistics-info-block p{
+    color: var(--text-gray)
+}
+
+.statistics-info-block h2{
+    font-size: 40px;
+    font-family: Input Sans, sans-serif;
+}
+.statistics-info-block p{
+    font-size: 18px;
+    font-family: IBM Plex Sans, sans-serif;
+}
+
+.statistics-data-block{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1.6rem;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    background-color: #1c202c;
+    overflow: hidden;
+}
+.statistics-data-block div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.statistics-data-block div h3:first-child{
+    font-size: 5rem;
+    color: var(--text-white);
+    font-family: Input Sans, sans-serif;
+    font-weight: 300;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+.statistics-data-block div h3:nth-child(2){
+    font-size: 20px;
+    color: var(--text-gray);
+    font-family: "IBM Plex Sans", sans-serif;
+    margin-top: 15px;
+}
+
+.statistics-students-block{
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+.statistics-teachers-block{
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+.statistics-students-block,
+.statistics-teachers-block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #232427;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+.statistics-students-block p,
+.statistics-teachers-block p{
+    text-align: left;
+    color: var(--text-gray);
+    font-family: Input Sans, sans-serif;
+    font-size: 20px;
+    width: 90%;
+}
+.statistics-students-block h3,
+.statistics-teachers-block h3{
+    text-align: center;
+    color: var(--text-white);
+    font-size: 2rem;
+    font-family: "IBM Plex Sans", sans-serif;
+}
+
+#statistics-student{
+    width: 30%;
+    position: absolute;
+    bottom: 0;
+    transition: all 0.2s ease-in-out;
+}
+#statistics-teacher{
+    width: 60%;
+    position: absolute;
+    bottom: 0;
+    transition: all 0.2s ease-in-out;
+}
+.statistics-students-block:hover,
+.statistics-teachers-block:hover{
+    transform: scale(1.02)
+}
+.statistics-students-block:hover #statistics-student{
+    transform: scale(1.1)
+}
+.statistics-teachers-block:hover #statistics-teacher{
+    transform: scale(1.1)
+}
+
+@media screen and (max-width: 1100px) {
+    .statistics-content{
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 3fr 3fr 4fr;
+    }
+    #statistics-student,
+    #statistics-teacher{
+        width: 30%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .statistics-content{
+        grid-template-rows: 1fr 2fr 1fr 1fr;
+        grid-template-columns: 1fr;
+        width: var(--content-width-1000);
+    }
+    .statistics-content div{
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
+    .statistics-students-block{
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
+    .statistics-teachers-block{
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
+    #statistics-student,
+    #statistics-teacher{
+        width: 64px;
+        opacity: 50%;
+    }
+    #statistics-student:hover,
+    #statistics-teacher:hover{
+        transform: none;
+    }
+    .statistics-info-block h2,
+    .statistics-info-block p{
+        width: 90%;
+    }
+    .statistics-data-block{
+        grid-gap: 0;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        margin: 0;
+        padding: 0;
+    }
+    .statistics-data-block div{
+        padding: 0;
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .statistics-content{
+        width: var(--content-width-700);
+    }
+}

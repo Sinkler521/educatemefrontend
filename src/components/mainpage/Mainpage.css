@@ -1,0 +1,25 @@
+.container{
+    overflow: hidden;
+    background-color: #232222;
+}
+.scroll-right{
+    opacity: 0;
+    transform: translateX(50%);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.scroll-left{
+    opacity: 0;
+    transform: translateX(-50%);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.scroll-right.scroll-active,
+.scroll-left.scroll-active,
+.scroll-bottom.scroll-active{
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+}
+.scroll-bottom{
+    opacity: 0;
+    transform: translateY(-50%);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}

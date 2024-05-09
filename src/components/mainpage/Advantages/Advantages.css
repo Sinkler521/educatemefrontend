@@ -1,0 +1,186 @@
+.advantages-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 1.4rem;
+    background-color: #1c1c1c;
+    padding-bottom: 1.4rem;
+}
+.advantages-content{
+    width: 80%;
+    display: grid;
+    grid-template-rows: 3fr 3fr 3.5fr;
+    grid-template-columns: 1fr;
+    grid-gap: 1.2rem;
+    min-height: 100vh;
+    max-width: var(--content-max-width);
+}
+.advantages-content div{
+    border-radius: 1.4rem;
+}
+.advantages-info-block{
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    overflow: hidden;
+}
+.advantages-info-block h2,
+.advantages-info-block p{
+    text-align: center;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--text-white);
+}
+.advantages-info-block h2{
+    font-size: 50px;
+    font-family: Input Sans, sans-serif;
+}
+.advantages-info-block p{
+    font-size: 18px;
+    font-family: IBM Plex Sans, sans-serif;
+    color: var(--text-gray)
+}
+
+.advantages-advantages-block{
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1.2rem;
+}
+.advantages-advantages-content{
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.advantages-advantages-content > h2,
+.advantages-advantages-content > p{
+    color: var(--text-white);
+    width: 100%;
+}
+.advantages-advantages-content > h2{
+    font-family: "IBM Plex Sans", sans-serif;
+    font-weight: 400;
+    font-size: 28px;
+    text-align: left;
+    padding-bottom: 0.2rem;
+    margin-bottom: 0;
+}
+.advantages-advantages-content > p{
+    font-family: 'Input Sans', sans-serif;
+    font-weight: 300;
+    text-align: left;
+}
+.advantages-icon{
+    padding: 0.6rem 0.8rem;
+    background-color: #ffc649;
+    border-radius: 0.8rem;
+    align-self: start;
+}
+.advantages-icon i{
+    font-size: 26px;
+    color: #232427;
+}
+.advantages-advantages-block div{
+    background-color: #1c202c;
+    overflow: hidden;
+}
+.advantages-reviews {
+    position: relative;
+}
+.advantages-review{
+    height: 100%;
+    width: 100%;
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+    justify-content: center;
+    background-color: #232427;
+    transition: all 0.3s ease-in-out;
+    opacity: 1;
+    z-index: 90;
+    position: absolute;
+}
+.review-hide{
+    opacity: 3;
+    z-index: -100;
+}
+.advantages-review h2{
+    font-size: 30px;
+    font-family: Input Sans, sans-serif;
+    color: var(--text-white);
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 300;
+}
+.advantages-review p{
+    font-size: 18px;
+    font-family: IBM Plex Sans, sans-serif;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.advantages-review-img{
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+.advantages-review-name{
+    color: var(--text-white);
+    margin-top: 1.6rem;
+    font-size: 16px;
+}
+.advantages-review-position{
+    color: var(--text-white);
+    margin-top: 0.4rem;
+    font-size: 14px;
+}
+
+@media screen and (max-width: 1000px) {
+    .advantages-content{
+        min-height: auto;
+        height: auto;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 3fr 2fr;
+        width: var(--content-width-1000);
+    }
+    .advantages-advantages-block{
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-columns: 1fr;
+    }
+    .advantages-info-block{
+        padding-top: 1.2rem;
+        padding-bottom: 1.2rem;
+        height: auto;
+    }
+    .advantages-info-block h2,
+    .advantages-info-block p{
+        width: 100%;
+    }
+    .advantages-review{
+        padding: 0;
+    }
+    .advantages-review h2{
+        width: 90%;
+    }
+}
+@media screen and (max-width: 700px) {
+    .advantages-content{
+        width: var(--content-width-700);
+    }
+    .advantages-info-block h2,
+    .advantages-info-block p{
+        width: 100%;
+    }
+    .advantages-review{
+        padding: 0;
+    }
+    .advantages-review h2{
+        width: 90%;
+    }
+}

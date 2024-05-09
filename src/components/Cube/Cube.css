@@ -1,0 +1,59 @@
+.wrap {
+    perspective: 800px;
+    perspective-origin: 50% 100px;
+}
+
+.cube {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    transform-style: preserve-3d;
+    transform: rotateX(20deg) rotateY(20deg);
+}
+
+.cube div {
+    position: absolute;
+    width: 59px;
+    height: 59px;
+    background-color: #6e7883;
+    opacity: 0.15;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	border: 1px solid #d5d6d7;
+}
+
+.back:before,
+.bottom:before{
+    content: "";
+    width: 400vh;
+    height: 400vh;
+    border-left: 1px solid #877dc9;
+}
+.back {
+    transform: translateZ(-30px) rotateY(180deg);
+}
+
+.right {
+    transform: rotateY(-90deg) translateX(30px); /* Правый поворот вместо левого */
+    transform-origin: top right;
+}
+
+.left {
+    transform: rotateY(90deg) translateX(-30px); /* Левый поворот вместо правого */
+    transform-origin: top left;
+}
+
+.top {
+    transform: rotateX(-90deg) translateY(-30px);
+    transform-origin: top center;
+}
+
+.bottom {
+    transform: rotateX(90deg) translateY(30px); /* Изменение знака поворота */
+    transform-origin: bottom center;
+}
+
+.front {
+    transform: translateZ(30px);
+}
