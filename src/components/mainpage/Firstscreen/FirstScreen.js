@@ -17,7 +17,7 @@ export const FirstScreen = (props) => {
     }, [])
 
     useEffect(() => {
-        if(topics){
+        if(topics && topics.length > 0){
             setTyped(new Typed('#typed', {
                 stringsElement: '#typed-strings',
                 typeSpeed: 100,
@@ -46,8 +46,9 @@ export const FirstScreen = (props) => {
                 });
 
             if(response.status === 200){
-                console.log(response.data, 'TOPICS')
-                setTopics(response.data)
+                if(response.data){
+                    setTopics(response.data)
+                }
             }
 
         } catch(error){
@@ -59,12 +60,14 @@ export const FirstScreen = (props) => {
     return (
         <div className="firstscreen-container">
             <div id="firstscreen-content">
-                 <div id="text-typing">
+                {topics && topics.length > 0 ?
+                <>
+                    <div id="text-typing">
                             <div id="typed"></div>
                         </div>
 
                         <div id="typed-strings">
-                            {topics ?
+                            {topics && topics.length > 0 ?
                                 topics.map((topic, index) => (
                                     <span key={index}>{topic.topic.charAt(0).toUpperCase() + topic.topic.slice(1)}</span>
                                 ))
@@ -72,7 +75,13 @@ export const FirstScreen = (props) => {
                                 <span></span>
                             }
                         </div>
-
+                </>
+                :
+                <>
+                    <h2>EducateMe web app</h2>
+                </>
+                }
+            
                 <p>
                     <span className="firstscreen-span"><FormattedMessage id='firstscreen_span_free'/></span>
                     <span className="firstscreen-span"><FormattedMessage id='firstscreen_span_mult'/></span>

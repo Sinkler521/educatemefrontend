@@ -19,7 +19,12 @@
     align-items: center;
     justify-content: center;
 }
-
+#firstscreen-content h2{
+    font-weight: 300;
+    font-size: 36px;
+    font-family: "IBM Plex Sans", sans-serif;
+    color: var(--text-white);
+}
 #firstscreen-header{
     color: #f3f3f3;
     font-weight: 600;
