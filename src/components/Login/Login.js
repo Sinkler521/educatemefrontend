@@ -189,7 +189,7 @@ export const Login = (props) => {
                     toast.error(intl.formatMessage({ id: 'login_toast_wrong_data' }));
                     console.log(error);
                 } else {
-                    toast.error(intl.formatMessage({ id: 'login_auth_not_ok' }));
+                    toast.error(intl.formatMessage({ id: 'login_toast_auth_not_ok' }));
                     console.log(error);
                 }
             } else {

@@ -250,7 +250,7 @@
 }
 .pagination li:first-child,
 .pagination li:last-child{
-    width: 108px;
+    width: 150px;
 }
 .pagination li:first-child{
     border-top-left-radius: 0.6rem;

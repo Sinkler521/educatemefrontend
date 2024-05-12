@@ -93,14 +93,12 @@
     display: block;
 }
 
-.products-header-profile-avatar img {
-    width: 53px;
-    height: 53px;
+.products-header-profile-avatar img{
+    width: 53px!important;
+    height: 53px!important;
     border-radius: 50%;
-    border: 3px solid #53555b;
     cursor: pointer;
 }
-
 .products-header-profile-block ul {
     display: none;
     position: absolute;

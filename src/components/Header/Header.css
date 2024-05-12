@@ -125,11 +125,14 @@ header label{
 nav a{
     z-index: 150;
 }
+nav{
+    display: flex;
+    align-items: center;
+}
 .lang-switch{
-    z-index: 10000;
-    position: fixed;
-    right: 1.4rem;
-    top: 1.4rem;
+    height: 100%;
+    display: inline;
+    margin-left: 2rem;
 }
 .lang-switch select{
     padding: 0.4rem 0.6rem;
@@ -170,4 +173,15 @@ nav a{
     .navbar.is-open header:before{
         opacity: 100%;
     }
+    .lang-switch{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin: 0;
+    }
+    .lang-switch .langSwitch select{
+        padding: 0.4rem 1rem;
+        font-size: 30px;
+    }
+
 }

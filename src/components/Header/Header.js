@@ -85,10 +85,10 @@ export const Header = (props) => {
                             </>
                             :
                             null}
+                            <div className="lang-switch">
+                                <LangSwitch changeLanguage={props.changeLanguage}/>
+                            </div>
                     </nav>
-                    <div className="lang-switch">
-                        <LangSwitch changeLanguage={props.changeLanguage}/>
-                    </div>
                 </header>
             </div>
         </>
