@@ -184,7 +184,7 @@ export const ProductsAdmin = (props) => {
             if(isFormEmpty(form)){
                 continue
             }
-            const imageFile = courseForms[i].files ? courseForms[i].files[0] : null
+            const imageFile = courseForms[i].elements['image'].files ? courseForms[i].elements['image'].files[0] : null
             const imageBase64 = imageFile ? await fileToBase64(imageFile) : '';
 
             const stage = {
@@ -297,8 +297,8 @@ export const ProductsAdmin = (props) => {
                                                         <i className="fa-solid fa-xmark"></i>
                                                     </div>
                                                     <form method="POST" onSubmit={deleteCourse}>
-                                                        <h2><FormattedMessage id="course_current"/> {deleteCourseTitle}</h2>
-                                                        <h2><FormattedMessage id="course_to_delete"/></h2>
+                                                        <h2><FormattedMessage id="products_to_delete_before"/> {deleteCourseTitle}</h2>
+                                                        <h2><FormattedMessage id="products_to_delete"/></h2>
                                                         <input type="text" name="title"/>
                                                         <button type="submit">
                                                             <i className="fa-solid fa-trash"></i>

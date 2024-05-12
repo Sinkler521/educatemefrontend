@@ -165,6 +165,7 @@ export const ua = {
     products_topics: "Різних тем",
     products_new_course: "Новий курс",
     products_current: "Курс: ",
+    products_to_delete_before: "Ви збираєтесь видалити курс",
     products_to_delete: "Щоб підтвердити видалення курса напишіть його назву повністю і натисніть на кнопку",
 
     back: "Назад",

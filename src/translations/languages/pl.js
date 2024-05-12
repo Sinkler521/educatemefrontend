@@ -165,6 +165,7 @@ export const pl = {
     products_topics: "Różne tematy",
     products_new_course: "Nowy kurs",
     products_current: "Kurs:",
+    products_to_delete_before: "Zamierzasz usunąć kurs",
     products_to_delete: "Aby potwierdzić usunięcie kursu, wpisz jego pełną nazwę i naciśnij przycisk",
 
     back: "Wstecz",

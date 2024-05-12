@@ -32,8 +32,8 @@ export const ArticleForm = (props) => {
                 });
 
             if(response.status === 200){
-                toast.success(intl.formatMessage({ id: 'news_toast_added' }));
                 props.setAddingArticle(false);
+                props.getLatestNews();
             }
 
         } catch (error) {

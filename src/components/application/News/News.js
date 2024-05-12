@@ -162,7 +162,7 @@ export const News = (props) => {
                     </div>
                     <div className={classNames("news-content", {'short-height': !currentNews})}>
                         {addingArticle ?
-                            <ArticleForm host={props.host} setAddingArticle={setAddingArticle}/>
+                            <ArticleForm host={props.host} setAddingArticle={setAddingArticle} getLatestNews={getLatestNews}/>
                             :
                             <>
                                 <div className="news-search-container">
